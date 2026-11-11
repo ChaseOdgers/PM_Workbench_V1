@@ -51,7 +51,7 @@ export default function Handoff() {
             <button className="btn primary sm" disabled={!allowed || busy} onClick={() => run(async () => { await api.pushHandoff(id, b, system, user.id); nav(`/opportunities/${id}`); })}><i className="ti ti-send" /> Push to {system}</button></>}
         </div>
       </div>
-      {!done && !o.readiness.ready && <div className="note warn" style={{ marginBottom: 16, maxWidth: 860 }}><i className="ti ti-lock" /><div>Not ready to push yet: {o.readiness.items.filter((i) => !i.ok && i.blocking !== false).map((i) => i.label.toLowerCase()).join("; ")}. You can still edit and download the brief.</div></div>}
+      {!done && !o.readiness.ready && <div className="note warn" style={{ marginBottom: 16, maxWidth: 860 }}><i className="ti ti-lock" /><div>Not ready to push yet: {o.readiness.items.filter((i) => !i.ok && i.blocking !== false).map((i) => i.label).join("; ")}. You can still edit and download the brief.</div></div>}
       <div className="brief">
         <div className="oid">{o.id} · {o.stream.name}</div>
         <h1 style={{ fontSize: 22, margin: "4px 0 18px" }}>{b.title}</h1>

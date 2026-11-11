@@ -22,22 +22,24 @@ const nameOf = (d, id) => d.users.find((u) => u.id === id)?.name || d.agents.fin
 
 /* ---------- session & workspace ---------- */
 export function getSession() {
-  try { return JSON.parse(localStorage.getItem(SESSION)); } catch { return null; }
+  try { return JSON.parse(localStorage.getItem(SESSION)) || memSession; } catch { return memSession; }
 }
 export function signIn(userId) {
   const u = getDb().users.find((x) => x.id === userId);
   const s = { userId, streamId: u.streams[0] };
-  localStorage.setItem(SESSION, JSON.stringify(s));
+  saveSession(s);
   mutate((d) => audit(d, userId, "signed in", "workspace", "via mock SSO"));
   return ok(s);
 }
 export function setStream(streamId) {
   const s = { ...getSession(), streamId };
-  localStorage.setItem(SESSION, JSON.stringify(s));
+  saveSession(s);
   mutate(() => {});
   return ok(s);
 }
-export function signOut() { localStorage.removeItem(SESSION); mutate(() => {}); return ok(true); }
+let memSession = null;
+function saveSession(s) { memSession = s; try { localStorage.setItem(SESSION, JSON.stringify(s)); } catch { /* storage blocked: keep in memory */ } }
+export function signOut() { memSession = null; try { localStorage.removeItem(SESSION); } catch { /* ignore */ } mutate(() => {}); return ok(true); }
 export function resetDemo(packId) { resetDb(packId); return ok(true); }
 export const listPacks = () => ok(PACKS);
 

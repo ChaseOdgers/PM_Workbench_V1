@@ -80,7 +80,7 @@ export default function PrototypeStudio() {
                   <span className="vm">{x.author === "human" ? "Human" : "AI"} · {ago(x.at)}</span>
                 </button>))}
               <div className="row" style={{ marginLeft: "auto", gap: 6 }}>
-                <button className="btn out sm" onClick={() => { navigator.clipboard?.writeText(shareUrl); setShared(true); setTimeout(() => setShared(false), 2500); }}><i className={`ti ${shared ? "ti-check" : "ti-share"}`} /> {shared ? "Link copied" : "Share link"}</button>
+                <button className="btn out sm" onClick={() => { try { navigator.clipboard?.writeText(shareUrl)?.catch(() => {}); } catch { /* clipboard blocked */ } setShared(true); setTimeout(() => setShared(false), 2500); }}><i className={`ti ${shared ? "ti-check" : "ti-share"}`} /> {shared ? "Link copied" : "Share link"}</button>
                 <a className="btn out sm" href={`#/share/${id}/${v.v}`} target="_blank" rel="noreferrer"><i className="ti ti-external-link" /> Open</a>
               </div>
             </div>

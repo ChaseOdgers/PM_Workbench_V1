@@ -101,7 +101,7 @@ function SourceRow({ s, agents, admin, user }) {
           {SCHEDULES.map((x) => <option key={x}>{x}</option>)}</select>
       ) : <span className="tag">{s.schedule}</span>}
       <span className={`status ${s.status}`} style={{ width: 118, justifyContent: "center" }}>{busy && <i className="ti ti-loader-2 spin" />}{s.status}{s.lastSync && !busy ? ` · ${ago(s.lastSync)}` : ""}</span>
-      {admin && <button className="iconbtn danger" title="Disconnect" aria-label={`Disconnect ${s.name}`} onClick={() => confirm(`Disconnect ${s.name}?`) && api.removeSource(s.id, user.id)}><i className="ti ti-plug-x" /></button>}
+      {admin && <button className="iconbtn danger" title="Disconnect" aria-label={`Disconnect ${s.name}`} onClick={() => api.removeSource(s.id, user.id)}><i className="ti ti-plug-x" /></button>}
     </div>
   );
 }

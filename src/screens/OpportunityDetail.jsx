@@ -94,7 +94,7 @@ function NextAction({ o, user, edit }) {
       {can(user, "handoff") && <Link className="btn primary" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-send" /> Hand off</Link>}</>;
   } else {
     icon = "ti-route";
-    text = <>Before handoff: {missing.map((m) => m.label.toLowerCase()).join("; ")}{o.readiness.rejected.length ? `; resolve ${o.readiness.rejected.length} rejected gate` : ""}.</>;
+    text = <>Before handoff: {missing.map((m) => m.label).join("; ")}{o.readiness.rejected.length ? `; resolve ${o.readiness.rejected.length} rejected gate` : ""}.</>;
     acts = <Link className="btn primary" to={`/opportunities/${o.id}/prototype`}><i className="ti ti-device-desktop" /> Open prototype studio</Link>;
   }
   return (
