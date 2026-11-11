@@ -1,0 +1,15 @@
+[
+  {"id":"res","name":"Reservations · Booking Flow","icon":"ti-plane-departure","owner":"u-sam","goals":[
+    {"id":"g-res-1","text":"Grow digital booking revenue","keywords":["booking","revenue","abandon","sold-out","sellout","fare","conversion","alternate"]},
+    {"id":"g-res-2","text":"Cut checkout friction","keywords":["checkout","payment","re-enter","saved","drop-off"]},
+    {"id":"g-res-3","text":"Stay DOT-compliant","keywords":["dot","refund","compliance","rule"]}]},
+  {"id":"care","name":"Customer Care & IROPS","icon":"ti-headset","owner":"u-marcus","goals":[
+    {"id":"g-care-1","text":"Reduce IROPS customer impact","keywords":["irops","rebook","rebooking","delay","cancel","disruption","weather"]},
+    {"id":"g-care-2","text":"Lower cost to serve","keywords":["calls","hold","handoff","contacts"]}]},
+  {"id":"bag","name":"Baggage Services","icon":"ti-luggage","owner":"u-dana","goals":[
+    {"id":"g-bag-1","text":"Improve end-to-end baggage experience","keywords":["bag","baggage","mishandled","tracking","claim"]}]},
+  {"id":"loyalty","name":"AAdvantage · Loyalty","icon":"ti-award","owner":"u-jordan","goals":[
+    {"id":"g-loy-1","text":"Elevate AAdvantage engagement","keywords":["aadvantage","loyalty","miles","upgrade"]}]},
+  {"id":"airport","name":"Airport & Gate Operations","icon":"ti-building-airport","owner":"u-jordan","goals":[]},
+  {"id":"cargo","name":"Cargo","icon":"ti-package","owner":"u-jordan","goals":[]}
+]

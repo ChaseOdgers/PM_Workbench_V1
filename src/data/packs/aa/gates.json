@@ -1,0 +1,10 @@
+[
+  {"id":"gate-dot","name":"Fare-display / DOT review","policyId":"pol-dot","trigger":"when an opportunity presents or changes displayed fares","keywords":["fare","price","pricing","refund"],"triggerAll":false,"approverRole":"Legal","action":"block","checks":[
+    {"id":"c-dot-1","type":"forbid","pattern":"auto[- ]?book","label":"Books or changes a fare without customer confirmation","outcome":"block"},
+    {"id":"c-dot-2","type":"require","when":"\\$\\s?\\d","pattern":"tax|fee","label":"Displayed price must include taxes and fees","outcome":"flag"}]},
+  {"id":"gate-pci","name":"PCI / payment-data review","policyId":"pol-pci","trigger":"when an opportunity handles cardholder data or checkout","keywords":["payment","checkout","card","cardholder"],"triggerAll":false,"approverRole":"Security","action":"block","checks":[
+    {"id":"c-pci-1","type":"forbid","pattern":"localStorage[^\\n]{0,80}card|card[^\\n]{0,80}localStorage","label":"Stores card data in the browser","outcome":"block"}]},
+  {"id":"gate-acaa","name":"Accessibility review","policyId":"pol-acaa","trigger":"when an opportunity ships a customer-facing UI","keywords":["screen","page","app","display","surface","customer-facing","ui"],"triggerAll":false,"approverRole":"Accessibility","action":"flag","checks":[
+    {"id":"c-acaa-1","type":"aria-buttons","label":"Every button has an accessible label","outcome":"flag"}]},
+  {"id":"gate-sec","name":"Security review","policyId":"pol-sec","trigger":"before any opportunity is handed off to engineering","keywords":[],"triggerAll":true,"approverRole":"Security","action":"block","checks":[]}
+]

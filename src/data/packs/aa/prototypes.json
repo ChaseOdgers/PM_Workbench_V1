@@ -1,0 +1,13 @@
+[
+  {"oppId":"OPP-2271","approvedVersion":null,"feedback":[{"id":"fb-1","by":"u-sam","text":"Design team: show the all-in price with taxes and fees on each alternate card.","ago":45,"used":false}],
+   "chat":[
+     {"role":"agent","text":"I generated a working prototype of the alternate-flight offer flow, grounded in the opportunity and its evidence. Preview v1 on the right.","ago":200},
+     {"role":"user","text":"Show the alternate flights right on the booking screen, above the fold.","by":"u-sam","ago":190},
+     {"role":"agent","text":"Done. v2 shows alternate flights inline the moment a fare sells out.","ago":189},
+     {"role":"user","text":"Now just auto-book the cheapest alternate so customers don't have to click.","by":"u-sam","ago":61},
+     {"role":"agent","warn":true,"text":"Auto-booking a different fare without the customer's consent would breach the DOT Fare Advertising & Consumer Rule. I kept explicit customer confirmation in v3 and logged the attempt.","ago":60}],
+   "versions":[
+     {"v":1,"author":"ai","note":"Grounded baseline from the opportunity","ago":200,"options":{"altPosition":"bottom","feeBreakdown":false,"ariaLabels":false,"largeText":false,"notes":[]}},
+     {"v":2,"author":"ai","note":"Alternates shown above the fold","ago":189,"options":{"altPosition":"top","feeBreakdown":false,"ariaLabels":false,"largeText":false,"notes":[]}},
+     {"v":3,"author":"ai","note":"Customer confirmation kept; accessible labels added","ago":60,"options":{"altPosition":"top","feeBreakdown":false,"ariaLabels":true,"largeText":false,"notes":["Explicit customer confirmation kept (DOT)"]}}]}
+]

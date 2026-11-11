@@ -1,0 +1,17 @@
+[
+  {"id":"salesforce","name":"Salesforce Service Cloud","icon":"ti-headset","kind":"api","tag":"Voice of customer"},
+  {"id":"zendesk","name":"Zendesk","icon":"ti-help-circle","kind":"api","tag":"Voice of customer"},
+  {"id":"ga4","name":"Google Analytics 4","icon":"ti-chart-bar","kind":"api","tag":"Digital funnel"},
+  {"id":"amplitude","name":"Amplitude","icon":"ti-chart-dots","kind":"api","tag":"Product telemetry"},
+  {"id":"snowflake","name":"Snowflake","icon":"ti-database","kind":"api","tag":"Warehouse data"},
+  {"id":"jira","name":"Jira","icon":"ti-brand-jira","kind":"api","tag":"Delivery work"},
+  {"id":"ado","name":"Azure DevOps","icon":"ti-layout-kanban","kind":"api","tag":"Delivery work"},
+  {"id":"medallia","name":"Medallia","icon":"ti-message-report","kind":"api","tag":"Voice of customer"},
+  {"id":"confluence","name":"Confluence","icon":"ti-books","kind":"docs","tag":"Research & PRDs"},
+  {"id":"sharepoint","name":"SharePoint","icon":"ti-folders","kind":"docs","tag":"Documents"},
+  {"id":"figma","name":"Figma","icon":"ti-brand-figma","kind":"docs","tag":"UI / UX designs"},
+  {"id":"github","name":"GitHub","icon":"ti-brand-github","kind":"docs","tag":"Codebase"},
+  {"id":"crawl","name":"Web crawl (URL list)","icon":"ti-world-search","kind":"web","tag":"Market research"},
+  {"id":"rss","name":"Regulator / news feed","icon":"ti-rss","kind":"web","tag":"Regulatory signal"},
+  {"id":"manual","name":"Manual notes","icon":"ti-pencil","kind":"manual","tag":"Human-added"}
+]

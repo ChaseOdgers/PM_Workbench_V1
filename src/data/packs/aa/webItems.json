@@ -1,0 +1,34 @@
+[
+ {
+  "id": "WEB-1",
+  "created": "2026-11-09T14:00:00Z",
+  "source": "regulations.gov",
+  "title": "DOT final rule: automatic refunds for cancelled or significantly changed flights",
+  "themeKey": "refund",
+  "sourceId": "src-dot"
+ },
+ {
+  "id": "WEB-2",
+  "created": "2026-11-05T09:00:00Z",
+  "source": "Competitor newsroom",
+  "title": "Competitor adds 72-hour fare lock for a small fee",
+  "themeKey": "market",
+  "sourceId": "src-crawl"
+ },
+ {
+  "id": "WEB-3",
+  "created": "2026-10-28T09:00:00Z",
+  "source": "Competitor newsroom",
+  "title": "Competitor launches real-time bag tracking map in its app",
+  "themeKey": "market",
+  "sourceId": "src-crawl"
+ },
+ {
+  "id": "WEB-4",
+  "created": "2026-10-20T09:00:00Z",
+  "source": "Industry press",
+  "title": "Airlines lose an estimated 1 in 4 sold-out searches to rivals",
+  "themeKey": "soldout",
+  "sourceId": "src-crawl"
+ }
+]

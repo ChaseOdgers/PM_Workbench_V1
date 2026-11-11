@@ -1,0 +1,7 @@
+[
+  {"id":"log-5","ago":12,"oppId":"OPP-2271","gateId":"gate-dot","kind":"flag","text":"Fare-display review required: changes the fares shown to customers","by":"agt-gov"},
+  {"id":"log-4","ago":12,"oppId":"OPP-2271","gateId":"gate-pci","kind":"flag","text":"PCI review required: touches payment at checkout","by":"agt-gov"},
+  {"id":"log-3","ago":60,"oppId":"OPP-2271","gateId":"gate-dot","kind":"block","text":"Prototype edit asked to auto-book a higher fare without customer consent","by":"agt-gov"},
+  {"id":"log-2","ago":180,"oppId":"OPP-2271","gateId":"gate-sec","kind":"pass","text":"Security review approved by Chris Owens","by":"u-chris"},
+  {"id":"log-1","ago":1440,"oppId":"OPP-2271","gateId":"gate-acaa","kind":"pass","text":"Accessibility review approved by Priya Nair","by":"u-priya"}
+]

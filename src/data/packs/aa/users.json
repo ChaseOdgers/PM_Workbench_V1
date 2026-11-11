@@ -1,0 +1,9 @@
+[
+  {"id":"u-jordan","name":"Jordan Reyes","initials":"JR","title":"Director of Product","persona":"director","streams":["res","care","bag","loyalty","airport","cargo"],"approverRoles":[],"demo":true},
+  {"id":"u-sam","name":"Sam Patel","initials":"SP","title":"Product Manager, Booking","persona":"pm","streams":["res"],"approverRoles":[],"demo":true},
+  {"id":"u-alex","name":"Alex Kim","initials":"AK","title":"Product Ops Lead","persona":"admin","streams":["res","care","bag","loyalty","airport","cargo"],"approverRoles":[],"demo":true},
+  {"id":"u-priya","name":"Priya Nair","initials":"PN","title":"Risk & Compliance Reviewer","persona":"reviewer","streams":["res","care","bag","loyalty","airport","cargo"],"approverRoles":["Legal","Security","Accessibility","Compliance"],"demo":true},
+  {"id":"u-marcus","name":"Marcus Lee","initials":"ML","title":"Product Manager, Care & IROPS","persona":"pm","streams":["care"],"approverRoles":[],"demo":false},
+  {"id":"u-dana","name":"Dana Brooks","initials":"DB","title":"Product Manager, Baggage","persona":"pm","streams":["bag"],"approverRoles":[],"demo":false},
+  {"id":"u-chris","name":"Chris Owens","initials":"CO","title":"Security Architect","persona":"reviewer","streams":["res","care","bag"],"approverRoles":["Security"],"demo":false}
+]

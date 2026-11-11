@@ -1,0 +1,13 @@
+[
+  {"id":"run-9001","agentId":"agt-signals","ago":14,"recordsRead":18420,"signalsRaised":3,"result":"ok","note":"Re-ranked 21 themes; 1 new theme in Reservations"},
+  {"id":"run-8998","agentId":"agt-signals","ago":1454,"recordsRead":17980,"signalsRaised":2,"result":"ok","note":"Re-ranked 20 themes"},
+  {"id":"run-9002","agentId":"agt-ingest","ago":4,"recordsRead":1210,"signalsRaised":0,"result":"ok","note":"Synced Snowflake, Salesforce, ADO"},
+  {"id":"run-8990","agentId":"agt-ingest","ago":64,"recordsRead":980,"signalsRaised":0,"result":"warn","note":"Bag-tracking feed returned 401; source paused"},
+  {"id":"run-9003","agentId":"agt-voc","ago":12,"recordsRead":420,"signalsRaised":1,"result":"ok","note":"New theme: confusing fare-class names"},
+  {"id":"run-9004","agentId":"agt-market","ago":360,"recordsRead":96,"signalsRaised":1,"result":"ok","note":"Competitor fare-lock launch detected"},
+  {"id":"run-9005","agentId":"agt-gov","ago":12,"recordsRead":2,"signalsRaised":0,"result":"ok","note":"OPP-2271 v3 checked: DOT + PCI review required"},
+  {"id":"run-9006","agentId":"agt-email","ago":3,"recordsRead":61,"signalsRaised":0,"result":"ok","note":"48 replies sent, 13 drafted for humans"},
+  {"id":"run-9007","agentId":"agt-booking","ago":1,"recordsRead":220,"signalsRaised":0,"result":"ok","note":"220 chats handled"},
+  {"id":"run-9008","agentId":"agt-irops","ago":20,"recordsRead":14,"signalsRaised":0,"result":"ok","note":"14 disrupted itineraries offered rebooking"},
+  {"id":"run-8800","agentId":"agt-bag","ago":2880,"recordsRead":0,"signalsRaised":0,"result":"paused","note":"Paused by Alex Kim"}
+]
