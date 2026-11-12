@@ -26,7 +26,7 @@ The build is a static site with no server or API keys, so it runs from GitHub Pa
 | 4 | PM | Upload `public/samples/alt-offer-v4-colleague.html` (the **Sample file** link) | A colleague's edit is scanned and blocked |
 | 5 | PM | Select the clean version, **Approve vN** | Approved prototype for handoff |
 | 6 | **Reviewer** (Priya) | Review queue → approve the DOT and PCI gates with a comment | Human approval on governance gates |
-| 7 | **Director** (Jordan) | Switch value streams in the sidebar. On OPP-2271, **Approve opportunity → Hand off → Push to ADO** | Cross-stream view; handoff brief becomes an epic plus stories |
+| 7 | **Director** (Jordan) | Lands on **Portfolio**: every value stream, what needs attention. Click a stream to work in it. On OPP-2271, **Approve opportunity → Hand off → Push to ADO** | Cross-stream portfolio; handoff brief becomes an epic plus stories |
 | 8 | **Workspace Admin** (Alex) | Context & agents → **Add source** (watch it connect and sync), pause an agent; Governance → **Create gate**; Users & roles | Admin setup flows |
 
 **Reset demo data** is on the sign-in screen (sign out to get there).

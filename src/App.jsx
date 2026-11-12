@@ -11,9 +11,10 @@ import Governance from "./screens/Governance";
 import Users from "./screens/Users";
 import Reviews from "./screens/Reviews";
 import Activity from "./screens/Activity";
+import Portfolio from "./screens/Portfolio";
 import SharePrototype from "./screens/SharePrototype";
 
-const HOME = { director: "/signals", pm: "/signals", admin: "/context", reviewer: "/reviews" };
+const HOME = { director: "/portfolio", pm: "/signals", admin: "/context", reviewer: "/reviews" };
 
 function Guard({ children }) {
   const { user } = useSession();
@@ -26,6 +27,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={user ? <Navigate to={HOME[user.persona]} replace /> : <SignIn />} />
       <Route path="/share/:oppId/:v" element={<SharePrototype />} />
+      <Route path="/portfolio" element={<Guard><Portfolio /></Guard>} />
       <Route path="/signals" element={<Guard><Signals /></Guard>} />
       <Route path="/opportunities" element={<Guard><Opportunities /></Guard>} />
       <Route path="/opportunities/:id" element={<Guard><OpportunityDetail /></Guard>} />

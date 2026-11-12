@@ -548,3 +548,38 @@ export function listAudit(limit = 50) {
   const d = getDb();
   return ok(d.audit.slice(0, limit).map((a) => ({ ...a, userName: nameOf(d, a.userId) })));
 }
+
+/* ---------- portfolio (director view across value streams) ---------- */
+export function getPortfolio(user) {
+  const d = getDb();
+  const settings = d.workspace.settings.signals;
+  const streams = d.valueStreams.filter((s) => user.streams.includes(s.id)).map((s) => {
+    const ranked = rankSignals(d.signals.filter((x) => x.streamId === s.id), s.goals || [], settings);
+    const active = ranked.top.concat(ranked.rest);
+    const opps = d.opportunities.filter((o) => o.streamId === s.id).map((o) => ({ ...o, ...enrich(d, o) }));
+    const phases = { Sense: 0, Shape: 0, Prototype: 0, Handoff: 0 };
+    opps.forEach((o) => { phases[o.phase] = (phases[o.phase] || 0) + 1; });
+    const pendingGates = opps.reduce((n, o) => n + (o.handoff ? 0 : o.trig.filter((t) => o.gateReviews[t.gate.id]?.status === "pending").length), 0);
+    const agents = d.agents.filter((a) => a.streams.includes(s.id));
+    return {
+      id: s.id, name: s.name, icon: s.icon, owner: d.users.find((u) => u.id === s.owner)?.name, goals: s.goals.length,
+      signals: { total: active.length, high: active.filter((x) => x.severity === "High").length, medium: active.filter((x) => x.severity === "Medium").length, unclaimed: active.filter((x) => !x.promotedTo).length },
+      top: active[0] ? { id: active[0].id, theme: active[0].theme, severity: active[0].severity, score: active[0].score, promotedTo: active[0].promotedTo } : null,
+      phases, open: opps.filter((o) => !o.handoff).length, pendingGates,
+      agents: { running: agents.filter((a) => a.state === "running").length, paused: agents.filter((a) => a.state === "paused").length },
+      lastActivity: opps.map((o) => o.at).filter(Boolean).sort().pop() || null,
+    };
+  });
+  const attention = [];
+  for (const o of d.opportunities.filter((x) => user.streams.includes(x.streamId) && !x.handoff)) {
+    const e = enrich(d, o);
+    const stream = d.valueStreams.find((s) => s.id === o.streamId)?.name;
+    const base = { id: o.id, title: o.title, stream, status: e.status };
+    if (e.trig.some((t) => o.gateReviews[t.gate.id]?.status === "rejected")) attention.push({ ...base, kind: "rejected", why: "A reviewer rejected a gate" });
+    else if (o.phase === "Prototype" && o.directorApproval?.status === "pending") attention.push({ ...base, kind: "approve", why: "Waiting on your approval" });
+    else if (e.ready.ready) attention.push({ ...base, kind: "ready", why: "Cleared and ready to hand off" });
+  }
+  const handedOff = d.opportunities.filter((o) => user.streams.includes(o.streamId) && o.handoff).length;
+  const totals = streams.reduce((t, s) => ({ open: t.open + s.open, high: t.high + s.signals.high, unclaimed: t.unclaimed + s.signals.unclaimed, gates: t.gates + s.pendingGates }), { open: 0, high: 0, unclaimed: 0, gates: 0 });
+  return ok({ streams, attention, totals: { ...totals, handedOff, approvals: attention.filter((a) => a.kind === "approve").length } });
+}
