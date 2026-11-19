@@ -9,6 +9,7 @@ import { applyInstruction, renderPrototype, DEFAULT_OPTIONS } from "../lib/proto
 import { PACKS, loadPack } from "../data/packs";
 import { themeRows, weeklyTrend, trendAnchor, classify, parseFile } from "../lib/ingest";
 import { FEEDS, fetchText } from "../lib/feeds";
+import { draftPack } from "../lib/delivery";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
 const now = () => new Date().toISOString();
@@ -654,20 +655,62 @@ export function draftHandoff(oppId) {
     system: d.sources.some((s) => s.system === "Azure DevOps") ? "ADO" : "Jira",
   });
 }
-export function pushHandoff(oppId, brief, system, by) {
+// The delivery pack: stories, acceptance criteria, test scenarios, NFRs. Drafted by the delivery
+// agent from the opportunity, then saved on the opportunity once the PM edits it.
+function generatePack(d, o) {
+  const p = d.prototypes.find((x) => x.oppId === o.id);
+  const v = p?.versions.find((x) => x.v === p.approvedVersion) || p?.versions[p.versions.length - 1] || null;
+  const signals = d.signals.filter((s) => o.signalIds.includes(s.id));
+  const keys = new Set(signals.flatMap((s) => s.rawKeys || []));
+  const records = [...d.supportContacts, ...d.feedback].filter((r) => keys.has(r.themeKey)).sort((a, b) => b.created.localeCompare(a.created));
+  return draftPack({ opp: o, stream: d.valueStreams.find((x) => x.id === o.streamId), signals, records, gates: triggeredGates(o, d.gates).map((t) => t.gate), proto: v, gateReviews: o.gateReviews });
+}
+export function getDeliveryPack(oppId) {
+  const d = getDb();
+  const o = d.opportunities.find((x) => x.id === oppId);
+  return ok(o ? { pack: o.delivery || generatePack(d, o), saved: !!o.delivery } : null);
+}
+export function saveDeliveryPack(oppId, pack, by) {
+  return ok(mutate((d) => {
+    const o = d.opportunities.find((x) => x.id === oppId);
+    const first = !o.delivery;
+    o.delivery = pack;
+    if (first) audit(d, by, "saved delivery pack", oppId, `${pack.stories.length} stories · ${pack.scenarios.length} test scenarios`);
+  }));
+}
+export function regenerateDeliveryPack(oppId, by) {
+  return ok(mutate((d) => {
+    const o = d.opportunities.find((x) => x.id === oppId);
+    o.delivery = generatePack(d, o);
+    audit(d, by, "regenerated delivery pack", oppId, `${o.delivery.stories.length} stories`);
+    return o.delivery;
+  }));
+}
+
+export function pushHandoff(oppId, brief, system, by, pack) {
   return ok(mutate((d) => {
     const o = d.opportunities.find((x) => x.id === oppId);
     const prefix = system === "Jira" ? "PMW" : "BOOK";
-    const epic = { key: `${prefix}-${nextId("work", "").slice(1)}`, type: "Epic", title: brief.title, status: "New", oppId, system };
+    const key = () => `${prefix}-${nextId("work", "").slice(1)}`;
+    const epic = { key: key(), type: "Epic", title: brief.title, status: "New", oppId, system };
     d.workItems.push(epic);
-    const stories = brief.acceptance.split("\n").filter(Boolean).map((line) => {
-      const s = { key: `${prefix}-${nextId("work", "").slice(1)}`, type: "Story", parent: epic.key, title: line, status: "New", oppId, system };
-      d.workItems.push(s);
-      return s;
-    });
-    o.handoff = { at: now(), by, system, epic: epic.key, stories: stories.length, brief };
+    let stories = 0, tests = 0;
+    if (pack) {
+      o.delivery = pack;
+      for (const s of pack.stories) {
+        const st = { key: key(), type: "Story", parent: epic.key, title: s.title, status: "New", oppId, system, storyId: s.id, ac: s.ac.length, priority: s.priority };
+        d.workItems.push(st); stories++;
+        for (const t of pack.scenarios.filter((x) => x.include && x.storyId === s.id)) {
+          d.workItems.push({ key: key(), type: system === "Jira" ? "Test" : "Test Case", parent: st.key, title: `${t.id} ${t.title}`, status: "Design", oppId, system });
+          tests++;
+        }
+      }
+    } else {
+      for (const line of brief.acceptance.split("\n").filter(Boolean)) { d.workItems.push({ key: key(), type: "Story", parent: epic.key, title: line, status: "New", oppId, system }); stories++; }
+    }
+    o.handoff = { at: now(), by, system, epic: epic.key, stories, tests, brief };
     o.phase = "Handoff";
-    audit(d, by, "handed off", oppId, `${system} epic ${epic.key} with ${stories.length} stories`);
+    audit(d, by, "handed off", oppId, `${system} epic ${epic.key} with ${stories} stories and ${tests} test cases`);
     return epic.key;
   }));
 }

@@ -29,8 +29,12 @@ export default function OpportunityDetail() {
           <EvidenceCard o={o} edit={edit} user={user} nameOf={nameOf} />
           {o.workItems.length > 0 && (
             <div className="card"><h3><i className="ti ti-layout-kanban" /> Delivery work <span className="right faint">{o.handoff?.system}</span></h3>
-              {o.workItems.map((w) => <div key={w.key} className="row small" style={{ padding: "6px 0", paddingLeft: w.type === "Story" ? 16 : 0 }}>
-                <span className="mono tiny" style={{ color: "var(--accent-d)", width: 74 }}>{w.key}</span><span className="grow" style={{ fontWeight: w.type === "Epic" ? 700 : 400 }}>{w.type === "Epic" && "Epic · "}{w.title}</span><span className="tag">{w.status}</span></div>)}
+              {o.workItems.filter((w) => w.type === "Epic" || w.type === "Story").map((w) => {
+                const tests = o.workItems.filter((t) => t.parent === w.key && /Test/.test(t.type)).length;
+                return <div key={w.key} className="row small" style={{ padding: "6px 0", paddingLeft: w.type === "Story" ? 16 : 0 }}>
+                  <span className="mono tiny" style={{ color: "var(--accent-d)", width: 74 }}>{w.key}</span><span className="grow" style={{ fontWeight: w.type === "Epic" ? 700 : 400 }}>{w.type === "Epic" && "Epic · "}{w.title}</span>
+                  {tests > 0 && <span className="tag" title="Test cases"><i className="ti ti-test-pipe" style={{ fontSize: 11 }} /> {tests}</span>}<span className="tag">{w.status}</span></div>;
+              })}
             </div>)}
           <div className="card"><h3><i className="ti ti-history" /> Activity on this opportunity</h3>
             {o.audit.length ? o.audit.map((a) => <div key={a.id} className="row small" style={{ padding: "5px 0" }}><b>{nameOf(a.userId)}</b> <span className="soft grow">{a.action}{a.detail && ` · ${a.detail}`}</span><span className="tiny faint">{ago(a.at)}</span></div>)
@@ -76,8 +80,8 @@ function NextAction({ o, user, edit }) {
   let icon = "ti-sparkles", text, acts = null;
   if (o.handoff) {
     icon = "ti-circle-check";
-    text = <>Handed off {ago(o.handoff.at)} as <b>{o.handoff.system} epic {o.handoff.epic}</b> with {o.handoff.stories} stories.</>;
-    acts = <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-file-description" /> View handoff brief</Link>;
+    text = <>Handed off {ago(o.handoff.at)} as <b>{o.handoff.system} epic {o.handoff.epic}</b> with {o.handoff.stories} stories{o.handoff.tests ? ` and ${o.handoff.tests} test cases` : ""}.</>;
+    acts = <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-file-description" /> View delivery pack</Link>;
   } else if (o.phase === "Sense") {
     text = <>Ground this opportunity: link the signals behind it and add evidence. When the problem is clear, move it to <b>Shape</b>.</>;
     if (edit) acts = <button className="btn primary" disabled={busy} onClick={() => run(() => api.setPhase(o.id, "Shape", user.id))}><i className="ti ti-arrow-right" /> Move to Shape</button>;
@@ -85,17 +89,20 @@ function NextAction({ o, user, edit }) {
     text = <>Shaped and grounded in {o.signals.length} signal{o.signals.length === 1 ? "" : "s"}. Generate a prototype to test it with your team. {o.gates.length > 0 && <>It will open <b>{o.gates.length} governance review{o.gates.length > 1 ? "s" : ""}</b>.</>}</>;
     if (edit) acts = <>
       <button className="btn ghost" onClick={() => run(() => api.setPhase(o.id, "Sense", user.id))}>Back to Sense</button>
+      <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-list-details" /> Draft stories &amp; tests</Link>
       <button className="btn primary" disabled={busy} onClick={() => run(async () => { await api.generatePrototype(o.id, user.id); nav(`/opportunities/${o.id}/prototype`); })}><i className="ti ti-bolt" /> Generate prototype</button></>;
   } else if (o.readiness.ready) {
     icon = "ti-send";
-    text = <>Everything is cleared. Hand off to engineering: the agent drafts a one-page brief and pushes it as an epic.</>;
+    text = <>Everything is cleared. Hand off to engineering: the delivery agent drafts user stories, acceptance criteria and test scenarios, and pushes them as an epic.</>;
     acts = <>
       <Link className="btn ghost" to={`/opportunities/${o.id}/prototype`}><i className="ti ti-device-desktop" /> Prototype studio</Link>
-      {can(user, "handoff") && <Link className="btn primary" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-send" /> Hand off</Link>}</>;
+      {can(user, "handoff") && <Link className="btn primary" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-send" /> Review delivery pack &amp; hand off</Link>}</>;
   } else {
     icon = "ti-route";
     text = <>Before handoff: {missing.map((m) => m.label).join("; ")}{o.readiness.rejected.length ? `; resolve ${o.readiness.rejected.length} rejected gate` : ""}.</>;
-    acts = <Link className="btn primary" to={`/opportunities/${o.id}/prototype`}><i className="ti ti-device-desktop" /> Open prototype studio</Link>;
+    acts = <>
+      <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-list-details" /> Draft stories &amp; tests</Link>
+      <Link className="btn primary" to={`/opportunities/${o.id}/prototype`}><i className="ti ti-device-desktop" /> Open prototype studio</Link></>;
   }
   return (
     <div className="next"><div className="ic"><i className={`ti ${icon}`} /></div>
