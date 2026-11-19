@@ -13,5 +13,8 @@
   {"id":"github","name":"GitHub","icon":"ti-brand-github","kind":"docs","tag":"Codebase"},
   {"id":"crawl","name":"Web crawl (URL list)","icon":"ti-world-search","kind":"web","tag":"Market research"},
   {"id":"rss","name":"Regulator / news feed","icon":"ti-rss","kind":"web","tag":"Regulatory signal"},
+  {"id":"file","name":"File upload (CSV / JSON)","icon":"ti-file-upload","kind":"file","tag":"Voice of customer","real":true},
+  {"id":"fedreg","name":"Federal Register (live)","icon":"ti-gavel","kind":"web","tag":"Regulatory signal","real":true,"feed":"fedreg"},
+  {"id":"hn","name":"News search · Hacker News (live)","icon":"ti-news","kind":"web","tag":"Market research","real":true,"feed":"hn"},
   {"id":"manual","name":"Manual notes","icon":"ti-pencil","kind":"manual","tag":"Human-added"}
 ]

@@ -6,7 +6,8 @@ const avg = (a) => a.reduce((s, x) => s + x, 0) / a.length;
 export function growthOf(trend) {
   const first = avg(trend.slice(0, 3));
   const last = avg(trend.slice(-3));
-  return first ? (last - first) / first : 0;
+  if (!first) return last > 0 ? 1 : 0; // a theme that didn't exist 8 weeks ago is growing
+  return (last - first) / first;
 }
 
 export function goalMatch(text, goals = []) {

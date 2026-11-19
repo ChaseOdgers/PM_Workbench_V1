@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Shell from "../components/Shell";
 import { Modal, Field } from "../components/ui";
+import { parseFile, guessMapping } from "../lib/ingest";
+import { FEEDS } from "../lib/feeds";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
 import * as api from "../api";
 import { can } from "../lib/perms";
 import { ago, fmt } from "../lib/format";
 
-const KINDS = [["api", "ti-plug-connected", "APIs & live systems"], ["docs", "ti-folders", "Document repositories"], ["web", "ti-world-search", "Web crawl"], ["manual", "ti-pencil", "Manual entry"]];
+const KINDS = [["file", "ti-file-upload", "Imported files · real data"], ["api", "ti-plug-connected", "APIs & live systems"], ["docs", "ti-folders", "Document repositories"], ["web", "ti-world-search", "Web crawl"], ["manual", "ti-pencil", "Manual entry"]];
 const GROUPS = [["ingestion", "Ingestion agents", "keep the context layer fresh"], ["analysis", "Analyst agents", "find patterns and check policy"], ["operational", "Operational agents", "act for customers, inside guardrails"]];
 const SCHEDULES = ["live", "hourly", "daily", "weekly"];
 
@@ -75,7 +78,7 @@ export default function ContextAgents() {
             <div><div className="lt" style={{ color: "var(--accent-d)" }}>Add context the systems don't have yet</div><div className="ls">e.g. a decision from today's leadership review</div></div></div>
         </div>)}
 
-      {adding && <AddSourceModal agents={agents} user={user} onClose={() => setAdding(false)} />}
+      {adding && <AddSourceModal agents={agents} user={user} stream={stream} streams={ws.streams} onClose={() => setAdding(false)} />}
       {noting && <NoteModal stream={stream} user={user} onClose={() => { setNoting(false); setTab("notes"); }} />}
     </Shell>
   );
@@ -89,14 +92,16 @@ function SourceRow({ s, agents, admin, user }) {
     <div className="lrow">
       <div className="lic"><i className={`ti ${s.icon}`} /></div>
       <div className="grow">
-        <div className="lt">{s.name}</div>
-        <div className="ls">{s.system} · {s.access} · {fmt(s.records)} records · read by <b className="soft">{s.agent?.name || "—"}</b></div>
+        <div className="lt">{s.name} {s.real && <span className="tag" style={{ marginLeft: 4, background: "var(--green-soft)", color: "var(--green-ink)", borderColor: "transparent" }}><i className="ti ti-bolt" style={{ fontSize: 11 }} /> real data</span>}</div>
+        <div className="ls">{s.system} · {s.access} · {fmt(s.records)} records · read by <b className="soft">{s.agent?.name || "—"}</b>{s.config?.terms ? <> · searching “{s.config.terms}”</> : null}</div>
+        {s.status === "error" && s.error && <div className="tiny" style={{ color: "var(--red-ink)", marginTop: 3 }}><i className="ti ti-alert-triangle" /> {s.error}</div>}
       </div>
       {editTag ? (
         <input className="input" style={{ width: 160, padding: "5px 9px", fontSize: 12 }} autoFocus value={tag} onChange={(e) => setTag(e.target.value)}
           onBlur={async () => { setEditTag(false); if (tag !== s.tag) await api.updateSource(s.id, { tag }, user.id); }} onKeyDown={(e) => e.key === "Enter" && e.target.blur()} />
       ) : <span className="tag" style={{ cursor: admin ? "pointer" : "default", background: "var(--navy-soft)", color: "var(--navy)", borderColor: "transparent" }} onClick={() => admin && setEditTag(true)} title={admin ? "AI-generated tag. Click to edit" : "AI-generated tag"}>{s.tag}{admin && <i className="ti ti-pencil" style={{ fontSize: 11, marginLeft: 4 }} />}</span>}
-      {admin && s.kind !== "manual" ? (
+      {s.config?.feed && admin && <button className="iconbtn" title="Sync now" aria-label={`Sync ${s.name} now`} disabled={busy} onClick={() => api.syncSource(s.id, user.id).catch(() => {})}><i className="ti ti-refresh" /></button>}
+      {admin && s.kind !== "manual" && s.kind !== "file" ? (
         <select className="select" style={{ width: 100, padding: "5px 8px", fontSize: 12 }} value={s.schedule} aria-label="Schedule" onChange={(e) => api.updateSource(s.id, { schedule: e.target.value }, user.id)}>
           {SCHEDULES.map((x) => <option key={x}>{x}</option>)}</select>
       ) : <span className="tag">{s.schedule}</span>}
@@ -147,19 +152,29 @@ function AgentCard({ a, user }) {
   );
 }
 
-function AddSourceModal({ agents, user, onClose }) {
+function AddSourceModal({ agents, user, stream, streams, onClose }) {
   const connectors = useQuery(() => api.listConnectors(), []);
   const [f, setF] = useState({ connectorId: "", name: "", schedule: "daily", agentId: "agt-ingest", tag: "" });
+  const [result, setResult] = useState(null);
   const c = connectors?.find((x) => x.id === f.connectorId);
+  const choose = (x) => setF({ ...f, connectorId: x.id, name: x.real ? "" : f.name || x.name, tag: x.tag, schedule: x.kind === "manual" ? "manual" : f.schedule });
+  const chips = (list) => <div className="chips">{list.map((x) => (
+    <button key={x.id} className="chip" style={{ cursor: "pointer", borderColor: f.connectorId === x.id ? "var(--accent)" : undefined, background: f.connectorId === x.id ? "var(--accent-soft)" : undefined }}
+      onClick={() => choose(x)}><i className={`ti ${x.icon}`} /> {x.name}</button>))}</div>;
+
+  if (result) return <ImportResult result={result} streams={streams} onClose={onClose} />;
+  const body = (
+    <>
+      <Field label="Real data · works now">{connectors && chips(connectors.filter((x) => x.real))}</Field>
+      <Field label="Simulated connectors · client build">{connectors && chips(connectors.filter((x) => !x.real))}</Field>
+    </>);
+  if (c?.id === "file") return <FileImport user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
+  if (c?.feed) return <FeedConnect c={c} user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   return (
     <Modal title="Add a source" icon="ti-plug-connected" onClose={onClose}
       footer={<><button className="btn out sm" onClick={onClose}>Cancel</button>
         <button className="btn primary sm" disabled={!c || !f.name.trim()} onClick={async () => { await api.addSource(f, user.id); onClose(); }}><i className="ti ti-plug-connected" /> Connect</button></>}>
-      <Field label="Connector">
-        <div className="chips">{connectors?.map((x) => (
-          <button key={x.id} className="chip" style={{ cursor: "pointer", borderColor: f.connectorId === x.id ? "var(--accent)" : undefined, background: f.connectorId === x.id ? "var(--accent-soft)" : undefined }}
-            onClick={() => setF({ ...f, connectorId: x.id, name: f.name || x.name, tag: x.tag, schedule: x.kind === "manual" ? "manual" : f.schedule })}><i className={`ti ${x.icon}`} /> {x.name}</button>))}</div>
-      </Field>
+      {body}
       {c && <>
         <Field label="Name in the Workbench"><input className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /></Field>
         <div className="row" style={{ alignItems: "flex-start" }}>
@@ -168,6 +183,130 @@ function AddSourceModal({ agents, user, onClose }) {
         </div>
         <div className="note"><i className="ti ti-info-circle" /><div>Mocked connector: the Workbench simulates the handshake and first sync. In a client build this step asks for an API key or OAuth consent, read-only by default.</div></div>
       </>}
+    </Modal>
+  );
+}
+
+const MAP_FIELDS = [["text", "Record text", true], ["title", "Subject / title"], ["date", "Created date"], ["id", "Record ID"], ["category", "Category"], ["channel", "Channel / source"], ["rating", "Rating"], ["tier", "Customer tier"]];
+const SAMPLES = [["support-tickets-sample.csv", "Support tickets (CSV, 240 rows)"], ["app-reviews-sample.json", "App reviews (JSON, 90 rows)"]];
+
+function FileImport({ user, stream, streams, onDone, onClose, picker }) {
+  const [file, setFile] = useState(null);
+  const [map, setMap] = useState({});
+  const [type, setType] = useState("support");
+  const [streamId, setStreamId] = useState(stream.id);
+  const [name, setName] = useState("");
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+  const load = (fileName, text) => {
+    try {
+      const p = parseFile(fileName, text);
+      if (!p.rows.length) throw new Error("No rows found. Is the first row a header?");
+      const m = guessMapping(p.headers);
+      setFile({ fileName, ...p }); setMap(m); setType(m.rating ? "feedback" : "support"); setErr("");
+      setName(fileName.replace(/\.(csv|json|txt)$/i, "").replace(/[-_]+/g, " ").replace(/^\w/, (x) => x.toUpperCase()));
+    } catch (e) { setErr(`Couldn't read ${fileName}: ${e.message}`); setFile(null); }
+  };
+  const onPick = async (e) => { const fl = e.target.files?.[0]; if (fl) load(fl.name, await fl.text()); };
+  const sample = async (fn) => {
+    try { const r = await fetch(`${import.meta.env.BASE_URL}samples/${fn}`); if (!r.ok) throw new Error(r.status); load(fn, await r.text()); }
+    catch (e) { setErr(`Couldn't load the sample: ${e.message}`); }
+  };
+  const go = async () => {
+    setBusy(true);
+    try { onDone(await api.importFile({ name: name.trim(), fileName: file.fileName, recordType: type, rows: file.rows, mapping: map, streamId }, user.id)); }
+    catch (e) { setErr(e.message); setBusy(false); }
+  };
+  const preview = file?.rows.slice(0, 3) || [];
+  return (
+    <Modal wide title="Import a file" icon="ti-file-upload" onClose={onClose}
+      footer={<><button className="btn out sm" onClick={onClose}>Cancel</button>
+        <button className="btn primary sm" disabled={!file || !map.text || !name.trim() || busy} onClick={go}>{busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-file-import" />} Import {file ? file.rows.length.toLocaleString() : ""} records</button></>}>
+      {picker}
+      <div className="note"><i className="ti ti-bolt" /><div><b>Real data.</b> Upload any export (Salesforce, Zendesk, Jira, a survey tool, a spreadsheet saved as CSV). The file stays in this browser. The ingestion agent maps the columns, the signals agent themes every record and raises or corroborates signals. Up to 5,000 rows.</div></div>
+      <div className="row" style={{ gap: 9, flexWrap: "wrap" }}>
+        <label className="btn out sm" style={{ cursor: "pointer" }}><i className="ti ti-upload" /> Choose CSV or JSON<input type="file" accept=".csv,.json,.txt,text/csv,application/json" hidden onChange={onPick} /></label>
+        <span className="tiny faint">or try a sample:</span>
+        {SAMPLES.map(([fn, label]) => <button key={fn} className="btn link small" onClick={() => sample(fn)}><i className="ti ti-file-text" /> {label}</button>)}
+      </div>
+      {err && <div className="tiny" style={{ color: "var(--red-ink)" }}><i className="ti ti-alert-triangle" /> {err}</div>}
+      {file && <>
+        <div className="tiny faint"><b className="soft">{file.fileName}</b> · {file.total.toLocaleString()} rows · {file.headers.length} columns{file.truncated ? " · only the first 5,000 rows will be imported" : ""}</div>
+        <div style={{ overflowX: "auto", border: "1px solid var(--line)", borderRadius: 9 }}>
+          <table style={{ borderCollapse: "collapse", fontSize: 11.5, width: "100%" }}>
+            <thead><tr>{file.headers.map((h) => <th key={h} style={{ textAlign: "left", padding: "6px 9px", background: "var(--surface-2)", borderBottom: "1px solid var(--line)", whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
+            <tbody>{preview.map((r, i) => <tr key={i}>{file.headers.map((h) => <td key={h} style={{ padding: "5px 9px", borderBottom: "1px solid var(--line)", maxWidth: 260, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r[h]}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+        <Field label="Map the columns (guessed from the headers; change any)">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+            {MAP_FIELDS.filter(([k]) => k !== "rating" || type === "feedback").filter(([k]) => k !== "tier" || type === "support").map(([k, label, req]) => (
+              <label key={k} className="tiny faint" style={{ display: "flex", flexDirection: "column", gap: 3 }}>{label}{req ? " *" : ""}
+                <select className="select" style={{ padding: "5px 8px", fontSize: 12 }} value={map[k] || ""} onChange={(e) => setMap({ ...map, [k]: e.target.value || undefined })}>
+                  <option value="">{req ? "Choose…" : "— none —"}</option>{file.headers.map((h) => <option key={h}>{h}</option>)}</select></label>))}
+          </div>
+        </Field>
+        <div className="row" style={{ alignItems: "flex-start" }}>
+          <div className="grow"><Field label="These records are"><select className="select" value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="support">Support tickets / cases</option><option value="feedback">Feedback, reviews or survey verbatims</option></select></Field></div>
+          <div className="grow"><Field label="New themes go to"><select className="select" value={streamId} onChange={(e) => setStreamId(e.target.value)}>{streams.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}</select></Field></div>
+          <div className="grow"><Field label="Name in the Workbench"><input className="input" value={name} onChange={(e) => setName(e.target.value)} /></Field></div>
+        </div>
+      </>}
+    </Modal>
+  );
+}
+
+function FeedConnect({ c, user, stream, streams, onDone, onClose, picker }) {
+  const feed = FEEDS[c.feed];
+  const [terms, setTerms] = useState(feed.defaults.terms);
+  const [streamId, setStreamId] = useState(stream.id);
+  const [name, setName] = useState(c.feed === "fedreg" ? "DOT rulemaking · Federal Register" : "Airline news · Hacker News");
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+  const go = async () => {
+    setBusy(true); setErr("");
+    try { onDone(await api.connectFeed({ name: name.trim(), feed: c.feed, config: { ...feed.defaults, terms: terms.trim() }, streamId }, user.id)); }
+    catch (e) { setErr(e.message); setBusy(false); }
+  };
+  return (
+    <Modal title="Connect a live feed" icon={c.icon} onClose={onClose}
+      footer={<><button className="btn out sm" onClick={onClose}>Cancel</button>
+        <button className="btn primary sm" disabled={!terms.trim() || !name.trim() || busy} onClick={go}>{busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-plug-connected" />} Connect and sync</button></>}>
+      {picker}
+      <div className="note"><i className="ti ti-bolt" /><div><b>Real data, live.</b> {feed.help} The Workbench calls it straight from your browser; use the refresh button on the source to pull again.</div></div>
+      <Field label="Search terms"><input className="input" value={terms} onChange={(e) => setTerms(e.target.value)} /></Field>
+      {c.feed === "fedreg" && <div className="tiny faint" style={{ marginTop: -8 }}>Limited to the Department of Transportation, last 12 months.</div>}
+      <div className="row" style={{ alignItems: "flex-start" }}>
+        <div className="grow"><Field label="Name in the Workbench"><input className="input" value={name} onChange={(e) => setName(e.target.value)} /></Field></div>
+        <div className="grow"><Field label="New themes go to"><select className="select" value={streamId} onChange={(e) => setStreamId(e.target.value)}>{streams.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}</select></Field></div>
+      </div>
+      {err && <div className="tiny" style={{ color: "var(--red-ink)" }}><i className="ti ti-alert-triangle" /> {err}</div>}
+    </Modal>
+  );
+}
+
+function ImportResult({ result, streams, onClose }) {
+  const nav = useNavigate();
+  const sname = (id) => streams.find((x) => x.id === id)?.name || id;
+  const open = async (streamId) => { await api.setStream(streamId); onClose(); nav("/signals"); };
+  const row = (x, verb) => (
+    <div key={x.id + verb} className="lrow" style={{ padding: "9px 12px", cursor: "pointer" }} onClick={() => open(x.streamId)}>
+      <span className={`status ${verb === "new" ? "ok" : "flag"}`}>{verb}</span>
+      <div className="grow"><div className="small" style={{ fontWeight: 600 }}>{x.theme}</div><div className="tiny faint">{x.id} · {x.n.toLocaleString()} records · {sname(x.streamId)}</div></div>
+      <i className="ti ti-arrow-right faint" />
+    </div>);
+  return (
+    <Modal title="Synced" icon="ti-circle-check" onClose={onClose}
+      footer={<><button className="btn out sm" onClick={onClose}>Done</button>
+        {(result.created[0] || result.corroborated[0]) && <button className="btn primary sm" onClick={() => open((result.created[0] || result.corroborated[0]).streamId)}><i className="ti ti-radar-2" /> View signals</button>}</>}>
+      <div className="row" style={{ gap: 10 }}>
+        {[[result.records, "records in"], [result.created.length, "new signals"], [result.corroborated.length, "signals corroborated"], [result.unthemed ?? 0, "unclassified"]].map(([n, l]) => (
+          <div key={l} className="card grow" style={{ padding: "10px 12px" }}><div style={{ fontFamily: "var(--cond)", fontSize: 22, fontWeight: 700, color: "var(--navy)" }}>{Number(n).toLocaleString()}</div><div className="tiny faint">{l}</div></div>))}
+      </div>
+      {result.discovered > 0 && <div className="tiny faint"><i className="ti ti-sparkles" /> {result.discovered} emerging theme{result.discovered > 1 ? "s" : ""} found in records no known theme matched.</div>}
+      <div className="table">{result.created.map((x) => row(x, "new"))}{result.corroborated.map((x) => row(x, "corroborates"))}{result.updated.map((x) => row(x, "updated"))}</div>
+      {!result.records && <div className="small faint">The feed returned nothing for those terms. Try broader terms, then use the source's refresh button.</div>}
     </Modal>
   );
 }

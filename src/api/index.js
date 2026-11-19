@@ -6,7 +6,9 @@ import { rankSignals } from "../lib/ranking";
 import { triggeredGates, readiness, oppStatus } from "../lib/gates";
 import { scanHtml, worst } from "../lib/scan";
 import { applyInstruction, renderPrototype, DEFAULT_OPTIONS } from "../lib/prototype";
-import { PACKS } from "../data/packs";
+import { PACKS, loadPack } from "../data/packs";
+import { themeRows, weeklyTrend, trendAnchor, classify } from "../lib/ingest";
+import { FEEDS } from "../lib/feeds";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
 const now = () => new Date().toISOString();
@@ -69,7 +71,8 @@ export function listSources() {
   const d = getDb();
   return ok(d.sources.map((s) => ({ ...s, agent: d.agents.find((a) => a.id === s.agentId) })));
 }
-export const listConnectors = () => ok(getDb().connectors);
+// Read from the pack (not the saved DB) so new connectors show up without a demo reset.
+export const listConnectors = () => ok(loadPack(getDb().meta.packId).connectors);
 export function addSource(data, by) {
   const id = mutate((d) => {
     const c = d.connectors.find((x) => x.id === data.connectorId);
@@ -102,7 +105,128 @@ export function removeSource(id, by) {
   return ok(mutate((d) => {
     const s = d.sources.find((x) => x.id === id);
     d.sources = d.sources.filter((x) => x.id !== id);
+    if (s?.real) {
+      // Take the source's records and the signals it raised with it (promoted signals stay, as history).
+      d.supportContacts = d.supportContacts.filter((r) => r.sourceId !== id);
+      d.feedback = d.feedback.filter((r) => r.sourceId !== id);
+      d.webItems = d.webItems.filter((r) => r.sourceId !== id);
+      d.signals = d.signals.filter((x) => x.generatedBy !== id || x.promotedTo);
+      d.signals.forEach((x) => { x.sourceIds = x.sourceIds.filter((sid) => sid !== id); });
+      const used = new Set([...d.supportContacts, ...d.feedback, ...d.webItems].map((r) => r.themeKey));
+      d.discoveredThemes = (d.discoveredThemes || []).filter((t) => used.has(t.key));
+    }
     audit(d, by, "disconnected source", s?.name);
+  }));
+}
+
+/* ---------- real data: file import and live feeds ---------- */
+const themesOf = (d) => [...(d.themes || loadPack(d.meta.packId).themes || []), ...(d.discoveredThemes || [])];
+
+// Turns themed records from one source into signals. A theme that already has a signal in its
+// stream gets this source added as corroborating evidence (reach goes up); a theme with no
+// signal yet gets a new one. Re-running for the same source updates its signals in place.
+function raiseSignals(d, src, recs, unit) {
+  const all = themesOf(d);
+  const byKey = new Map();
+  for (const r of recs) if (r.themeKey) { if (!byKey.has(r.themeKey)) byKey.set(r.themeKey, []); byKey.get(r.themeKey).push(r); }
+  const anchor = trendAnchor(recs.map((r) => r.created));
+  const out = { created: [], corroborated: [], updated: [] };
+  d.signals = d.signals.filter((s) => s.generatedBy !== src.id || byKey.has(s.rawKeys[0]) || s.promotedTo);
+  for (const [key, list] of byKey) {
+    const th = all.find((t) => t.key === key);
+    const streamId = th?.streamId || src.streamId || d.valueStreams[0].id;
+    const trend = weeklyTrend(list.map((r) => r.created), anchor);
+    const own = d.signals.find((s) => s.generatedBy === src.id && s.rawKeys.includes(key));
+    if (own) { Object.assign(own, { volume: list.length, trend }); out.updated.push({ id: own.id, theme: own.theme, n: list.length, streamId }); continue; }
+    const cands = d.signals.filter((s) => s.generatedBy !== src.id && s.streamId === streamId && s.rawKeys.includes(key));
+    if (cands.length) {
+      const pick = cands.find((s) => s.sourceIds.some((sid) => d.sources.find((x) => x.id === sid)?.tag === src.tag)) || cands[0];
+      if (!pick.sourceIds.includes(src.id)) pick.sourceIds.push(src.id);
+      out.corroborated.push({ id: pick.id, theme: pick.theme, n: list.length, streamId });
+      continue;
+    }
+    const sig = { id: nextId("SIG", "SIG"), streamId, icon: th?.icon || src.icon, theme: th?.label || key, from: src.name, sourceIds: [src.id],
+      volume: list.length, unit, trend, rawKeys: [key], promotedTo: null, muted: false, generatedBy: src.id };
+    d.signals.push(sig);
+    out.created.push({ id: sig.id, theme: sig.theme, n: list.length, streamId });
+  }
+  return out;
+}
+
+function logIngestRuns(d, src, n, summary, agentId) {
+  const raised = summary.created.length;
+  d.agentRuns.unshift({ id: nextId("run", "run"), agentId, at: now(), recordsRead: n, signalsRaised: 0, result: "ok", note: `Ingested ${n.toLocaleString()} records from ${src.name}` });
+  d.agentRuns.unshift({ id: nextId("run", "run"), agentId: "agt-signals", at: now(), recordsRead: n, signalsRaised: raised, result: "ok",
+    note: `Themed ${src.name}: ${raised} new signal${raised === 1 ? "" : "s"}, ${summary.corroborated.length} corroborated` });
+}
+
+// A CSV/JSON export (support tickets or feedback) uploaded by the user. Rows arrive already
+// parsed; mapping names the columns (text, title, date, id, category, channel, rating, tier).
+export function importFile({ name, fileName, recordType, rows, mapping, streamId, agentId = "agt-ingest" }, by) {
+  return ok(mutate((d) => {
+    const fb = recordType === "feedback";
+    const src = { id: nextId("src", "src"), name, icon: fb ? "ti-message-report" : "ti-file-spreadsheet", kind: "file", system: `Upload · ${fileName}`,
+      access: "imported", schedule: "manual", agentId, tag: "Voice of customer", status: "synced", lastSync: now(), records: 0,
+      real: true, streamId, config: { fileName, recordType, mapping } };
+    d.sources.push(src);
+    const { records, newThemes, unthemed } = themeRows(rows, mapping, themesOf(d), { idPrefix: fb ? "FB" : "TK", streamId, sourceId: src.id });
+    d.discoveredThemes = [...(d.discoveredThemes || []), ...newThemes];
+    const all = themesOf(d);
+    const streamOf = (k) => all.find((t) => t.key === k)?.streamId || streamId;
+    const labelOf = (k) => all.find((t) => t.key === k)?.label || "Unclassified";
+    const pick = (r, f) => (mapping[f] ? r.raw[mapping[f]] || "" : "");
+    const out = records.map((r) => fb
+      ? { id: r.id, created: r.created, source: pick(r, "channel") || fileName, rating: Number(pick(r, "rating")) || null, text: r.text, themeKey: r.themeKey, sourceId: src.id }
+      : { id: r.id, created: r.created, channel: pick(r, "channel") || "Imported", category: pick(r, "category") || labelOf(r.themeKey), customerTier: pick(r, "tier"),
+          text: r.text, themeKey: r.themeKey, streamId: streamOf(r.themeKey), sourceId: src.id });
+    if (fb) d.feedback.push(...out); else d.supportContacts.push(...out);
+    src.records = out.length;
+    const summary = raiseSignals(d, src, out, fb ? "reviews" : "tickets");
+    logIngestRuns(d, src, out.length, summary, agentId);
+    audit(d, by, "imported file", src.name, `${fileName} · ${out.length} records · ${summary.created.length} new signals`);
+    return { sourceId: src.id, records: out.length, unthemed, discovered: newThemes.length, ...summary };
+  }));
+}
+
+export async function connectFeed({ name, feed, config, streamId, agentId = "agt-market" }, by) {
+  const id = mutate((d) => {
+    const src = { id: nextId("src", "src"), name, icon: feed === "fedreg" ? "ti-gavel" : "ti-news", kind: "web", system: FEEDS[feed].label,
+      access: "public API · live", schedule: "daily", agentId, tag: feed === "fedreg" ? "Regulatory signal" : "Market research",
+      status: "connecting", lastSync: null, records: 0, real: true, streamId, config: { feed, ...config } };
+    d.sources.push(src);
+    audit(d, by, "connected source", src.name, `${FEEDS[feed].label} · "${config.terms}"`);
+    return src.id;
+  });
+  return syncSource(id, by);
+}
+
+// Pulls a live feed again. Items are replaced, not appended, so a re-sync never double-counts.
+export async function syncSource(id, by) {
+  const s = getDb().sources.find((x) => x.id === id);
+  const feed = FEEDS[s?.config?.feed];
+  if (!feed) throw new Error("This source has nothing to sync");
+  mutate((d) => { d.sources.find((x) => x.id === id).status = "syncing"; });
+  let items;
+  try { items = await feed.fetch(s.config); } catch (e) {
+    mutate((d) => { const x = d.sources.find((y) => y.id === id); if (x) { x.status = "error"; x.error = e.message; } });
+    throw new Error(`Couldn't reach ${feed.label}: ${e.message}. Check your connection; some corporate networks block public APIs.`);
+  }
+  return ok(mutate((d) => {
+    const src = d.sources.find((x) => x.id === id);
+    if (!src) return null;
+    const catchAll = `feed-${src.id}`;
+    const all = themesOf(d);
+    const recs = items.map(({ text, ...it }) => ({ ...it, themeKey: classify(text, all)?.key || catchAll, sourceId: src.id }));
+    if (recs.some((r) => r.themeKey === catchAll) && !all.some((t) => t.key === catchAll)) {
+      d.discoveredThemes = [...(d.discoveredThemes || []), { key: catchAll, keywords: [], sourceId: src.id, streamId: src.streamId, icon: src.icon,
+        label: src.config.feed === "fedreg" ? `New federal rulemaking on “${src.config.terms}”` : `News coverage of “${src.config.terms}”` }];
+    }
+    d.webItems = d.webItems.filter((w) => w.sourceId !== src.id).concat(recs);
+    Object.assign(src, { records: recs.length, status: "synced", lastSync: now(), error: null });
+    const summary = raiseSignals(d, src, recs, feed.unit);
+    logIngestRuns(d, src, recs.length, summary, src.agentId);
+    audit(d, by, "synced source", src.name, `${recs.length} items · ${summary.created.length} new signals`);
+    return { sourceId: src.id, records: recs.length, ...summary };
   }));
 }
 export const listNotes = (streamId) => ok(getDb().notes.filter((n) => !streamId || n.streamId === streamId));
@@ -158,7 +282,7 @@ export function getSignalRecords(signalId) {
   const contacts = d.supportContacts.filter((r) => keys.includes(r.themeKey));
   const feedback = d.feedback.filter((r) => keys.includes(r.themeKey));
   const web = d.webItems.filter((r) => keys.includes(r.themeKey));
-  return ok({ contacts: contacts.slice(0, 12), feedback: feedback.slice(0, 6), web, counts: { contacts: contacts.length, feedback: feedback.length, web: web.length } });
+  return ok({ contacts: contacts.slice(0, 12), feedback: feedback.slice(0, 6), web: web.slice(0, 8), counts: { contacts: contacts.length, feedback: feedback.length, web: web.length } });
 }
 export function setSignalMuted(id, muted, by) {
   return ok(mutate((d) => {

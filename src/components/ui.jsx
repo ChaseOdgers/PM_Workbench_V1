@@ -49,7 +49,7 @@ export function Field({ label, children }) {
 }
 
 export function Spark({ trend }) {
-  const max = Math.max(...trend);
+  const max = Math.max(1, ...trend);
   return <div className="spark" aria-hidden>{trend.map((h, i) => <span key={i} className={i >= trend.length - 3 ? "hi" : ""} style={{ height: `${(h / max) * 100}%` }} />)}</div>;
 }
 

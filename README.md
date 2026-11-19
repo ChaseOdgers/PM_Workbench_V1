@@ -28,6 +28,8 @@ The build is a static site with no server or API keys, so it runs from GitHub Pa
 | 6 | **Reviewer** (Priya) | Review queue → approve the DOT and PCI gates with a comment | Human approval on governance gates |
 | 7 | **Director** (Jordan) | Lands on **Portfolio**: every value stream, what needs attention. Click a stream to work in it. On OPP-2271, **Approve opportunity → Hand off → Push to ADO** | Cross-stream portfolio; handoff brief becomes an epic plus stories |
 | 8 | **Workspace Admin** (Alex) | Context & agents → **Add source** (watch it connect and sync), pause an agent; Governance → **Create gate**; Users & roles | Admin setup flows |
+| 9 | Admin | **Add source → File upload**, click the **Support tickets** sample (or drop in your own CSV/JSON export), check the column mapping, **Import** | Real records themed into new and corroborated signals, including emerging themes nobody defined |
+| 10 | Admin | **Add source → Federal Register (live)**, then **News search (live)**. Switch to Signals | Live public data pulled from the browser and ranked next to the pack's signals |
 
 **Reset demo data** is on the sign-in screen (sign out to get there).
 
@@ -39,6 +41,8 @@ src/
                      signals, opportunities, policies, gates, prototypes, raw records…)
   api/db.js          The mock database: loads a pack and saves it to localStorage
   api/index.js       The API every screen calls (async). Swap these for fetch() calls to a real backend
+  lib/ingest.js      Real data in: CSV/JSON parsing, column guessing, theming (pack themes.json + discovery), weekly trends
+  lib/feeds.js       Live public feeds (Federal Register, Hacker News search): fetch + normalize to web items
   lib/ranking.js     Signal ranking rules: volume, trend, reach, strategic fit → score, severity, "why"
   lib/gates.js       Which gates an opportunity triggers, its status, and handoff readiness
   lib/scan.js        Governance scan of prototype HTML (forbid / require / accessible-label checks)
@@ -46,6 +50,7 @@ src/
   lib/perms.js       One permissions table for the four roles
   screens/           One file per screen
 scripts/generate-raw-records.mjs   Regenerates the ~270 raw records (support contacts, feedback, web items)
+scripts/generate-samples.mjs       Regenerates the sample upload files in public/samples/
 ```
 
 **What's real vs mocked in V1**
@@ -53,7 +58,9 @@ scripts/generate-raw-records.mjs   Regenerates the ~270 raw records (support con
 | Real (works end to end) | Mocked (shown as a workflow) |
 |---|---|
 | Role-based access, value-stream scoping | SSO (persona picker stands in for IBM Verify / Okta / Entra) |
-| Signal scoring from visible rules; mute, cap, promote, link | Connectors (simulated handshake and sync) |
+| **File import:** any CSV/JSON export, column mapping, keyword theming, emerging-theme discovery, 8-week trends, new or corroborated signals | Client-system connectors: Salesforce, Snowflake, ADO and the rest (simulated handshake and sync) |
+| **Live feeds:** Federal Register API (DOT rules) and Hacker News search, called from the browser, re-sync on demand | Feeds don't sync on a timer yet; use the refresh button on the source |
+| Signal scoring from visible rules; mute, cap, promote, link | |
 | Gate triggering from opportunity text and evidence; reviews and comments; gate log | Agent schedules and runs (a run is logged, nothing runs on a timer) |
 | Prototype versions, governance scan, upload, approve | Chat agent is scripted (layout, pricing, accessibility, theme edits). M3 adds a live model call |
 | Handoff brief generation, editing, Markdown download | "Push to ADO/Jira" writes mock work items, not a real API |
@@ -69,6 +76,12 @@ scripts/generate-raw-records.mjs   Regenerates the ~270 raw records (support con
 - **Design call 4:** There is no spec screen. The agent drafts a **handoff brief** that pushes as an epic.
 - **Design call 5:** The prototype studio runs the loop: generate → share → feedback → next version → scan → approve.
 - **Deferred to V2:** Telemetry, Roadmap/Aha, value and risk models, forecasts, global search, notifications.
+
+### How real data becomes a signal
+
+1. **In:** a file is parsed in the browser (nothing is uploaded anywhere), or a feed is fetched. Records land in the same tables as the pack's raw records, tagged with their source.
+2. **Theme:** each record is matched against the pack's themes (`themes.json`, keyword rules). Records nothing matches are clustered by shared terms; a term concentrated in at least 5 of them becomes an **emerging theme**.
+3. **Signal:** a theme that already has a signal in its value stream gets the new source added as evidence (reach goes up). A theme with no signal gets a new one, with volume = record count and an 8-week trend from the record dates. Disconnecting the source removes its records and the signals it raised.
 
 ## Next
 

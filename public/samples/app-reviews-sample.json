@@ -1,0 +1,816 @@
+{
+ "app": "Example Airline",
+ "exported": "2026-11-18",
+ "reviews": [
+  {
+   "review_id": "R90106",
+   "date": "2026-11-17",
+   "platform": "Android",
+   "rating": 2,
+   "title": "App crashes constantly",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90113",
+   "date": "2026-11-17",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Unusable",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90119",
+   "date": "2026-11-17",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90122",
+   "date": "2026-11-17",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "App crashes constantly",
+   "body": "The app crashes every time I open my trips. Reinstalled twice.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90164",
+   "date": "2026-11-17",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "Sold out",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90100",
+   "date": "2026-11-16",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90126",
+   "date": "2026-11-16",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90179",
+   "date": "2026-11-14",
+   "platform": "iOS",
+   "rating": 5,
+   "title": "Great app",
+   "body": "Gate change notification reached me before the announcement.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90131",
+   "date": "2026-11-12",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "Boarding pass issues",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90169",
+   "date": "2026-11-12",
+   "platform": "Android",
+   "rating": 2,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90174",
+   "date": "2026-11-12",
+   "platform": "Android",
+   "rating": 5,
+   "title": "Love it",
+   "body": "Five stars, everything I need for my commute flights.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90133",
+   "date": "2026-11-11",
+   "platform": "Android",
+   "rating": 3,
+   "title": "Boarding pass issues",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90108",
+   "date": "2026-11-09",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Unusable",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90159",
+   "date": "2026-11-09",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90101",
+   "date": "2026-11-08",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Unusable",
+   "body": "The app crashes every time I open my trips. Reinstalled twice.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90121",
+   "date": "2026-11-08",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Crashes on launch",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90180",
+   "date": "2026-11-08",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Love it",
+   "body": "Gate change notification reached me before the announcement.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90171",
+   "date": "2026-11-07",
+   "platform": "iOS",
+   "rating": 5,
+   "title": "Great app",
+   "body": "Easy to use and the flight status alerts are very helpful.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90118",
+   "date": "2026-11-06",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "App crashes constantly",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90114",
+   "date": "2026-11-04",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90185",
+   "date": "2026-11-04",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Love it",
+   "body": "Clean design. Finding my reservation is quick.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90152",
+   "date": "2026-11-02",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90187",
+   "date": "2026-11-02",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Love it",
+   "body": "Love the new trip view.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90163",
+   "date": "2026-11-01",
+   "platform": "Android",
+   "rating": 3,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90189",
+   "date": "2026-11-01",
+   "platform": "iOS",
+   "rating": 5,
+   "title": "Easy to use",
+   "body": "Love the new trip view.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90132",
+   "date": "2026-10-31",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90188",
+   "date": "2026-10-31",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Easy to use",
+   "body": "Smooth experience, check-in took seconds.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90116",
+   "date": "2026-10-30",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Unusable",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90146",
+   "date": "2026-10-30",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Payment errors",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90107",
+   "date": "2026-10-29",
+   "platform": "Android",
+   "rating": 1,
+   "title": "App crashes constantly",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90137",
+   "date": "2026-10-29",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Pass won't show",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90144",
+   "date": "2026-10-29",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90182",
+   "date": "2026-10-28",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Easy to use",
+   "body": "Easy to use and the flight status alerts are very helpful.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90123",
+   "date": "2026-10-26",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Unusable",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90104",
+   "date": "2026-10-25",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Crashes on launch",
+   "body": "The app crashes every time I open my trips. Reinstalled twice.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90120",
+   "date": "2026-10-25",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Unusable",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90151",
+   "date": "2026-10-25",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90102",
+   "date": "2026-10-24",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Crashes on launch",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90162",
+   "date": "2026-10-24",
+   "platform": "Android",
+   "rating": 3,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90111",
+   "date": "2026-10-23",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90141",
+   "date": "2026-10-23",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "Boarding pass issues",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90157",
+   "date": "2026-10-23",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90139",
+   "date": "2026-10-22",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90165",
+   "date": "2026-10-20",
+   "platform": "Android",
+   "rating": 3,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90168",
+   "date": "2026-10-20",
+   "platform": "Android",
+   "rating": 3,
+   "title": "Sold out",
+   "body": "When a flight is sold out the app just stops. Show me other flights!",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90177",
+   "date": "2026-10-20",
+   "platform": "Android",
+   "rating": 4,
+   "title": "Great app",
+   "body": "Smooth experience, check-in took seconds.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90156",
+   "date": "2026-10-18",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90128",
+   "date": "2026-10-17",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Pass won't show",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90124",
+   "date": "2026-10-16",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90127",
+   "date": "2026-10-16",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "Pass won't show",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90160",
+   "date": "2026-10-16",
+   "platform": "Android",
+   "rating": 3,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90130",
+   "date": "2026-10-15",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "Pass won't show",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90161",
+   "date": "2026-10-15",
+   "platform": "iOS",
+   "rating": 3,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90135",
+   "date": "2026-10-13",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Boarding pass issues",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90155",
+   "date": "2026-10-13",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90166",
+   "date": "2026-10-13",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90110",
+   "date": "2026-10-12",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "The app crashes every time I open my trips. Reinstalled twice.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90142",
+   "date": "2026-10-12",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90148",
+   "date": "2026-10-12",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90183",
+   "date": "2026-10-12",
+   "platform": "iOS",
+   "rating": 5,
+   "title": "Great app",
+   "body": "Gate change notification reached me before the announcement.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90117",
+   "date": "2026-10-11",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Crashes on launch",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90145",
+   "date": "2026-10-11",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90147",
+   "date": "2026-10-11",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90175",
+   "date": "2026-10-11",
+   "platform": "Android",
+   "rating": 5,
+   "title": "Easy to use",
+   "body": "Love the new trip view.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90138",
+   "date": "2026-10-09",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Boarding pass issues",
+   "body": "Had to screenshot my boarding pass because the app wouldn't open it offline.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90154",
+   "date": "2026-10-09",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90167",
+   "date": "2026-10-09",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "No alternatives",
+   "body": "Fare sold out while I was booking and no alternative was offered.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90181",
+   "date": "2026-10-09",
+   "platform": "Android",
+   "rating": 4,
+   "title": "Love it",
+   "body": "Easy to use and the flight status alerts are very helpful.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90143",
+   "date": "2026-10-05",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Payment errors",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90186",
+   "date": "2026-10-05",
+   "platform": "Android",
+   "rating": 5,
+   "title": "Love it",
+   "body": "Best airline app I have used so far.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90158",
+   "date": "2026-10-04",
+   "platform": "Android",
+   "rating": 2,
+   "title": "No alternatives",
+   "body": "When a flight is sold out the app just stops. Show me other flights!",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90184",
+   "date": "2026-10-04",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Great app",
+   "body": "Gate change notification reached me before the announcement.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90150",
+   "date": "2026-10-03",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Checkout is painful",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90103",
+   "date": "2026-10-02",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90149",
+   "date": "2026-10-02",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Payment errors",
+   "body": "Payment failed three times on the app. Desktop worked fine.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90125",
+   "date": "2026-10-01",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90176",
+   "date": "2026-10-01",
+   "platform": "Android",
+   "rating": 5,
+   "title": "Love it",
+   "body": "Five stars, everything I need for my commute flights.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90129",
+   "date": "2026-09-30",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Pass won't show",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90173",
+   "date": "2026-09-30",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Great app",
+   "body": "Love the new trip view.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90105",
+   "date": "2026-09-29",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "App crashes constantly",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90178",
+   "date": "2026-09-29",
+   "platform": "Android",
+   "rating": 4,
+   "title": "Easy to use",
+   "body": "Best airline app I have used so far.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90136",
+   "date": "2026-09-27",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90153",
+   "date": "2026-09-27",
+   "platform": "Android",
+   "rating": 2,
+   "title": "Checkout is painful",
+   "body": "Why do I have to re-enter my passport and card on every booking?",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90170",
+   "date": "2026-09-27",
+   "platform": "iOS",
+   "rating": 4,
+   "title": "Love it",
+   "body": "Clean design. Finding my reservation is quick.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90112",
+   "date": "2026-09-26",
+   "platform": "iOS",
+   "rating": 1,
+   "title": "Crashes on launch",
+   "body": "The app crashes every time I open my trips. Reinstalled twice.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90115",
+   "date": "2026-09-25",
+   "platform": "iOS",
+   "rating": 2,
+   "title": "Crashes on launch",
+   "body": "App crashes at the seat map screen, so I can't change seats.",
+   "app_version": "2026.11.0"
+  },
+  {
+   "review_id": "R90140",
+   "date": "2026-09-25",
+   "platform": "Android",
+   "rating": 1,
+   "title": "Pass won't show",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90109",
+   "date": "2026-09-24",
+   "platform": "Android",
+   "rating": 1,
+   "title": "App crashes constantly",
+   "body": "Since the last update the app crashes when I try to check in.",
+   "app_version": "2026.10.2"
+  },
+  {
+   "review_id": "R90134",
+   "date": "2026-09-23",
+   "platform": "Android",
+   "rating": 3,
+   "title": "Boarding pass issues",
+   "body": "Boarding pass disappears from the app right before boarding.",
+   "app_version": "2026.11.1"
+  },
+  {
+   "review_id": "R90172",
+   "date": "2026-09-23",
+   "platform": "iOS",
+   "rating": 5,
+   "title": "Easy to use",
+   "body": "Smooth experience, check-in took seconds.",
+   "app_version": "2026.10.2"
+  }
+ ]
+}

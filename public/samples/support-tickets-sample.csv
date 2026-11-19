@@ -1,0 +1,241 @@
+Ticket ID,Created at,Subject,Description,Via,Priority,Tags
+48279,2026-11-17T17:13:18.217Z,"Rebooking help","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",chat,low,irops
+48258,2026-11-17T13:56:39.961Z,"Cancelled flight","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",chat,high,irops
+48261,2026-11-17T13:23:50.281Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",phone,high,irops
+48389,2026-11-17T13:10:09.416Z,"Paid for wifi","Wifi portal took my money and then showed an error page.",web,normal,onboard
+48216,2026-11-17T09:51:49.575Z,"Fare disappeared","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",web,normal,booking
+48382,2026-11-17T09:42:35.617Z,"Wifi didn't work","The wifi kept dropping every few minutes. I couldn't work at all.",twitter,normal,onboard
+48241,2026-11-17T08:14:16.461Z,"No other options shown","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",email,low,booking
+48297,2026-11-17T08:11:51.308Z,"Schedule change refund","My flight was moved by five hours. I want a refund, not a travel credit.",twitter,normal,refunds
+48281,2026-11-17T07:23:35.264Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",email,high,irops
+48373,2026-11-17T05:13:42.194Z,"Wifi not working","Wifi portal took my money and then showed an error page.",twitter,normal,onboard
+48384,2026-11-17T03:22:03.590Z,"Paid for wifi","Paid for wifi on my flight to Boston and it never connected the whole way.",web,low,onboard
+48394,2026-11-17T01:36:42.376Z,"Mobile boarding pass","Boarding pass isn't saving to Apple Wallet anymore.",web,low,mobile
+48402,2026-11-17T00:24:43.894Z,"Can't add pass to wallet","My mobile boarding pass wouldn't load at the gate and I had to go back to the counter.",web,high,mobile
+48302,2026-11-17T00:24:43.462Z,"Refund instead of credit","My flight was moved by five hours. I want a refund, not a travel credit.",web,normal,refunds
+48413,2026-11-17T00:09:52.475Z,"Can't add pass to wallet","The boarding pass shows a blank QR code in the app.",chat,low,mobile
+48340,2026-11-16T21:55:44.604Z,"Where is my luggage","Suitcase arrived with a broken handle. How do I file the claim?",chat,high,baggage
+48403,2026-11-16T19:22:48.997Z,"Can't add pass to wallet","Boarding pass isn't saving to Apple Wallet anymore.",email,high,mobile
+48240,2026-11-16T12:44:42.159Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,normal,booking
+48300,2026-11-16T12:42:15.821Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",chat,normal,refunds
+48313,2026-11-16T10:18:56.163Z,"Refund instead of credit","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",chat,normal,refunds
+48398,2026-11-16T10:05:21.149Z,"Boarding pass won't load","My mobile boarding pass wouldn't load at the gate and I had to go back to the counter.",phone,normal,mobile
+48443,2026-11-16T07:37:57.120Z,"Question","Looking for the receipt for my trip last March for expenses.",chat,normal,general
+48351,2026-11-16T07:33:14.394Z,"Where is my luggage","Suitcase arrived with a broken handle. How do I file the claim?",email,high,baggage
+48245,2026-11-16T06:10:13.244Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",web,low,booking
+48248,2026-11-16T00:34:42.872Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",email,normal,irops
+48419,2026-11-15T23:15:35.306Z,"Legroom","Is there a way to see legroom before I pick a seat? The last flight was awful.",web,normal,onboard
+48336,2026-11-15T19:42:16.003Z,"Saved card missing","Checkout timed out twice on my phone and I had to type all my details again.",web,normal,checkout
+48397,2026-11-15T15:29:35.262Z,"Boarding pass won't load","My mobile boarding pass wouldn't load at the gate and I had to go back to the counter.",chat,normal,mobile
+48268,2026-11-15T11:15:00.740Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",twitter,normal,irops
+48264,2026-11-15T08:33:35.155Z,"Rebooking help","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",twitter,low,irops
+48327,2026-11-15T07:35:36.805Z,"Saved card missing","My card was declined in the app but works everywhere else.",twitter,high,checkout
+48388,2026-11-15T07:20:58.371Z,"Wifi didn't work","Wifi portal took my money and then showed an error page.",phone,normal,onboard
+48255,2026-11-15T05:36:27.499Z,"Cancelled flight","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",web,normal,irops
+48242,2026-11-15T03:38:03.309Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",phone,low,booking
+48362,2026-11-15T02:30:03.270Z,"Bag not delivered","Suitcase arrived with a broken handle. How do I file the claim?",web,high,baggage
+48390,2026-11-14T21:25:01.589Z,"Paid for wifi","Paid for wifi on my flight to Boston and it never connected the whole way.",email,high,onboard
+48348,2026-11-14T18:50:05.919Z,"Bag not delivered","Bag tracking in the app says loaded, but my luggage isn't here.",chat,normal,baggage
+48368,2026-11-14T12:29:28.956Z,"Where is my luggage","Bag tracking in the app says loaded, but my luggage isn't here.",chat,low,baggage
+48232,2026-11-14T12:05:56.913Z,"Flight sold out mid-booking","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",email,normal,booking
+48401,2026-11-14T07:57:32.976Z,"Can't add pass to wallet","The boarding pass shows a blank QR code in the app.",phone,normal,mobile
+48269,2026-11-14T02:04:32.871Z,"Cancelled flight","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",phone,low,irops
+48214,2026-11-13T20:35:03.639Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",email,low,booking
+48383,2026-11-13T16:51:28.058Z,"Paid for wifi","Streaming said it was included but the wifi was down for the entire trip.",twitter,high,onboard
+48291,2026-11-13T14:12:17.840Z,"Rebooking help","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",phone,high,irops
+48223,2026-11-13T13:23:27.127Z,"Flight sold out mid-booking","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",web,high,booking
+48399,2026-11-13T12:23:52.460Z,"Boarding pass won't load","The boarding pass shows a blank QR code in the app.",chat,normal,mobile
+48246,2026-11-13T10:14:16.514Z,"Flight sold out mid-booking","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",twitter,normal,booking
+48310,2026-11-13T08:50:05.616Z,"Refund instead of credit","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",email,high,refunds
+48391,2026-11-13T06:01:43.214Z,"Wifi didn't work","Streaming said it was included but the wifi was down for the entire trip.",twitter,normal,onboard
+48374,2026-11-13T05:25:37.417Z,"Paid for wifi","Streaming said it was included but the wifi was down for the entire trip.",chat,normal,onboard
+48294,2026-11-12T19:13:25.412Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",twitter,normal,refunds
+48277,2026-11-12T14:51:58.941Z,"Rebooking help","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",phone,high,irops
+48331,2026-11-12T13:49:14.211Z,"Checkout keeps timing out","My card was declined in the app but works everywhere else.",email,high,checkout
+48229,2026-11-12T12:33:28.109Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",phone,normal,booking
+48343,2026-11-12T03:28:57.853Z,"Damaged suitcase","Bag tracking in the app says loaded, but my luggage isn't here.",web,normal,baggage
+48392,2026-11-12T01:37:09.003Z,"Wifi not working","The wifi kept dropping every few minutes. I couldn't work at all.",email,low,onboard
+48306,2026-11-11T23:21:33.551Z,"Refund instead of credit","Why was I given a voucher? I thought cash refunds were required now.",web,normal,refunds
+48439,2026-11-11T21:11:16.131Z,"General inquiry","Can I bring my guitar as a carry-on?",phone,low,general
+48265,2026-11-11T15:20:42.024Z,"Missed connection at DFW","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",chat,high,irops
+48303,2026-11-11T13:56:15.965Z,"Refund instead of credit","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",phone,high,refunds
+48249,2026-11-11T11:45:02.901Z,"Rebooking help","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",twitter,normal,irops
+48312,2026-11-11T07:48:11.267Z,"Refund instead of credit","My flight was moved by five hours. I want a refund, not a travel credit.",email,normal,refunds
+48228,2026-11-11T04:10:29.874Z,"Flight sold out mid-booking","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,high,booking
+48334,2026-11-11T01:51:42.573Z,"Saved card missing","My card was declined in the app but works everywhere else.",phone,high,checkout
+48350,2026-11-11T00:48:49.568Z,"Damaged suitcase","Bag tracking in the app says loaded, but my luggage isn't here.",chat,normal,baggage
+48307,2026-11-10T19:54:42.681Z,"Schedule change refund","Why was I given a voucher? I thought cash refunds were required now.",twitter,normal,refunds
+48318,2026-11-10T16:41:12.400Z,"Payment failed","Saved card doesn't appear at payment, so I re-enter it every booking.",chat,high,checkout
+48316,2026-11-10T16:23:47.878Z,"Payment failed","My card was declined in the app but works everywhere else.",phone,high,checkout
+48301,2026-11-10T04:46:20.829Z,"Refund status","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",chat,normal,refunds
+48266,2026-11-10T01:38:30.288Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",phone,normal,irops
+48438,2026-11-09T23:51:13.694Z,"General inquiry","Is there a charge to bring a car seat for my toddler?",phone,normal,general
+48346,2026-11-09T19:30:15.447Z,"Bag not delivered","Bag tracking in the app says loaded, but my luggage isn't here.",web,normal,baggage
+48288,2026-11-08T20:44:56.543Z,"Rebooking help","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",email,low,irops
+48354,2026-11-08T20:14:29.192Z,"Damaged suitcase","Suitcase arrived with a broken handle. How do I file the claim?",chat,normal,baggage
+48435,2026-11-08T17:16:41.954Z,"Question","Can I pick up a print copy of my invoice at the airport?",web,high,general
+48236,2026-11-08T11:23:00.831Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",chat,high,booking
+48400,2026-11-08T11:14:49.536Z,"Can't add pass to wallet","The boarding pass shows a blank QR code in the app.",web,high,mobile
+48287,2026-11-07T23:49:29.361Z,"Missed connection at DFW","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",phone,high,irops
+48377,2026-11-07T16:38:33.831Z,"Wifi not working","Paid for wifi on my flight to Boston and it never connected the whole way.",email,normal,onboard
+48273,2026-11-07T14:34:37.265Z,"Cancelled flight","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",chat,high,irops
+48311,2026-11-07T11:20:58.234Z,"Refund instead of credit","My flight was moved by five hours. I want a refund, not a travel credit.",email,low,refunds
+48275,2026-11-07T03:45:20.826Z,"Cancelled flight","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",chat,low,irops
+48345,2026-11-06T17:45:53.470Z,"Damaged suitcase","My checked bag never came out at the belt in Phoenix. No update in two days.",email,high,baggage
+48358,2026-11-06T07:16:55.546Z,"Damaged suitcase","Bag tracking in the app says loaded, but my luggage isn't here.",email,high,baggage
+48380,2026-11-05T16:19:43.678Z,"Paid for wifi","Wifi portal took my money and then showed an error page.",web,normal,onboard
+48387,2026-11-05T13:23:00.628Z,"Wifi not working","The wifi kept dropping every few minutes. I couldn't work at all.",twitter,low,onboard
+48404,2026-11-05T04:48:39.082Z,"Boarding pass won't load","Boarding pass isn't saving to Apple Wallet anymore.",twitter,low,mobile
+48437,2026-11-04T22:14:41.967Z,"General inquiry","Our group of twelve wants to sit together, who do I contact?",phone,high,general
+48332,2026-11-04T15:23:00.024Z,"Saved card missing","Saved card doesn't appear at payment, so I re-enter it every booking.",email,normal,checkout
+48396,2026-11-04T06:41:28.249Z,"Mobile boarding pass","The boarding pass shows a blank QR code in the app.",phone,high,mobile
+48393,2026-11-04T03:31:22.597Z,"Wifi not working","Paid for wifi on my flight to Boston and it never connected the whole way.",phone,normal,onboard
+48271,2026-11-04T01:29:01.545Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",chat,normal,irops
+48239,2026-11-03T22:11:05.954Z,"No other options shown","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",twitter,normal,booking
+48333,2026-11-03T20:32:19.208Z,"Payment failed","Checkout timed out twice on my phone and I had to type all my details again.",email,low,checkout
+48299,2026-11-03T14:24:18.645Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",twitter,normal,refunds
+48226,2026-11-03T13:49:12.113Z,"No other options shown","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",web,normal,booking
+48366,2026-11-03T04:10:49.948Z,"Bag not delivered","My checked bag never came out at the belt in Phoenix. No update in two days.",email,low,baggage
+48285,2026-11-03T01:52:18.887Z,"Missed connection at DFW","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",twitter,normal,irops
+48237,2026-11-02T18:25:04.537Z,"Fare disappeared","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",phone,low,booking
+48290,2026-11-02T17:45:18.574Z,"Cancelled flight","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",email,normal,irops
+48381,2026-11-02T14:43:44.569Z,"Wifi didn't work","Wifi portal took my money and then showed an error page.",twitter,high,onboard
+48320,2026-11-02T13:02:27.118Z,"Checkout keeps timing out","My card was declined in the app but works everywhere else.",phone,normal,checkout
+48448,2026-11-02T11:13:22.020Z,"General inquiry","Looking for the receipt for my trip last March for expenses.",email,low,general
+48262,2026-11-01T17:01:12.400Z,"Cancelled flight","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",phone,normal,irops
+48434,2026-11-01T16:21:39.086Z,"General inquiry","Do you sell gift memberships for the lounge?",web,high,general
+48425,2026-11-01T14:49:41.216Z,"Not enough legroom","Paid for a better seat expecting more legroom and it was the same.",web,normal,onboard
+48415,2026-11-01T10:52:29.908Z,"Legroom","Paid for a better seat expecting more legroom and it was the same.",twitter,high,onboard
+48427,2026-10-31T21:16:10.972Z,"Legroom complaint","Legroom on the new 737 seats is terrible. My knees were against the seat in front.",web,normal,onboard
+48446,2026-10-31T06:18:45.756Z,"Feedback","How early should I arrive for an international departure from JFK?",email,normal,general
+48330,2026-10-30T22:10:22.283Z,"Checkout keeps timing out","My card was declined in the app but works everywhere else.",twitter,normal,checkout
+48360,2026-10-30T04:15:59.145Z,"Bag not delivered","Suitcase arrived with a broken handle. How do I file the claim?",phone,high,baggage
+48326,2026-10-30T00:49:22.138Z,"Saved card missing","My card was declined in the app but works everywhere else.",web,low,checkout
+48321,2026-10-29T17:30:30.577Z,"Payment failed","My card was declined in the app but works everywhere else.",email,normal,checkout
+48286,2026-10-29T14:46:29.549Z,"Missed connection at DFW","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",web,low,irops
+48344,2026-10-29T13:23:12.648Z,"Bag not delivered","Bag tracking in the app says loaded, but my luggage isn't here.",phone,low,baggage
+48314,2026-10-29T12:03:45.574Z,"Saved card missing","Saved card doesn't appear at payment, so I re-enter it every booking.",phone,low,checkout
+48416,2026-10-29T11:24:02.629Z,"Legroom","Is there a way to see legroom before I pick a seat? The last flight was awful.",twitter,normal,onboard
+48395,2026-10-29T10:34:00.859Z,"Mobile boarding pass","The boarding pass shows a blank QR code in the app.",web,high,mobile
+48359,2026-10-29T08:36:10.909Z,"Damaged suitcase","My checked bag never came out at the belt in Phoenix. No update in two days.",web,high,baggage
+48433,2026-10-28T23:46:58.440Z,"Question","Need to add a known traveler number to my booking.",phone,normal,general
+48353,2026-10-28T12:39:28.722Z,"Damaged suitcase","Suitcase arrived with a broken handle. How do I file the claim?",phone,normal,baggage
+48363,2026-10-28T03:42:44.426Z,"Where is my luggage","My checked bag never came out at the belt in Phoenix. No update in two days.",email,normal,baggage
+48372,2026-10-27T19:46:38.050Z,"Paid for wifi","Streaming said it was included but the wifi was down for the entire trip.",email,normal,onboard
+48257,2026-10-27T14:56:09.113Z,"Rebooking help","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",email,normal,irops
+48289,2026-10-27T09:14:59.595Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",web,low,irops
+48218,2026-10-27T08:02:13.714Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,normal,booking
+48376,2026-10-27T04:36:06.000Z,"Wifi didn't work","Streaming said it was included but the wifi was down for the entire trip.",web,high,onboard
+48444,2026-10-27T00:42:12.620Z,"Feedback","Can I bring my guitar as a carry-on?",email,normal,general
+48375,2026-10-26T11:44:39.528Z,"Wifi not working","The wifi kept dropping every few minutes. I couldn't work at all.",phone,normal,onboard
+48308,2026-10-26T07:34:31.274Z,"Refund status","My flight was moved by five hours. I want a refund, not a travel credit.",email,normal,refunds
+48296,2026-10-26T05:33:16.381Z,"Refund instead of credit","My flight was moved by five hours. I want a refund, not a travel credit.",web,high,refunds
+48220,2026-10-26T05:23:54.224Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",chat,low,booking
+48412,2026-10-26T04:16:21.196Z,"Boarding pass won't load","Boarding pass isn't saving to Apple Wallet anymore.",phone,low,mobile
+48247,2026-10-25T14:12:46.990Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,normal,booking
+48210,2026-10-25T10:49:03.523Z,"Flight sold out mid-booking","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,normal,booking
+48259,2026-10-25T04:04:48.007Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",twitter,normal,irops
+48335,2026-10-24T22:51:08.200Z,"Payment failed","Checkout timed out twice on my phone and I had to type all my details again.",email,normal,checkout
+48253,2026-10-24T17:06:06.436Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",phone,low,irops
+48385,2026-10-24T17:00:41.810Z,"Paid for wifi","Wifi portal took my money and then showed an error page.",chat,high,onboard
+48323,2026-10-24T14:28:02.158Z,"Checkout keeps timing out","Checkout timed out twice on my phone and I had to type all my details again.",chat,high,checkout
+48272,2026-10-24T14:12:57.712Z,"Rebooking help","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",email,normal,irops
+48424,2026-10-24T03:11:29.389Z,"Legroom complaint","Is there a way to see legroom before I pick a seat? The last flight was awful.",phone,low,onboard
+48238,2026-10-23T23:35:46.283Z,"Flight sold out mid-booking","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",twitter,normal,booking
+48409,2026-10-23T16:22:32.644Z,"Can't add pass to wallet","The boarding pass shows a blank QR code in the app.",web,high,mobile
+48295,2026-10-23T13:26:27.940Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",phone,normal,refunds
+48322,2026-10-23T08:19:30.635Z,"Saved card missing","My card was declined in the app but works everywhere else.",web,high,checkout
+48304,2026-10-23T07:08:25.207Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",email,low,refunds
+48338,2026-10-22T13:05:28.526Z,"Payment failed","Saved card doesn't appear at payment, so I re-enter it every booking.",twitter,high,checkout
+48324,2026-10-22T09:13:01.386Z,"Checkout keeps timing out","My card was declined in the app but works everywhere else.",chat,normal,checkout
+48267,2026-10-21T21:56:47.712Z,"Rebooking help","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",phone,normal,irops
+48370,2026-10-21T21:34:41.031Z,"Wifi not working","Paid for wifi on my flight to Boston and it never connected the whole way.",phone,high,onboard
+48440,2026-10-21T21:19:49.346Z,"Question","Thanks to the crew on flight 1123, they were great.",email,low,general
+48234,2026-10-21T19:59:08.784Z,"No other options shown","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",phone,low,booking
+48417,2026-10-21T18:55:51.188Z,"Not enough legroom","Legroom on the new 737 seats is terrible. My knees were against the seat in front.",web,low,onboard
+48315,2026-10-21T08:16:36.673Z,"Saved card missing","My card was declined in the app but works everywhere else.",twitter,low,checkout
+48293,2026-10-21T00:33:34.165Z,"Refund status","My flight was moved by five hours. I want a refund, not a travel credit.",email,normal,refunds
+48263,2026-10-20T12:26:32.764Z,"Cancelled flight","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",twitter,high,irops
+48449,2026-10-20T02:18:12.584Z,"Question","Is there a charge to bring a car seat for my toddler?",phone,normal,general
+48445,2026-10-19T18:33:17.871Z,"Question","Which terminal does the Phoenix route use at LAX?",chat,low,general
+48386,2026-10-19T08:58:22.885Z,"Wifi not working","Wifi portal took my money and then showed an error page.",chat,normal,onboard
+48244,2026-10-19T07:30:12.546Z,"No other options shown","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",email,low,booking
+48406,2026-10-18T22:17:09.296Z,"Boarding pass won't load","The boarding pass shows a blank QR code in the app.",chat,normal,mobile
+48298,2026-10-18T08:19:09.758Z,"Refund status","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",chat,low,refunds
+48325,2026-10-17T14:38:24.558Z,"Saved card missing","Checkout timed out twice on my phone and I had to type all my details again.",twitter,high,checkout
+48408,2026-10-17T07:35:15.346Z,"Can't add pass to wallet","The boarding pass shows a blank QR code in the app.",phone,low,mobile
+48278,2026-10-17T04:29:28.576Z,"Cancelled flight","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",email,low,irops
+48219,2026-10-17T03:54:54.508Z,"Flight sold out mid-booking","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",web,low,booking
+48309,2026-10-17T02:05:45.744Z,"Refund status","Why was I given a voucher? I thought cash refunds were required now.",phone,high,refunds
+48411,2026-10-17T00:43:10.638Z,"Mobile boarding pass","My mobile boarding pass wouldn't load at the gate and I had to go back to the counter.",phone,normal,mobile
+48215,2026-10-17T00:16:08.727Z,"No other options shown","Your app said unavailable and gave me nothing else. I booked a different airline.",twitter,normal,booking
+48283,2026-10-16T09:23:12.518Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",web,high,irops
+48369,2026-10-15T05:21:00.541Z,"Where is my luggage","Bag tracking in the app says loaded, but my luggage isn't here.",web,normal,baggage
+48305,2026-10-15T04:44:31.045Z,"Schedule change refund","My flight was moved by five hours. I want a refund, not a travel credit.",web,normal,refunds
+48426,2026-10-15T01:24:21.419Z,"Legroom","Is there a way to see legroom before I pick a seat? The last flight was awful.",chat,low,onboard
+48442,2026-10-14T10:47:17.426Z,"Feedback","Can I pick up a print copy of my invoice at the airport?",chat,high,general
+48365,2026-10-14T07:21:22.503Z,"Bag not delivered","My checked bag never came out at the belt in Phoenix. No update in two days.",email,low,baggage
+48420,2026-10-13T19:07:35.985Z,"Legroom complaint","Is there a way to see legroom before I pick a seat? The last flight was awful.",email,low,onboard
+48224,2026-10-13T07:37:47.091Z,"Flight sold out mid-booking","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",web,normal,booking
+48361,2026-10-13T07:15:32.129Z,"Bag not delivered","Suitcase arrived with a broken handle. How do I file the claim?",phone,high,baggage
+48319,2026-10-13T05:36:06.161Z,"Payment failed","Checkout timed out twice on my phone and I had to type all my details again.",phone,normal,checkout
+48431,2026-10-13T00:30:35.713Z,"Feedback","Need to add a known traveler number to my booking.",twitter,normal,general
+48371,2026-10-12T23:28:47.405Z,"Wifi not working","The wifi kept dropping every few minutes. I couldn't work at all.",twitter,normal,onboard
+48405,2026-10-12T22:45:06.970Z,"Boarding pass won't load","My mobile boarding pass wouldn't load at the gate and I had to go back to the counter.",email,normal,mobile
+48341,2026-10-12T21:57:21.670Z,"Where is my luggage","My checked bag never came out at the belt in Phoenix. No update in two days.",email,low,baggage
+48356,2026-10-12T21:29:22.091Z,"Damaged suitcase","Suitcase arrived with a broken handle. How do I file the claim?",web,normal,baggage
+48260,2026-10-12T15:53:39.928Z,"Cancelled flight","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",twitter,normal,irops
+48221,2026-10-12T13:08:36.588Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",phone,normal,booking
+48428,2026-10-12T12:29:21.246Z,"Not enough legroom","Paid for a better seat expecting more legroom and it was the same.",email,high,onboard
+48227,2026-10-12T09:15:47.087Z,"Fare disappeared","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",email,high,booking
+48349,2026-10-12T07:02:09.474Z,"Damaged suitcase","Bag tracking in the app says loaded, but my luggage isn't here.",email,normal,baggage
+48342,2026-10-11T20:01:06.591Z,"Damaged suitcase","My checked bag never came out at the belt in Phoenix. No update in two days.",twitter,normal,baggage
+48355,2026-10-11T18:11:07.029Z,"Bag not delivered","Bag tracking in the app says loaded, but my luggage isn't here.",web,normal,baggage
+48217,2026-10-11T10:29:26.382Z,"No other options shown","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",web,normal,booking
+48418,2026-10-10T05:20:44.721Z,"Not enough legroom","Legroom on the new 737 seats is terrible. My knees were against the seat in front.",email,high,onboard
+48352,2026-10-10T05:11:18.805Z,"Where is my luggage","Bag tracking in the app says loaded, but my luggage isn't here.",twitter,normal,baggage
+48423,2026-10-09T13:47:28.426Z,"Legroom","Paid for a better seat expecting more legroom and it was the same.",web,normal,onboard
+48233,2026-10-09T12:20:51.536Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",email,normal,booking
+48256,2026-10-08T23:18:45.512Z,"Missed connection at DFW","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",twitter,normal,irops
+48251,2026-10-08T18:19:03.389Z,"Rebooking help","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",twitter,normal,irops
+48447,2026-10-08T15:02:07.449Z,"General inquiry","Please update my name on the reservation, it has a typo.",phone,normal,general
+48379,2026-10-08T12:42:54.509Z,"Wifi didn't work","Paid for wifi on my flight to Boston and it never connected the whole way.",phone,high,onboard
+48235,2026-10-08T09:58:23.736Z,"Fare disappeared","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",email,high,booking
+48225,2026-10-07T11:12:51.028Z,"Flight sold out mid-booking","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",twitter,normal,booking
+48317,2026-10-07T08:59:52.657Z,"Checkout keeps timing out","My card was declined in the app but works everywhere else.",phone,low,checkout
+48243,2026-10-06T15:22:34.481Z,"No other options shown","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",web,low,booking
+48337,2026-10-05T20:42:27.054Z,"Checkout keeps timing out","Checkout timed out twice on my phone and I had to type all my details again.",chat,high,checkout
+48347,2026-10-05T04:08:37.463Z,"Bag not delivered","Suitcase arrived with a broken handle. How do I file the claim?",phone,high,baggage
+48430,2026-10-05T00:44:49.897Z,"Question","How early should I arrive for an international departure from JFK?",twitter,normal,general
+48329,2026-10-04T22:32:19.438Z,"Checkout keeps timing out","Saved card doesn't appear at payment, so I re-enter it every booking.",phone,low,checkout
+48441,2026-10-03T22:37:52.004Z,"Question","Which terminal does the Phoenix route use at LAX?",chat,high,general
+48211,2026-10-03T20:01:55.783Z,"Fare disappeared","Your app said unavailable and gave me nothing else. I booked a different airline.",web,low,booking
+48231,2026-10-03T06:54:17.388Z,"Flight sold out mid-booking","Last seat in Main Cabin vanished. I had to call to hear about the flight an hour later.",twitter,high,booking
+48250,2026-10-03T05:49:07.938Z,"Cancelled flight","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",chat,normal,irops
+48436,2026-10-03T00:15:47.448Z,"Feedback","Do you sell gift memberships for the lounge?",web,normal,general
+48339,2026-10-01T20:13:18.322Z,"Payment failed","Checkout timed out twice on my phone and I had to type all my details again.",phone,normal,checkout
+48274,2026-10-01T19:21:50.189Z,"Cancelled flight","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",email,normal,irops
+48367,2026-10-01T13:24:28.876Z,"Where is my luggage","My checked bag never came out at the belt in Phoenix. No update in two days.",web,low,baggage
+48422,2026-10-01T00:48:16.436Z,"Legroom complaint","Paid for a better seat expecting more legroom and it was the same.",phone,high,onboard
+48292,2026-10-01T00:24:04.634Z,"Refund instead of credit","I requested a refund three weeks ago for a cancelled trip and still haven't seen it.",phone,normal,refunds
+48432,2026-09-30T21:35:03.175Z,"General inquiry","Which terminal does the Phoenix route use at LAX?",phone,high,general
+48280,2026-09-30T14:19:06.410Z,"Rebooking help","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",twitter,high,irops
+48213,2026-09-29T22:34:12.394Z,"No other options shown","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",phone,normal,booking
+48222,2026-09-29T12:01:53.050Z,"Flight sold out mid-booking","The 6pm to Chicago sold out while I was entering passenger details. Is there a later flight I can get at a similar price?",phone,normal,booking
+48252,2026-09-29T06:01:12.881Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",twitter,high,irops
+48421,2026-09-28T23:03:58.266Z,"Not enough legroom","Legroom on the new 737 seats is terrible. My knees were against the seat in front.",twitter,normal,onboard
+48284,2026-09-28T11:04:25.210Z,"Cancelled flight","Delay made me miss my connection in Charlotte and the app wouldn't let me rebook myself.",chat,normal,irops
+48328,2026-09-28T03:41:01.213Z,"Saved card missing","Checkout timed out twice on my phone and I had to type all my details again.",twitter,low,checkout
+48230,2026-09-27T23:18:35.357Z,"Flight sold out mid-booking","Your app said unavailable and gave me nothing else. I booked a different airline.",web,normal,booking
+48429,2026-09-27T04:39:03.309Z,"Not enough legroom","Legroom on the new 737 seats is terrible. My knees were against the seat in front.",phone,normal,onboard
+48414,2026-09-26T19:31:12.006Z,"Legroom","Paid for a better seat expecting more legroom and it was the same.",phone,normal,onboard
+48254,2026-09-26T17:42:28.393Z,"Missed connection at DFW","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",email,normal,irops
+48357,2026-09-26T12:41:24.068Z,"Bag not delivered","Bag tracking in the app says loaded, but my luggage isn't here.",phone,low,baggage
+48364,2026-09-26T11:06:56.121Z,"Bag not delivered","Suitcase arrived with a broken handle. How do I file the claim?",phone,normal,baggage
+48270,2026-09-26T05:34:51.231Z,"Cancelled flight","Is my ticket covered by the travel waiver for the storm? The chatbot couldn't say.",email,low,irops
+48276,2026-09-26T02:12:46.280Z,"Missed connection at DFW","My flight was cancelled due to weather and I was on hold for 90 minutes trying to rebook.",phone,normal,irops
+48407,2026-09-25T17:51:45.904Z,"Mobile boarding pass","Boarding pass isn't saving to Apple Wallet anymore.",twitter,low,mobile
+48378,2026-09-25T08:20:24.132Z,"Wifi not working","Wifi portal took my money and then showed an error page.",web,low,onboard
+48282,2026-09-25T06:28:10.137Z,"Missed connection at DFW","Got rebooked onto a flight two days later. I need to get home tomorrow. What are my options?",twitter,normal,irops
+48410,2026-09-24T18:00:14.461Z,"Can't add pass to wallet","Boarding pass isn't saving to Apple Wallet anymore.",email,low,mobile
+48212,2026-09-23T16:34:59.453Z,"Flight sold out mid-booking","Picked a fare to Miami and it was sold out by the time I got to payment. The site didn't show any other flight.",email,normal,booking

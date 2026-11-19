@@ -65,7 +65,7 @@ function SignalCard({ s, rank, opps, triage, user, dim }) {
         <div className={`rank ${s.severity}`}>{rank ? `#${rank}` : "—"}<small>{s.score}</small></div>
         <div className="grow">
           <div className="row" style={{ alignItems: "flex-start" }}>
-            <div className="sigtit grow">{s.theme}</div>
+            <div className="sigtit grow">{s.theme}{s.generatedBy && <span className="tag" style={{ marginLeft: 8, verticalAlign: 2, background: "var(--green-soft)", color: "var(--green-ink)", borderColor: "transparent" }}><i className="ti ti-bolt" style={{ fontSize: 11 }} /> real data</span>}</div>
             <span className={`status ${s.severity === "High" ? "block" : s.severity === "Medium" ? "flag" : "none"}`}>{s.severity}</span>
           </div>
           <div className="why"><b>Why #{rank || "–"}:</b> {s.why}</div>
@@ -99,11 +99,11 @@ function SignalCard({ s, rank, opps, triage, user, dim }) {
       {open && records && (
         <div className="records">
           <div className="tiny faint" style={{ marginBottom: 6 }}>
-            Records behind this theme in the mock pack: {records.counts.contacts} support contacts · {records.counts.feedback} feedback items · {records.counts.web} web items. The headline volume ({fmt(s.volume)} {s.unit}) comes from the source system's totals.
+            Records behind this theme in the context layer: {records.counts.contacts} support contacts · {records.counts.feedback} feedback items · {records.counts.web} web items.{s.generatedBy ? " Raised from real data: the volume is the record count." : ` The headline volume (${fmt(s.volume)} ${s.unit}) comes from the source system's totals.`}
           </div>
-          {records.web.map((r) => <div key={r.id} className="rec"><span className="rid">{r.id}</span><div className="grow"><b>{r.title}</b><div className="tiny faint">{r.source} · {ago(r.created)}</div></div></div>)}
-          {records.contacts.slice(0, 6).map((r) => <div key={r.id} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{r.channel} · {r.customerTier} · {r.category} · {ago(r.created)}</div></div></div>)}
-          {records.feedback.slice(0, 3).map((r) => <div key={r.id} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{r.source} · {r.rating}★ · {ago(r.created)}</div></div></div>)}
+          {records.web.map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow"><b>{r.url ? <a href={r.url} target="_blank" rel="noreferrer">{r.title}</a> : r.title}</b><div className="tiny faint">{r.source} · {ago(r.created)}</div></div></div>)}
+          {records.contacts.slice(0, 6).map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{[r.channel, r.customerTier, r.category, ago(r.created)].filter(Boolean).join(" · ")}</div></div></div>)}
+          {records.feedback.slice(0, 3).map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{[r.source, r.rating ? `${r.rating}★` : "", ago(r.created)].filter(Boolean).join(" · ")}</div></div></div>)}
           {!records.contacts.length && !records.feedback.length && !records.web.length && <div className="small faint">No raw records in the pack for this theme yet (M2 expands the pack).</div>}
         </div>)}
     </div>
