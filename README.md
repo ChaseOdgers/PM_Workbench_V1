@@ -75,7 +75,8 @@ src/
   lib/delivery.js    Delivery agent: stories, acceptance criteria, test scenarios, NFRs + Markdown / Gherkin / ADO / Jira exports
   lib/perms.js       One permissions table for the four roles
   screens/           One file per screen
-scripts/generate-raw-records.mjs   Regenerates the ~270 raw records (support contacts, feedback, web items)
+mock-api/generate.mjs              Generates the mock enterprise systems' data (npm run mock-data)
+mock-api/server.mjs                Serves it locally as an API (npm run mock-api)
 scripts/generate-samples.mjs       Regenerates the sample upload files in public/samples/
 ```
 
@@ -93,7 +94,7 @@ scripts/generate-samples.mjs       Regenerates the sample upload files in public
 | Delivery pack generation (stories, AC, tests, NFRs), editing with autosave, exports that import into ADO and Jira today | "Push to ADO/Jira" writes mock work items, not a real API; the delivery agent is scripted (theme playbooks) until M3 |
 | Full audit trail | Share links only work in the browser that created them (no backend) |
 
-**Adding a client pack (FedEx, UPS…):** copy `src/data/packs/aa/` to a new folder, change the content and brand colors in `workspace.json`, and run `node scripts/generate-raw-records.mjs <pack>` after editing its themes. Packs are picked up automatically. Switching the active pack is a one-line call: `resetDemo("fedex")`.
+**Adding a client pack (FedEx, UPS…):** copy `src/data/packs/aa/` to a new folder, change the content and brand colors in `workspace.json`, edit its `themes.json`, and point `mock-api/generate.mjs` at that client's stories. Packs are picked up automatically. Switching the active pack is a one-line call: `resetDemo("fedex")`.
 
 ## Maps to the V1 brief
 
