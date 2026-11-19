@@ -7,9 +7,9 @@ export const PERSONAS = {
 };
 
 const MATRIX = {
-  director: ["signal.triage", "signal.rules", "opp.create", "opp.edit", "opp.approve", "proto.edit", "handoff", "agents.toggle"],
+  director: ["signal.triage", "signal.rules", "opp.create", "opp.edit", "opp.approve", "proto.edit", "handoff", "agents.toggle", "phases.manage", "phases.override"],
   pm: ["signal.triage", "signal.rules", "opp.create", "opp.edit", "proto.edit", "handoff"],
-  admin: ["sources.manage", "agents.manage", "agents.toggle", "gov.manage", "users.manage"],
+  admin: ["sources.manage", "agents.manage", "agents.toggle", "gov.manage", "users.manage", "phases.manage"],
   reviewer: ["gate.review"],
 };
 

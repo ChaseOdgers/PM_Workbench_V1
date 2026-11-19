@@ -26,6 +26,7 @@ The build is a static site with no server or API keys, so it runs from GitHub Pa
 | 4 | PM | Upload `public/samples/alt-offer-v4-colleague.html` (the **Sample file** link) | A colleague's edit is scanned and blocked |
 | 5 | PM | Select the clean version, **Approve vN** | Approved prototype for handoff |
 | 6 | **Reviewer** (Priya) | Review queue → approve the DOT and PCI gates with a comment | Human approval on governance gates |
+| 6a | **Admin** (Alex) | Governance → **Phase checklists**: see the org default (Balanced), Customer Care on Fast lane and Baggage on Strict. Pick Reservations → **Customize for this team** → **Strict** → Save. Then as Sam, open OPP-2274: the move to Prototype is locked until its required items and sign-offs are done | Stage gates per phase, configurable per org and per team |
 | 6b | PM | On any shaped opportunity, **Draft stories & tests**: edit a story or a Given/When/Then, filter the test scenarios by type, open **Dev readiness**, then **Export → Azure DevOps import (.csv)** | Promoted opportunity → user stories, acceptance criteria, test scenarios, NFRs, DoR/DoD, ready for engineering |
 | 7 | **Director** (Jordan) | Lands on **Portfolio**: every value stream, what needs attention. Click a stream to work in it. On OPP-2271, **Approve opportunity → Hand off → Push to ADO** | Cross-stream portfolio; handoff brief becomes an epic plus stories |
 | 8 | **Workspace Admin** (Alex) | Context & agents → **Add source** (watch it connect and sync), pause an agent; Governance → **Create gate**; Users & roles | Admin setup flows |
@@ -49,6 +50,7 @@ src/
   lib/gates.js       Which gates an opportunity triggers, its status, and handoff readiness
   lib/scan.js        Governance scan of prototype HTML (forbid / require / accessible-label checks)
   lib/prototype.js   Prototype generator + the scripted chat agent
+  lib/phases.js      Phase checklists: check catalog, Fast / Balanced / Strict presets, org + team rules, evaluation
   lib/delivery.js    Delivery agent: stories, acceptance criteria, test scenarios, NFRs + Markdown / Gherkin / ADO / Jira exports
   lib/perms.js       One permissions table for the four roles
   screens/           One file per screen
@@ -78,6 +80,7 @@ scripts/generate-samples.mjs       Regenerates the sample upload files in public
 - **Design call 2:** Signals are ranked by visible, editable rules, with a cap and an "Everything else" list.
 - **Design call 3:** Governance is three objects: policies, gates (trigger + approver + flag/block), and the log.
 - **Design call 4:** There is no spec screen. The delivery agent drafts a **delivery pack**: user stories (As a / I want / so that) with Given/When/Then acceptance criteria, test scenarios (functional, edge, negative, compliance, accessibility, performance), NFRs, Definition of Ready/Done and open questions, each traced to signals, customer records, the approved prototype and the gates. It pushes as epic → stories → test cases, or exports as Markdown, a Gherkin `.feature` file, or ADO / Jira import CSVs (`lib/delivery.js`).
+- **Phase checklists (stage gates):** before each move (Sense → Shape → Prototype → Handoff) an opportunity must meet that phase's checklist. Items are automatic checks (linked signals, evidence, problem statement length, goal fit, prototype approved, gates cleared, director approval, delivery pack quality) or sign-offs a named role ticks off. Required items block; nice-to-haves warn. The org sets a default from three presets (Fast lane, Balanced, Strict) and edits it; each value stream inherits it or runs its own. Directors can override with a logged reason when the rules allow, and every move keeps a snapshot of its checklist (`lib/phases.js`, Governance → Phase checklists).
 - **Design call 5:** The prototype studio runs the loop: generate → share → feedback → next version → scan → approve.
 - **Deferred to V2:** Telemetry, Roadmap/Aha, value and risk models, forecasts, global search, notifications.
 

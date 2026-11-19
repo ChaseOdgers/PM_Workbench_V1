@@ -1,0 +1,138 @@
+import { useEffect, useState } from "react";
+import { useQuery } from "../api/hooks";
+import * as api from "../api";
+import { itemId } from "../lib/phases";
+
+// Governance → Phase checklists. The org sets a default; each value stream inherits it or
+// customizes its own. Admins and directors edit; everyone can see the rules that apply to them.
+export default function PhaseRules({ user, editable }) {
+  const data = useQuery(() => api.getPhaseRules(), []);
+  const [scope, setScope] = useState("org");
+  const [draft, setDraft] = useState(null);
+  const [dirty, setDirty] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const stored = data && (scope === "org" ? data.org : data.streams[scope]);
+  const inherits = scope !== "org" && (!stored || stored.inherit);
+  useEffect(() => { if (data) { setDraft(inherits ? null : structuredClone(stored)); setDirty(false); } }, [data, scope]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!data) return null;
+
+  const streamName = (id) => data.list.find((s) => s.id === id)?.name;
+  const shown = draft || data.org;
+  const set = (next) => { setDraft({ ...next, preset: "custom" }); setDirty(true); setSaved(false); };
+  const setItems = (tk, items) => set({ ...shown, transitions: { ...shown.transitions, [tk]: items } });
+  const save = async (rules) => { await api.savePhaseRules(scope, rules, user.id); setDirty(false); setSaved(true); };
+  const applyPreset = async (key) => {
+    if (dirty && !window.confirm("Replace your unsaved changes with this preset?")) return;
+    const r = await api.previewPreset(key);
+    setDraft(r); setDirty(true); setSaved(false);
+  };
+  const presetName = (p) => (p === "custom" ? "Custom" : data.presets[p]?.label || p);
+  const count = (r) => Object.values(r?.transitions || {}).flat();
+
+  return (
+    <div className="phasecfg">
+      <div className="scopes">
+        <div className="tiny faint" style={{ textTransform: "uppercase", letterSpacing: ".7px", fontWeight: 700, margin: "2px 4px 8px" }}>Applies to</div>
+        <button className={`scope ${scope === "org" ? "on" : ""}`} onClick={() => setScope("org")}>
+          <i className="ti ti-building" /><div className="grow"><div className="lt">Organization default</div><div className="tiny faint">{presetName(data.org.preset)} · {count(data.org).length} items</div></div></button>
+        <div className="tiny faint" style={{ textTransform: "uppercase", letterSpacing: ".7px", fontWeight: 700, margin: "14px 4px 8px" }}>Teams</div>
+        {data.list.map((s) => (
+          <button key={s.id} className={`scope ${scope === s.id ? "on" : ""}`} onClick={() => setScope(s.id)}>
+            <i className={`ti ${s.icon}`} /><div className="grow"><div className="lt">{s.name}</div>
+              <div className="tiny faint">{s.inherit ? "Org default" : presetName(s.preset)}{s.open ? ` · ${s.blocked} of ${s.open} blocked` : ""}</div></div>
+            {!s.inherit && <span className="tag" style={{ background: "var(--accent-soft)", color: "var(--accent-d)", borderColor: "transparent" }}>own rules</span>}
+          </button>))}
+      </div>
+
+      <div className="grow" style={{ minWidth: 0 }}>
+        <div className="row" style={{ alignItems: "flex-start", marginBottom: 12 }}>
+          <div className="grow">
+            <div style={{ fontWeight: 700, fontSize: 17 }}>{scope === "org" ? "Organization default" : streamName(scope)}</div>
+            <div className="small faint">{scope === "org" ? "Every team uses these unless it sets its own." : inherits ? "This team uses the organization default." : "This team has its own rules, separate from the org default."}</div>
+          </div>
+          {editable && scope !== "org" && (inherits
+            ? <button className="btn primary sm" onClick={() => { setDraft({ ...structuredClone(data.org), preset: data.org.preset }); setDirty(true); setSaved(false); }}><i className="ti ti-adjustments" /> Customize for this team</button>
+            : <button className="btn out sm" onClick={() => window.confirm("Drop this team's rules and use the organization default?") && save({ inherit: true })}><i className="ti ti-arrow-back-up" /> Use org default</button>)}
+        </div>
+
+        {(!inherits || draft) && editable && (
+          <div className="presets">
+            {Object.entries(data.presets).map(([k, p]) => (
+              <button key={k} className={`preset ${shown.preset === k ? "on" : ""}`} onClick={() => applyPreset(k)}>
+                <div className="lt">{p.label}</div><div className="tiny faint" style={{ lineHeight: 1.4 }}>{p.blurb}</div></button>))}
+          </div>)}
+
+        {inherits && !draft && <div className="note" style={{ marginBottom: 12 }}><i className="ti ti-link" /><div>Showing the organization default ({presetName(data.org.preset)}). Changes to the org default apply here automatically.</div></div>}
+
+        <div className="stack">
+          {data.transitions.map((t) => (
+            <TransitionCard key={t.key} t={t} items={shown.transitions[t.key] || []} checks={data.checks} who={data.who}
+              edit={editable && (!inherits || !!draft)} onChange={(items) => setItems(t.key, items)} />))}
+        </div>
+
+        <div className="row" style={{ marginTop: 14, gap: 12 }}>
+          <label className="row small" style={{ gap: 7, cursor: editable && (!inherits || draft) ? "pointer" : "default" }}>
+            <input type="checkbox" disabled={!editable || (inherits && !draft)} checked={!!shown.allowOverride} onChange={(e) => set({ ...shown, allowOverride: e.target.checked })} />
+            Directors can override a required item with a written reason (logged)</label>
+          {editable && (!inherits || draft) && <>
+            <span className="grow" />
+            {saved && !dirty && <span className="tiny faint"><i className="ti ti-check" /> Saved. Open opportunities re-check right away.</span>}
+            <button className="btn primary sm" disabled={!dirty} onClick={() => save(shown)}><i className="ti ti-device-floppy" /> Save {scope === "org" ? "org default" : "team rules"}</button>
+          </>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TransitionCard({ t, items, checks, who, edit, onChange }) {
+  const [adding, setAdding] = useState("");
+  const [text, setText] = useState("");
+  const req = items.filter((i) => i.level === "required").length;
+  const upd = (k, patch) => onChange(items.map((x, j) => (j === k ? { ...x, ...patch } : x)));
+  const add = () => {
+    const it = adding === "manual" ? { check: "manual", label: text.trim(), level: "required", who: "pm" } : { check: adding, level: "required", ...(checks[adding].takesN ? { n: checks[adding].n } : {}) };
+    const id = itemId(t.key, it);
+    if (items.some((x) => x.id === id)) return;
+    onChange([...items, { id, ...it }]); setAdding(""); setText("");
+  };
+  return (
+    <div className="card">
+      <h3><i className="ti ti-arrow-right" /> {t.label} <span className="right faint" style={{ textTransform: "none", letterSpacing: 0 }}>{t.hint} · {req} required · {items.length - req} nice to have</span></h3>
+      <div className="tiny faint" style={{ margin: "-6px 0 6px" }}><i className="ti ti-robot" /> checked automatically · <i className="ti ti-signature" /> signed off by a person · Required items block the move; nice-to-haves only warn.</div>
+      {items.length === 0 && <div className="small faint" style={{ padding: "4px 0 8px" }}>No requirements. Ideas move straight through.</div>}
+      {items.map((it, k) => {
+        const c = checks[it.check];
+        return (
+          <div key={it.id || k} className="cfgrow">
+            <i className={`ti ${it.check === "manual" ? "ti-signature" : "ti-robot"} faint`} title={it.check === "manual" ? "A person signs this off" : "The Workbench checks this automatically"} />
+            <div className="grow small">
+              {it.check === "manual"
+                ? (edit ? <input className="input inl" value={it.label} onChange={(e) => upd(k, { label: e.target.value })} /> : it.label)
+                : c?.takesN
+                  ? <span className="row" style={{ gap: 6 }}>{c.label.split("N")[0]}{edit ? <input className="input inl" type="number" min="1" style={{ width: 62, flex: "none" }} value={it.n ?? c.n} onChange={(e) => upd(k, { n: Math.max(1, Number(e.target.value) || 1) })} /> : <b>{it.n ?? c.n}</b>}{c.label.split("N").slice(1).join("N")}</span>
+                  : c?.label || it.check}
+              {it.check === "manual" && <div className="tiny faint" style={{ marginTop: 3 }}>Signed off by: {edit
+                ? <select className="select" style={{ width: "auto", padding: "2px 6px", fontSize: 11.5, display: "inline-block" }} value={it.who} onChange={(e) => upd(k, { who: e.target.value })}>{Object.entries(who).map(([w, l]) => <option key={w} value={w}>{l}</option>)}</select>
+                : who[it.who] || "Anyone"}</div>}
+            </div>
+            {edit ? <select className="select" style={{ width: 130, padding: "4px 8px", fontSize: 12 }} value={it.level} onChange={(e) => upd(k, { level: e.target.value })} aria-label="Level">
+              <option value="required">Required</option><option value="recommended">Nice to have</option></select>
+              : <span className={`lvl ${it.level}`}>{it.level === "required" ? "required" : "nice to have"}</span>}
+            {edit && <button className="iconbtn" aria-label="Remove" onClick={() => onChange(items.filter((_, j) => j !== k))}><i className="ti ti-x" /></button>}
+          </div>);
+      })}
+      {edit && (
+        <div className="row" style={{ marginTop: 10, gap: 8, flexWrap: "wrap" }}>
+          <select className="select" style={{ width: 290, padding: "5px 8px", fontSize: 12.5 }} value={adding} onChange={(e) => setAdding(e.target.value)} aria-label="Add a requirement">
+            <option value="">Add a requirement…</option>
+            <optgroup label="Checked automatically">{Object.entries(checks).map(([k, c]) => <option key={k} value={k}>{c.label}</option>)}</optgroup>
+            <optgroup label="Signed off by a person"><option value="manual">Custom sign-off (e.g. presented at council)</option></optgroup>
+          </select>
+          {adding === "manual" && <input className="input inl" style={{ maxWidth: 320 }} placeholder="What must be true?" value={text} onChange={(e) => setText(e.target.value)} />}
+          {adding && <button className="btn out sm" disabled={adding === "manual" && !text.trim()} onClick={add}><i className="ti ti-plus" /> Add</button>}
+        </div>)}
+    </div>
+  );
+}

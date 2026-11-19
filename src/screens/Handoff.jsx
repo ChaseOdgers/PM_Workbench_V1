@@ -35,7 +35,7 @@ function Handoff({ id }) {
   const [tab, setTab] = useState("stories");
   const [system, setSystem] = useState("ADO");
   const [exp, setExp] = useState(false);
-  const { run, busy } = useAction();
+  const { run, busy, error } = useAction();
   const timer = useRef(null);
 
   useEffect(() => { if (draft && !b) { setB(o?.handoff?.brief || draft); setSystem(draft.system); } }, [draft, o, b]);
@@ -52,6 +52,7 @@ function Handoff({ id }) {
 
   if (!o || !b || !pack) return <Shell title="Delivery pack" />;
   const allowed = can(user, "handoff") && o.readiness.ready && !done;
+  const canOverride = !done && !o.readiness.ready && o.readiness.checklist?.allowOverride && can(user, "phases.override");
   const change = (next) => { setPack(next); setDirty(true); };
   const setStory = (i, s) => change({ ...pack, stories: pack.stories.map((x, j) => (j === i ? s : x)) });
   const setTest = (i, t) => change({ ...pack, scenarios: pack.scenarios.map((x, j) => (j === i ? t : x)) });
@@ -83,7 +84,9 @@ function Handoff({ id }) {
             <button className="btn primary sm" disabled={!allowed || busy} onClick={() => run(async () => { await api.pushHandoff(id, b, system, user.id, pack); nav(`/opportunities/${id}`); })}><i className="ti ti-send" /> Push to {system}</button></>}
         </div>
       </div>
-      {!done && !o.readiness.ready && <div className="note warn" style={{ marginBottom: 14 }}><i className="ti ti-lock" /><div>Draft mode. Pushing unlocks when: {o.readiness.items.filter((i) => !i.ok && i.blocking !== false).map((i) => i.label).join("; ")}. You can still edit and export.</div></div>}
+      {!done && !o.readiness.ready && <div className="note warn" style={{ marginBottom: 14 }}><i className="ti ti-lock" /><div className="grow">Draft mode. This team's handoff checklist still needs: {o.readiness.items.filter((i) => !i.ok && i.blocking !== false).map((i) => i.label).join("; ")}. You can still edit and export.
+        {canOverride && <Override onGo={(reason) => run(async () => { await api.pushHandoff(id, b, system, user.id, pack, reason); nav(`/opportunities/${id}`); })} />}</div></div>}
+      {error && <div className="tiny" style={{ color: "var(--red-ink)", margin: "-8px 0 12px" }}>{error}</div>}
 
       <div className="cols3" style={{ gridTemplateColumns: "repeat(5,1fr)", marginBottom: 16 }}>
         {[[pack.stories.length, "user stories"], [acCount, "acceptance criteria"], [inc.length, "test scenarios"], [inc.filter((t) => t.priority === "P1").length, "P1 tests"], [inc.filter((t) => t.automate).length, "automation candidates"]].map(([n, l]) => (
@@ -128,6 +131,17 @@ function Handoff({ id }) {
       {done && o.workItems.length > 0 && <div className="note" style={{ marginTop: 16 }}><i className="ti ti-circle-check" /><div>Created in {o.handoff.system}: {o.workItems.length} work items, epic {o.handoff.epic}. (Mock connector: a client build calls the {o.handoff.system} API. Until then, the CSV export imports straight into {o.handoff.system}.)</div></div>}
     </Shell>
   );
+}
+
+function Override({ onGo }) {
+  const [open, setOpen] = useState(false);
+  const [r, setR] = useState("");
+  if (!open) return <div><button className="btn link small" style={{ padding: 0, marginTop: 4 }} onClick={() => setOpen(true)}><i className="ti ti-key" /> Override as director and push anyway</button></div>;
+  return (
+    <div className="row" style={{ marginTop: 8, gap: 8 }}>
+      <input className="input inl" placeholder="Reason (logged on the opportunity)" value={r} onChange={(e) => setR(e.target.value)} />
+      <button className="btn primary sm" disabled={!r.trim()} onClick={() => onGo(r.trim())}><i className="ti ti-key" /> Override and push</button>
+    </div>);
 }
 
 function Txt({ value, onChange, edit, ph, big }) {

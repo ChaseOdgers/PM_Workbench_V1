@@ -42,8 +42,8 @@ export default function OpportunityDetail() {
           </div>
         </div>
         <div className="stack">
+          <PhaseChecklistCard o={o} user={user} nameOf={nameOf} />
           <GatesCard o={o} user={user} edit={edit} nameOf={nameOf} />
-          {o.phase !== "Sense" && o.phase !== "Shape" && <ReadinessCard o={o} user={user} nameOf={nameOf} />}
         </div>
       </div>
     </Shell>
@@ -84,13 +84,15 @@ function NextAction({ o, user, edit }) {
     acts = <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-file-description" /> View delivery pack</Link>;
   } else if (o.phase === "Sense") {
     text = <>Ground this opportunity: link the signals behind it and add evidence. When the problem is clear, move it to <b>Shape</b>.</>;
-    if (edit) acts = <button className="btn primary" disabled={busy} onClick={() => run(() => api.setPhase(o.id, "Shape", user.id))}><i className="ti ti-arrow-right" /> Move to Shape</button>;
+    if (o.checklist && !o.checklist.ready) text = <>Before Shape, this team needs: <b>{o.checklist.missing.map((m) => m.label).join("; ")}</b>. See the phase checklist.</>;
+    if (edit) acts = <button className="btn primary" disabled={busy || !o.checklist?.ready} title={o.checklist?.ready ? "" : "Complete the required checklist items first"} onClick={() => run(() => api.setPhase(o.id, "Shape", user.id))}><i className={`ti ${o.checklist?.ready ? "ti-arrow-right" : "ti-lock"}`} /> Move to Shape</button>;
   } else if (o.phase === "Shape") {
     text = <>Shaped and grounded in {o.signals.length} signal{o.signals.length === 1 ? "" : "s"}. Generate a prototype to test it with your team. {o.gates.length > 0 && <>It will open <b>{o.gates.length} governance review{o.gates.length > 1 ? "s" : ""}</b>.</>}</>;
     if (edit) acts = <>
       <button className="btn ghost" onClick={() => run(() => api.setPhase(o.id, "Sense", user.id))}>Back to Sense</button>
       <Link className="btn ghost" to={`/opportunities/${o.id}/handoff`}><i className="ti ti-list-details" /> Draft stories &amp; tests</Link>
-      <button className="btn primary" disabled={busy} onClick={() => run(async () => { await api.generatePrototype(o.id, user.id); nav(`/opportunities/${o.id}/prototype`); })}><i className="ti ti-bolt" /> Generate prototype</button></>;
+      <button className="btn primary" disabled={busy || !o.checklist?.ready} title={o.checklist?.ready ? "" : "Complete the required checklist items first"} onClick={() => run(async () => { await api.generatePrototype(o.id, user.id); nav(`/opportunities/${o.id}/prototype`); })}><i className={`ti ${o.checklist?.ready ? "ti-bolt" : "ti-lock"}`} /> Generate prototype</button></>;
+    if (o.checklist && !o.checklist.ready) text = <>Before prototyping, this team needs: <b>{o.checklist.missing.map((m) => m.label).join("; ")}</b>. See the phase checklist.</>;
   } else if (o.readiness.ready) {
     icon = "ti-send";
     text = <>Everything is cleared. Hand off to engineering: the delivery agent drafts user stories, acceptance criteria and test scenarios, and pushes them as an epic.</>;
@@ -239,24 +241,85 @@ function GateRow({ g, o, user, opened, nameOf }) {
   );
 }
 
-function ReadinessCard({ o, user, nameOf }) {
+const WHO_OK = { anyone: () => true, pm: (u) => ["pm", "director"].includes(u.persona), director: (u) => u.persona === "director", reviewer: (u) => u.persona === "reviewer" };
+
+// The checklist that follows the opportunity: what's done in past phases (snapshots), what the
+// current phase still needs, and what later phases will ask for. Rules come from the org or team.
+function PhaseChecklistCard({ o, user, nameOf }) {
+  const nav = useNavigate();
+  const [over, setOver] = useState(false);
+  const [reason, setReason] = useState("");
+  const [peek, setPeek] = useState(null);
+  const { run, busy, error } = useAction();
+  const c = o.checklist;
   const da = o.directorApproval || {};
   const isDirector = can(user, "opp.approve") && !o.handoff;
+  const sc = o.phaseRulesScope;
+  const inStream = user.streams.includes(o.streamId);
+  const canOverride = c && !c.ready && c.allowOverride && can(user, "phases.override") && !o.handoff;
+  const move = () => run(async () => {
+    const to = c.transition.to;
+    if (to === "Prototype") { await api.generatePrototype(o.id, user.id, reason); nav(`/opportunities/${o.id}/prototype`); }
+    else if (to === "Handoff") nav(`/opportunities/${o.id}/handoff`);
+    else await api.setPhase(o.id, to, user.id, reason);
+    setOver(false); setReason("");
+  });
+  const Item = ({ i, live }) => {
+    const mine = live && i.check === "manual" && inStream && !o.handoff && (WHO_OK[i.who] || WHO_OK.anyone)(user);
+    return (
+      <div className={`check ${i.ok ? "ok" : i.level === "required" ? "no" : "opt"}`}>
+        {mine ? <button className="iconbtn" style={{ width: 22, height: 22, border: "none", background: "none", padding: 0 }} aria-label={i.ok ? `Uncheck ${i.label}` : `Check off ${i.label}`} onClick={() => api.toggleCheck(o.id, i.id, user.id)}>
+          <i className={`ti ${i.ok ? "ti-square-check-filled" : "ti-square"}`} style={{ color: i.ok ? "var(--green)" : "var(--accent-d)", fontSize: 18 }} /></button>
+          : <i className={`ti ${i.ok ? "ti-circle-check-filled" : i.level === "required" ? "ti-circle" : "ti-alert-circle"}`} />}
+        <div className="grow">
+          <div>{i.label}{i.check === "manual" && <span className="tiny faint"> · sign-off</span>}</div>
+          {(i.detail || i.attested) && <div className="tiny faint">{i.attested ? `${nameOf(i.attested.by)} · ${ago(i.attested.at)}` : i.detail}</div>}
+        </div>
+        <span className={`lvl ${i.level}`}>{i.level === "required" ? "required" : "nice to have"}</span>
+      </div>);
+  };
   return (
-    <div className="card"><h3><i className="ti ti-checklist" /> Ready for handoff? <span className="right">{o.readiness.ready ? <span className="status ok">ready</span> : <span className="status pending">not yet</span>}</span></h3>
-      {o.readiness.items.map((i) => (
-        <div key={i.key} className={`check ${i.ok ? "ok" : i.blocking === false ? "opt" : "no"}`}>
-          <i className={`ti ${i.ok ? "ti-circle-check-filled" : i.blocking === false ? "ti-alert-circle" : "ti-circle"}`} />
-          <span className="grow">{i.label}</span>
-          {i.key === "director" && da.by && <span className="tiny faint">{nameOf(da.by)}</span>}
+    <div className="card"><h3><i className="ti ti-list-check" /> Phase checklist
+      <span className="right">{sc && <span className="tag" title={sc.scope === "org" ? "This team uses the organization default" : "This team has its own rules"}>{sc.scope === "org" ? "Org default" : o.stream.name.split(" ·")[0]} · {sc.preset === "custom" ? "Custom" : { fast: "Fast lane", balanced: "Balanced", strict: "Strict" }[sc.preset] || sc.preset}</span>}</span></h3>
+
+      {o.phaseLog.map((l, k) => (
+        <div key={k} className="phasedone" onClick={() => setPeek(peek === k ? null : k)}>
+          <div className="row small"><i className="ti ti-circle-check-filled" style={{ color: l.override ? "var(--amber)" : "var(--green)" }} />
+            <b className="grow">{l.from} → {l.to}</b><span className="tiny faint">{l.items.filter((i) => i.ok).length}/{l.items.length} · {nameOf(l.by)} · {ago(l.at)}</span><i className={`ti ti-chevron-${peek === k ? "up" : "down"} faint`} /></div>
+          {l.override && <div className="tiny" style={{ color: "var(--amber-ink)", marginLeft: 22 }}>Overridden: “{l.override}”</div>}
+          {peek === k && <div style={{ marginTop: 6 }}>{l.items.map((i, j) => <Item key={j} i={i} />)}</div>}
         </div>))}
-      {o.proto && <div className="tiny faint" style={{ marginTop: 6 }}>{o.proto.versions} prototype version{o.proto.versions === 1 ? "" : "s"}{o.proto.approvedVersion ? ` · v${o.proto.approvedVersion} approved` : ""}</div>}
-      {isDirector && da.status !== "approved" && (
-        <div className="row" style={{ marginTop: 12 }}>
-          <button className="btn green sm" onClick={() => api.directorDecision(o.id, "approved", user.id)}><i className="ti ti-check" /> Approve opportunity</button>
-          {da.status !== "rejected" && <button className="btn out sm" onClick={() => api.directorDecision(o.id, "rejected", user.id)}>Send back</button>}
-        </div>)}
-      {da.status === "rejected" && <div className="note warn" style={{ marginTop: 10 }}><i className="ti ti-arrow-back-up" /><div>Sent back by {nameOf(da.by)}. Rework it, then ask for approval again.</div></div>}
+
+      {c ? <>
+        <div className="row" style={{ margin: "10px 0 4px" }}>
+          <b className="grow" style={{ fontSize: 14 }}>Before {c.transition.to}</b>
+          <span className={`status ${c.ready ? "ok" : "pending"}`}>{c.ready ? "ready" : `${c.missing.length} required left`}</span>
+        </div>
+        <div className="meter"><span style={{ width: `${c.total ? (c.done / c.total) * 100 : 100}%` }} /></div>
+        <div className="tiny faint" style={{ margin: "4px 0 8px" }}>{c.transition.hint} {c.done} of {c.total} done.</div>
+        {c.items.length === 0 && <div className="small faint">No requirements for this move. This team moves ideas fast.</div>}
+        {c.items.map((i) => <Item key={i.id} i={i} live />)}
+        {c.items.some((i) => i.check === "director") && isDirector && da.status !== "approved" && (
+          <div className="row" style={{ marginTop: 10 }}>
+            <button className="btn green sm" onClick={() => api.directorDecision(o.id, "approved", user.id)}><i className="ti ti-check" /> Approve opportunity</button>
+            {da.status !== "rejected" && <button className="btn out sm" onClick={() => api.directorDecision(o.id, "rejected", user.id)}>Send back</button>}
+          </div>)}
+        {da.status === "rejected" && <div className="note warn" style={{ marginTop: 10 }}><i className="ti ti-arrow-back-up" /><div>Sent back by {nameOf(da.by)}. Rework it, then ask for approval again.</div></div>}
+        {canOverride && !over && <button className="btn link small" style={{ marginTop: 8 }} onClick={() => setOver(true)}><i className="ti ti-key" /> Override and move to {c.transition.to}</button>}
+        {over && (
+          <div style={{ marginTop: 10 }}>
+            <textarea className="textarea" style={{ minHeight: 54 }} placeholder="Why move on without the required items? This is logged." value={reason} onChange={(e) => setReason(e.target.value)} />
+            <div className="row" style={{ marginTop: 6 }}>
+              <button className="btn primary sm" disabled={!reason.trim() || busy} onClick={move}><i className="ti ti-key" /> {c.transition.to === "Handoff" ? "Continue to handoff" : `Override and move to ${c.transition.to}`}</button>
+              <button className="btn link small" onClick={() => setOver(false)}>Cancel</button></div>
+          </div>)}
+        {error && <div className="tiny" style={{ color: "var(--red-ink)", marginTop: 6 }}>{error}</div>}
+        {o.proto && c.transition.to === "Handoff" && <div className="tiny faint" style={{ marginTop: 6 }}>{o.proto.versions} prototype version{o.proto.versions === 1 ? "" : "s"}{o.proto.approvedVersion ? ` · v${o.proto.approvedVersion} approved` : ""}</div>}
+      </> : o.handoff && <div className="small faint" style={{ marginTop: 8 }}>Handed off. Every phase checklist is recorded above.</div>}
+
+      {o.upcoming.slice(1).map((u) => u && (
+        <div key={u.transition.key} className="phasenext"><i className="ti ti-lock faint" /> <span className="grow">Later: {u.transition.label}</span>
+          <span className="tiny faint">{u.items.filter((i) => i.level === "required").length} required · {u.items.filter((i) => i.level !== "required").length} nice to have</span></div>))}
     </div>
   );
 }

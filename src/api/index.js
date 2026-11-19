@@ -10,6 +10,8 @@ import { PACKS, loadPack } from "../data/packs";
 import { themeRows, weeklyTrend, trendAnchor, classify, parseFile } from "../lib/ingest";
 import { FEEDS, fetchText } from "../lib/feeds";
 import { draftPack } from "../lib/delivery";
+import { TRANSITIONS, PRESETS, CHECKS, WHO, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
+import { can } from "../lib/perms";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
 const now = () => new Date().toISOString();
@@ -371,10 +373,84 @@ export function unlinkSignal(oppId, signalId, by) {
 }
 
 /* ---------- opportunities ---------- */
+/* ---------- phase checklists ---------- */
+function phaseRules(d) {
+  // Seed files (and DBs saved before this feature) only name presets; fill in their items once.
+  const r = d.phaseRules || loadPack(d.meta.packId).phaseRules;
+  const needs = !r || !r.org?.transitions || Object.values(r.streams || {}).some((x) => !x.inherit && !x.transitions);
+  if (needs) d.phaseRules = r ? hydrateRules(r) : { org: presetRules("balanced"), streams: {} };
+  return d.phaseRules;
+}
+function ctxOf(d, o, trig, proto) {
+  return { o: { checks: {}, ...o }, stream: d.valueStreams.find((s) => s.id === o.streamId), trig, proto };
+}
+function checklist(d, o, transitionKey, trig = triggeredGates(o, d.gates), proto = d.prototypes.find((p) => p.oppId === o.id) || null) {
+  return evaluate(rulesFor(phaseRules(d), o.streamId), ctxOf(d, o, trig, proto), transitionKey);
+}
+
 function enrich(d, o) {
   const trig = triggeredGates(o, d.gates);
   const proto = d.prototypes.find((p) => p.oppId === o.id) || null;
-  return { trig, proto, status: oppStatus(o, trig, proto), ready: readiness(o, trig, proto) };
+  // Handoff readiness is the org's Prototype → Handoff checklist (same shape the screens already use).
+  const hc = checklist(d, o, "Prototype>Handoff", trig, proto);
+  const ready = { items: hc.items.map((i) => ({ key: i.id, label: i.label, ok: i.ok, blocking: i.level === "required", detail: i.detail })),
+    ready: hc.ready, rejected: trig.filter((t) => o.gateReviews[t.gate.id]?.status === "rejected"), checklist: hc };
+  return { trig, proto, status: oppStatus(o, trig, proto), ready };
+}
+
+// Moving forward checks the current phase's checklist. Required items block unless a director
+// overrides with a reason (when the rules allow it). Every forward move keeps a snapshot.
+const ORDER = ["Sense", "Shape", "Prototype", "Handoff"];
+function advance(d, o, to, by, override) {
+  const forward = ORDER.indexOf(to) > ORDER.indexOf(o.phase);
+  if (!forward) return;
+  const c = checklist(d, o);
+  if (!c) return;
+  const user = d.users.find((u) => u.id === by);
+  if (!c.ready) {
+    if (!override) throw new Error(`Not ready for ${to}: ${c.missing.map((m) => m.label).join("; ")}`);
+    if (!c.allowOverride) throw new Error("This team's rules don't allow overrides");
+    if (!can(user, "phases.override")) throw new Error("Only a director can override a phase checklist");
+  }
+  o.phaseLog = [...(o.phaseLog || []), { from: o.phase, to, at: now(), by, override: !c.ready ? override : null, preset: c.preset, scope: c.scope,
+    items: c.items.map((i) => ({ label: i.label, level: i.level, ok: i.ok, detail: i.detail })) }];
+  if (!c.ready) audit(d, by, "overrode phase checklist", o.id, `${c.transition.label}: ${override}`);
+}
+
+export function getPhaseRules() {
+  const d = getDb();
+  const r = phaseRules(d);
+  const open = d.opportunities.filter((o) => !o.handoff);
+  const streams = d.valueStreams.map((s) => {
+    const eff = rulesFor(r, s.id);
+    const opps = open.filter((o) => o.streamId === s.id);
+    const blocked = opps.filter((o) => { const c = checklist(d, o); return c && !c.ready; }).length;
+    return { id: s.id, name: s.name, icon: s.icon, inherit: eff.scope === "org", preset: eff.preset, open: opps.length, blocked };
+  });
+  return ok({ org: r.org, streams: r.streams || {}, list: streams, transitions: TRANSITIONS,
+    presets: Object.fromEntries(Object.entries(PRESETS).map(([k, p]) => [k, { label: p.label, blurb: p.blurb }])),
+    checks: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { label: c.label(c.n ?? "N"), takesN: c.n != null, n: c.n }])), who: WHO });
+}
+export function savePhaseRules(scope, rules, by) {
+  return ok(mutate((d) => {
+    const r = phaseRules(d);
+    if (scope === "org") r.org = { ...rules, preset: rules.preset || "custom" };
+    else r.streams = { ...(r.streams || {}), [scope]: rules.inherit ? { inherit: true } : { ...rules, inherit: false } };
+    const name = scope === "org" ? "organization default" : d.valueStreams.find((s) => s.id === scope)?.name;
+    audit(d, by, "changed phase checklists", name, rules.inherit ? "uses org default" : `${rules.preset || "custom"} · ${Object.values(rules.transitions || {}).flat().length} items`);
+  }));
+}
+export const previewPreset = (key) => ok(presetRules(key));
+export { itemLabel };
+
+export function toggleCheck(oppId, itemId, by) {
+  return ok(mutate((d) => {
+    const o = d.opportunities.find((x) => x.id === oppId);
+    o.checks = { ...(o.checks || {}) };
+    if (o.checks[itemId]) delete o.checks[itemId];
+    else o.checks[itemId] = { by, at: now() };
+    audit(d, by, o.checks[itemId] ? "checked off" : "unchecked", oppId, itemId.split(":").pop());
+  }));
 }
 
 // When an opportunity reaches Prototype, each triggered gate opens a review and logs a flag.
@@ -394,7 +470,9 @@ export function listOpportunities(streamIds) {
     .filter((o) => !streamIds || streamIds.includes(o.streamId))
     .map((o) => {
       const e = enrich(d, o);
-      return { ...o, status: e.status, signalCount: o.signalIds.length, gateCount: e.trig.length, stream: d.valueStreams.find((s) => s.id === o.streamId)?.name };
+      const c = checklist(d, o, undefined, e.trig, e.proto);
+      return { ...o, status: e.status, signalCount: o.signalIds.length, gateCount: e.trig.length, stream: d.valueStreams.find((s) => s.id === o.streamId)?.name,
+        next: c ? { to: c.transition.to, done: c.done, total: c.total, ready: c.ready } : null };
     }));
 }
 
@@ -411,6 +489,10 @@ export function getOpportunity(id) {
     stream,
     status: e.status,
     readiness: e.ready,
+    checklist: checklist(d, o),
+    phaseRulesScope: rulesFor(phaseRules(d), o.streamId),
+    upcoming: TRANSITIONS.filter((t) => ORDER.indexOf(t.from) > ORDER.indexOf(o.phase)).map((t) => checklist(d, o, t.key)),
+    phaseLog: o.phaseLog || [],
     gates: e.trig.map((t) => ({ ...t.gate, reason: t.reason, policy: d.policies.find((p) => p.id === t.gate.policyId), review: o.gateReviews[t.gate.id] || null })),
     allGates: d.gates,
     signals: all.filter((s) => o.signalIds.includes(s.id)),
@@ -438,9 +520,10 @@ export function updateOpportunity(id, patch, by) {
     audit(d, by, "edited", id, Object.keys(patch).join(", "));
   }));
 }
-export function setPhase(id, phase, by) {
+export function setPhase(id, phase, by, override) {
   return ok(mutate((d) => {
     const o = d.opportunities.find((x) => x.id === id);
+    advance(d, o, phase, by, override);
     o.phase = phase; o.at = now();
     if (phase === "Prototype" && o.directorApproval?.status === "none") o.directorApproval = { status: "pending" };
     syncReviews(d, o);
@@ -541,9 +624,10 @@ export function getPrototype(oppId) {
     }),
   });
 }
-export function generatePrototype(oppId, by) {
+export function generatePrototype(oppId, by, override) {
   return ok(mutate((d) => {
     const opp = d.opportunities.find((x) => x.id === oppId);
+    if (opp.phase !== "Prototype") advance(d, opp, "Prototype", by, override);
     const p = protoFor(d, oppId);
     if (opp.phase !== "Prototype") { opp.phase = "Prototype"; if (opp.directorApproval?.status === "none") opp.directorApproval = { status: "pending" }; syncReviews(d, opp); }
     const v = addVersion(d, opp, p, { author: "ai", note: "Grounded baseline from the opportunity", options: { ...DEFAULT_OPTIONS } }, by);
@@ -687,9 +771,11 @@ export function regenerateDeliveryPack(oppId, by) {
   }));
 }
 
-export function pushHandoff(oppId, brief, system, by, pack) {
+export function pushHandoff(oppId, brief, system, by, pack, override) {
   return ok(mutate((d) => {
     const o = d.opportunities.find((x) => x.id === oppId);
+    if (pack) o.delivery = pack;
+    advance(d, o, "Handoff", by, override);
     const prefix = system === "Jira" ? "PMW" : "BOOK";
     const key = () => `${prefix}-${nextId("work", "").slice(1)}`;
     const epic = { key: key(), type: "Epic", title: brief.title, status: "New", oppId, system };

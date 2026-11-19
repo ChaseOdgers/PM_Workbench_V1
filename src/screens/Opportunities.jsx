@@ -16,7 +16,7 @@ export default function Opportunities() {
   const [phase, setPhase] = useState("All");
   const [creating, setCreating] = useState(false);
   const list = (opps || []).filter((o) => phase === "All" || o.phase === phase);
-  const cols = { gridTemplateColumns: "1fr 110px 150px 90px 70px 100px" };
+  const cols = { gridTemplateColumns: "1fr 110px 150px 130px 70px 70px 100px" };
 
   return (
     <Shell title={<><i className="ti ti-bulb" style={{ color: "var(--navy)" }} /> Opportunities {scope.length === 1 && <span className="mut">· {stream.name}</span>}</>}>
@@ -30,12 +30,13 @@ export default function Opportunities() {
       </div>
       {list.length ? (
         <div className="table">
-          <div className="tr head" style={cols}><span>Opportunity</span><span>Phase</span><span>Status</span><span>Signals</span><span>Gates</span><span>Updated</span></div>
+          <div className="tr head" style={cols}><span>Opportunity</span><span>Phase</span><span>Status</span><span>Next phase</span><span>Signals</span><span>Gates</span><span>Updated</span></div>
           {list.map((o) => (
             <div key={o.id} className="tr click" style={cols} onClick={() => nav(`/opportunities/${o.id}`)}>
               <div><div className="oid">{o.id}{scope.length > 1 && ` · ${o.stream}`}</div><div className="lt">{o.title}</div></div>
               <div><span className="tag">{o.phase}</span></div>
               <div><span className={`pill dot ${o.status.cls}`}>{o.status.label}</span></div>
+              <div className="small" title={o.next ? `${o.next.done} of ${o.next.total} checklist items done before ${o.next.to}` : ""}>{o.next ? <span className={`status ${o.next.ready ? "ok" : "pending"}`}><i className={`ti ${o.next.ready ? "ti-lock-open" : "ti-lock"}`} />{o.next.to} {o.next.done}/{o.next.total}</span> : <span className="tiny faint">—</span>}</div>
               <div className="small soft"><i className="ti ti-radar-2" /> {o.signalCount}</div>
               <div className="small soft"><i className="ti ti-shield" /> {o.gateCount}</div>
               <div className="tiny faint">{ago(o.at)}</div>

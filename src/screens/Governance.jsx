@@ -7,12 +7,14 @@ import { useQuery } from "../api/hooks";
 import * as api from "../api";
 import { can, APPROVER_ROLES } from "../lib/perms";
 import { ago } from "../lib/format";
+import PhaseRules from "./PhaseRules";
 
 export default function Governance() {
   const { user } = useSession();
   const g = useQuery(() => api.getGovernance(), []);
   const [modal, setModal] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [tab, setTab] = useState("phases");
   const admin = can(user, "gov.manage");
   if (!g) return <Shell title="Governance" />;
   const log = g.log.filter((l) => filter === "all" || l.kind === filter);
@@ -25,7 +27,13 @@ export default function Governance() {
   return (
     <Shell title={<><i className="ti ti-shield-check" style={{ color: "var(--navy)" }} /> Governance</>}>
       <div className="pagehead"><div><h1>Governance</h1>
-        <p>Three things: the policies you bring, the gates they become, and a log of every time a gate fires. In V1 the check is the governance agent reading opportunities and prototypes against each gate, plus a human approval.</p></div></div>
+        <p>{tab === "phases" ? "What has to be done before an idea moves to its next phase. Set an organization default, then let each team keep it or run its own rules: strict for regulated teams, fast for teams that want ideas quickly." : "Three things: the policies you bring, the gates they become, and a log of every time a gate fires. In V1 the check is the governance agent reading opportunities and prototypes against each gate, plus a human approval."}</p></div></div>
+      <div className="tabs">
+        <button className={tab === "phases" ? "on" : ""} onClick={() => setTab("phases")}><i className="ti ti-list-check" /> Phase checklists</button>
+        <button className={tab === "gates" ? "on" : ""} onClick={() => setTab("gates")}><i className="ti ti-shield-check" /> Policies, gates &amp; log</button>
+      </div>
+      {tab === "phases" && <PhaseRules user={user} editable={can(user, "phases.manage")} />}
+      {tab === "gates" && <>
 
       <Beat n="1" title="Policies" sub="Uploaded documents or short rules typed in"
         action={admin && <button className="btn out sm" onClick={() => setModal("policy")}><i className="ti ti-plus" /> Add policy</button>} />
@@ -60,6 +68,7 @@ export default function Governance() {
           <span className={`status ${l.kind}`}>{l.kind === "pass" ? "passed" : l.kind === "block" ? "blocked" : "flagged"}</span>
         </div>))}</div>
 
+      </>}
       {modal === "policy" && <PolicyModal user={user} onClose={() => setModal(null)} />}
       {modal === "gate" && <GateModal user={user} policies={g.policies} onClose={() => setModal(null)} />}
     </Shell>
