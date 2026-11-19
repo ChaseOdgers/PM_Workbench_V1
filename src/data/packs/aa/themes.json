@@ -9,5 +9,6 @@
   {"key":"irops","label":"Rebooking pain during delays and cancellations","streamId":"care","icon":"ti-cloud-storm","keywords":["cancel","delay","missed connection","missed my connection","rebook","waiver","weather","disruption","stranded","on hold"]},
   {"key":"baggage","label":"Mishandled and delayed bags","streamId":"bag","icon":"ti-luggage","keywords":["baggage","luggage","suitcase","my bag","checked bag","the belt","bag tracking","lost bag","damaged bag"]},
   {"key":"loyalty","label":"AAdvantage miles and upgrades","streamId":"loyalty","icon":"ti-award","keywords":["aadvantage","miles","loyalty","elite status","upgrade with miles","companion certificate"]},
+  {"key":"weather","label":"Severe weather forecast at hub airports","streamId":"care","icon":"ti-cloud-storm","keywords":[]},
   {"key":"market","label":"Competitor and market moves","streamId":"res","icon":"ti-world-search","keywords":["competitor","rival","launches","launched"]}
 ]

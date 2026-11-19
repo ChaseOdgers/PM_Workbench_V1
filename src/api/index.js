@@ -7,8 +7,8 @@ import { triggeredGates, readiness, oppStatus } from "../lib/gates";
 import { scanHtml, worst } from "../lib/scan";
 import { applyInstruction, renderPrototype, DEFAULT_OPTIONS } from "../lib/prototype";
 import { PACKS, loadPack } from "../data/packs";
-import { themeRows, weeklyTrend, trendAnchor, classify } from "../lib/ingest";
-import { FEEDS } from "../lib/feeds";
+import { themeRows, weeklyTrend, trendAnchor, classify, parseFile } from "../lib/ingest";
+import { FEEDS, fetchText } from "../lib/feeds";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
 const now = () => new Date().toISOString();
@@ -160,49 +160,85 @@ function logIngestRuns(d, src, n, summary, agentId) {
     note: `Themed ${src.name}: ${raised} new signal${raised === 1 ? "" : "s"}, ${summary.corroborated.length} corroborated` });
 }
 
-// A CSV/JSON export (support tickets or feedback) uploaded by the user. Rows arrive already
-// parsed; mapping names the columns (text, title, date, id, category, channel, rating, tier).
-export function importFile({ name, fileName, recordType, rows, mapping, streamId, agentId = "agt-ingest" }, by) {
+// Themes rows from a file or URL source into records and signals. Used by the first import
+// and by every re-sync of a URL source (which replaces the source's previous records).
+function ingestRows(d, src, rows) {
+  const { recordType, mapping } = src.config;
+  const fb = recordType === "feedback";
+  d.supportContacts = d.supportContacts.filter((r) => r.sourceId !== src.id);
+  d.feedback = d.feedback.filter((r) => r.sourceId !== src.id);
+  const { records, newThemes, unthemed } = themeRows(rows, mapping, themesOf(d), { idPrefix: fb ? "FB" : "TK", streamId: src.streamId, sourceId: src.id });
+  d.discoveredThemes = [...(d.discoveredThemes || []), ...newThemes];
+  const all = themesOf(d);
+  const streamOf = (k) => all.find((t) => t.key === k)?.streamId || src.streamId;
+  const labelOf = (k) => all.find((t) => t.key === k)?.label || "Unclassified";
+  const pick = (r, f) => (mapping[f] ? r.raw[mapping[f]] || "" : "");
+  const out = records.map((r) => fb
+    ? { id: r.id, created: r.created, source: pick(r, "channel") || src.config.fileName, rating: Number(pick(r, "rating")) || null, text: r.text, themeKey: r.themeKey, sourceId: src.id }
+    : { id: r.id, created: r.created, channel: pick(r, "channel") || "Imported", category: pick(r, "category") || labelOf(r.themeKey), customerTier: pick(r, "tier"),
+        text: r.text, themeKey: r.themeKey, streamId: streamOf(r.themeKey), sourceId: src.id });
+  if (fb) d.feedback.push(...out); else d.supportContacts.push(...out);
+  Object.assign(src, { records: out.length, status: "synced", lastSync: now(), error: null });
+  const summary = raiseSignals(d, src, out, fb ? "reviews" : "tickets");
+  logIngestRuns(d, src, out.length, summary, src.agentId);
+  return { sourceId: src.id, records: out.length, unthemed, discovered: newThemes.length, ...summary };
+}
+
+// A CSV/JSON export uploaded by the user, or fetched from a URL (a published Google Sheet,
+// a CSV link). Rows arrive already parsed; mapping names the columns (text, title, date, id,
+// category, channel, rating, tier). A URL source can be re-synced later.
+export function importFile({ name, fileName, url, recordType, rows, mapping, streamId, agentId = "agt-ingest" }, by) {
   return ok(mutate((d) => {
     const fb = recordType === "feedback";
-    const src = { id: nextId("src", "src"), name, icon: fb ? "ti-message-report" : "ti-file-spreadsheet", kind: "file", system: `Upload · ${fileName}`,
-      access: "imported", schedule: "manual", agentId, tag: "Voice of customer", status: "synced", lastSync: now(), records: 0,
-      real: true, streamId, config: { fileName, recordType, mapping } };
+    const src = { id: nextId("src", "src"), name, icon: url ? "ti-table-share" : fb ? "ti-message-report" : "ti-file-spreadsheet", kind: "file",
+      system: url ? (/docs\.google\.com/.test(url) ? "Google Sheet" : "URL") : `Upload · ${fileName}`, access: url ? "read-only link · re-syncable" : "imported",
+      schedule: "manual", agentId, tag: "Voice of customer", status: "synced", lastSync: now(), records: 0,
+      real: true, streamId, config: { fileName, url, recordType, mapping } };
     d.sources.push(src);
-    const { records, newThemes, unthemed } = themeRows(rows, mapping, themesOf(d), { idPrefix: fb ? "FB" : "TK", streamId, sourceId: src.id });
-    d.discoveredThemes = [...(d.discoveredThemes || []), ...newThemes];
-    const all = themesOf(d);
-    const streamOf = (k) => all.find((t) => t.key === k)?.streamId || streamId;
-    const labelOf = (k) => all.find((t) => t.key === k)?.label || "Unclassified";
-    const pick = (r, f) => (mapping[f] ? r.raw[mapping[f]] || "" : "");
-    const out = records.map((r) => fb
-      ? { id: r.id, created: r.created, source: pick(r, "channel") || fileName, rating: Number(pick(r, "rating")) || null, text: r.text, themeKey: r.themeKey, sourceId: src.id }
-      : { id: r.id, created: r.created, channel: pick(r, "channel") || "Imported", category: pick(r, "category") || labelOf(r.themeKey), customerTier: pick(r, "tier"),
-          text: r.text, themeKey: r.themeKey, streamId: streamOf(r.themeKey), sourceId: src.id });
-    if (fb) d.feedback.push(...out); else d.supportContacts.push(...out);
-    src.records = out.length;
-    const summary = raiseSignals(d, src, out, fb ? "reviews" : "tickets");
-    logIngestRuns(d, src, out.length, summary, agentId);
-    audit(d, by, "imported file", src.name, `${fileName} · ${out.length} records · ${summary.created.length} new signals`);
-    return { sourceId: src.id, records: out.length, unthemed, discovered: newThemes.length, ...summary };
+    const res = ingestRows(d, src, rows);
+    audit(d, by, "imported file", src.name, `${url || fileName} · ${res.records} records · ${res.created.length} new signals`);
+    return res;
   }));
 }
 
-export async function connectFeed({ name, feed, config, streamId, agentId = "agt-market" }, by) {
+export async function loadUrl(url) {
+  const text = await fetchText(url);
+  const name = /docs\.google\.com/.test(url) ? "google-sheet.csv" : (url.split("?")[0].split("/").pop() || "data.csv");
+  return { fileName: name, text };
+}
+
+export async function connectFeed({ name, feed, config, streamId }, by) {
+  const f = FEEDS[feed];
   const id = mutate((d) => {
-    const src = { id: nextId("src", "src"), name, icon: feed === "fedreg" ? "ti-gavel" : "ti-news", kind: "web", system: FEEDS[feed].label,
-      access: "public API · live", schedule: "daily", agentId, tag: feed === "fedreg" ? "Regulatory signal" : "Market research",
-      status: "connecting", lastSync: null, records: 0, real: true, streamId, config: { feed, ...config } };
+    const src = { id: nextId("src", "src"), name, icon: f.icon, kind: f.kind || "web", system: f.label, access: "public API · live", schedule: "daily",
+      agentId: f.agentId, tag: f.tag, status: "connecting", lastSync: null, records: 0, real: true, streamId, config: { feed, ...config } };
     d.sources.push(src);
-    audit(d, by, "connected source", src.name, `${FEEDS[feed].label} · "${config.terms}"`);
+    audit(d, by, "connected source", src.name, `${f.label} · "${config.terms}"`);
     return src.id;
   });
   return syncSource(id, by);
 }
 
+async function resyncUrl(s, by) {
+  mutate((d) => { d.sources.find((x) => x.id === s.id).status = "syncing"; });
+  let rows;
+  try { rows = parseFile(s.config.fileName, await fetchText(s.config.url)).rows; } catch (e) {
+    mutate((d) => { const x = d.sources.find((y) => y.id === s.id); if (x) { x.status = "error"; x.error = e.message; } });
+    throw new Error(`Couldn't re-sync ${s.name}: ${e.message}`);
+  }
+  return ok(mutate((d) => {
+    const src = d.sources.find((x) => x.id === s.id);
+    if (!src) return null;
+    const res = ingestRows(d, src, rows);
+    audit(d, by, "synced source", src.name, `${res.records} records · ${res.created.length} new signals`);
+    return res;
+  }));
+}
+
 // Pulls a live feed again. Items are replaced, not appended, so a re-sync never double-counts.
 export async function syncSource(id, by) {
   const s = getDb().sources.find((x) => x.id === id);
+  if (s?.config?.url) return resyncUrl(s, by);
   const feed = FEEDS[s?.config?.feed];
   if (!feed) throw new Error("This source has nothing to sync");
   mutate((d) => { d.sources.find((x) => x.id === id).status = "syncing"; });
@@ -216,10 +252,11 @@ export async function syncSource(id, by) {
     if (!src) return null;
     const catchAll = `feed-${src.id}`;
     const all = themesOf(d);
-    const recs = items.map(({ text, ...it }) => ({ ...it, themeKey: classify(text, all)?.key || catchAll, sourceId: src.id }));
+    const recs = items.map(({ text, ...it }) => ({ ...it, themeKey: it.themeKey || classify(text, all)?.key || catchAll, sourceId: src.id }));
     if (recs.some((r) => r.themeKey === catchAll) && !all.some((t) => t.key === catchAll)) {
       d.discoveredThemes = [...(d.discoveredThemes || []), { key: catchAll, keywords: [], sourceId: src.id, streamId: src.streamId, icon: src.icon,
-        label: src.config.feed === "fedreg" ? `New federal rulemaking on “${src.config.terms}”` : `News coverage of “${src.config.terms}”` }];
+        label: { fedreg: `New federal rulemaking on “${src.config.terms}”`, hn: `News coverage of “${src.config.terms}”`, stackexchange: `Traveler questions about “${src.config.terms}”`,
+          mastodon: `Social chatter: #${src.config.terms.split(/[,\s]+/)[0].replace(/^#/, "")}` }[src.config.feed] || `${src.name}: other items` }];
     }
     d.webItems = d.webItems.filter((w) => w.sourceId !== src.id).concat(recs);
     Object.assign(src, { records: recs.length, status: "synced", lastSync: now(), error: null });

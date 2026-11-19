@@ -15,6 +15,10 @@
   {"id":"rss","name":"Regulator / news feed","icon":"ti-rss","kind":"web","tag":"Regulatory signal"},
   {"id":"file","name":"File upload (CSV / JSON)","icon":"ti-file-upload","kind":"file","tag":"Voice of customer","real":true},
   {"id":"fedreg","name":"Federal Register (live)","icon":"ti-gavel","kind":"web","tag":"Regulatory signal","real":true,"feed":"fedreg"},
+  {"id":"url","name":"Google Sheet or CSV/JSON link","icon":"ti-table-share","kind":"file","tag":"Voice of customer","real":true},
   {"id":"hn","name":"News search · Hacker News (live)","icon":"ti-news","kind":"web","tag":"Market research","real":true,"feed":"hn"},
+  {"id":"weather","name":"Hub weather · Open-Meteo (live)","icon":"ti-cloud-storm","kind":"api","tag":"Operational events","real":true,"feed":"weather"},
+  {"id":"stackexchange","name":"Traveler questions · Stack Exchange (live)","icon":"ti-help-hexagon","kind":"web","tag":"Voice of customer","real":true,"feed":"stackexchange"},
+  {"id":"mastodon","name":"Social posts · Mastodon (live)","icon":"ti-brand-mastodon","kind":"web","tag":"Voice of customer","real":true,"feed":"mastodon"},
   {"id":"manual","name":"Manual notes","icon":"ti-pencil","kind":"manual","tag":"Human-added"}
 ]

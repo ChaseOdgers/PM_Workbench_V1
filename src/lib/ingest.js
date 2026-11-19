@@ -53,9 +53,9 @@ export function parseFile(name, text) {
 const GUESS = {
   text: ["description", "comment", "comments", "body", "text", "verbatim", "feedback", "review", "message", "details", "content", "summary", "notes"],
   title: ["subject", "title", "headline", "summary"],
-  date: ["created", "created at", "created_at", "createddate", "date", "submitted", "opened", "timestamp", "time", "created date"],
+  date: ["created", "created at", "created_at", "createddate", "date", "submitted", "opened", "timestamp", "started at", "started", "time", "created date"],
   id: ["id", "ticket id", "ticket", "case number", "casenumber", "case id", "key", "number", "review id"],
-  category: ["category", "type", "topic", "reason", "issue type", "tags", "case reason"],
+  category: ["category", "type", "topic", "reason", "issue type", "intent", "tags", "case reason"],
   channel: ["channel", "origin", "source", "via", "case origin", "platform"],
   rating: ["rating", "score", "stars", "nps", "csat"],
   tier: ["tier", "customer tier", "status", "segment", "loyalty tier", "priority"],
@@ -87,8 +87,8 @@ export function classify(text, themes) {
   return best;
 }
 
-const STOP = new Set(("a about above after again against all am an and any are aren't as at be because been before being below between both but by can can't cannot could did didn't do does doesn't doing don't down during each few for from further had hadn't has hasn't have haven't having he her here hers herself him himself his how i i'm i've if in into is isn't it it's its itself just let's me more most my myself no nor not now of off on once only or other ought our ours ourselves out over own same she should so some such than that that's the their theirs them themselves then there there's these they they're this those through to too under until up very was wasn't we we're were weren't what when where which while who whom why with won't would you your yours yourself also get got still even one two three will really please thanks thank hi hello told said tried trying need needed want wanted like going went back time times day days today yesterday since ago around via though without within every never always again able customer customers flight flights airline airlines american ticket tickets trip travel help app website site call called email agent agents someone nobody anyone anything nothing something question questions inquiry general feedback issue issues problem problems great love loved good nice easy smooth experience awesome amazing best worst terrible awful update help helpful thing things make made using used works work working").split(" "));
-const keep = (w) => w.length > 3 && !STOP.has(w) && !/^\d+$/.test(w);
+const STOP = new Set(("a about above after again against all am an and any are aren't as at be because been before being below between both but by can can't cannot could did didn't do does doesn't doing don't down during each few for from further had hadn't has hasn't have haven't having he her here hers herself him himself his how i i'm i've if in into is isn't it it's its itself just let's me more most my myself no nor not now of off on once only or other ought our ours ourselves out over own same she should so some such than that that's the their theirs them themselves then there there's these they they're this those through to too under until up very was wasn't we we're were weren't what when where which while who whom why with won't would you your yours yourself also get got still even one two three will really please thanks thank hi hello told said tried trying need needed want wanted like going went back time times day days today yesterday since ago around via though without within every never always again able customer customers flight flights airline airlines american ticket tickets trip travel help app website site call called email agent agents someone nobody anyone anything nothing something question questions inquiry general feedback issue issues problem problems great love loved good nice easy smooth experience awesome amazing best worst terrible awful update help helpful thing things make made using used works work working fly flew way ways use new old yet per due etc let put set see saw say lot bit may non got get yes ask early late much many").split(" "));
+const keep = (w) => w.length > 2 && !STOP.has(w) && !/^\d+$/.test(w);
 // Terms plus two-word phrases, where a phrase is two kept words that sit side by side in the text.
 function grams(text) {
   const toks = text.toLowerCase().replace(/[^a-z0-9\s'-]/g, " ").split(/\s+/).map((w) => w.replace(/^['-]+|['-]+$/g, ""));
@@ -101,7 +101,7 @@ function grams(text) {
 // frequent term (or two-word phrase) that appears in enough records to matter. `all` is every
 // text in the import: a term that is just as common in already-themed records ("seat") is
 // generic, so it ranks below one concentrated in the leftovers ("legroom").
-export function discoverThemes(texts, { all = texts, minCount = 5, minShare = 0.03, max = 5 } = {}) {
+export function discoverThemes(texts, { all = texts, minCount = 6, minShare = 0.03, max = 5 } = {}) {
   const docs = texts.map(grams);
   const global = new Map();
   all.forEach((t) => grams(t).forEach((x) => global.set(x, (global.get(x) || 0) + 1)));
@@ -162,7 +162,12 @@ export function themeRows(rows, mapping, themes, { idPrefix, streamId, sourceId 
     raw: r,
   })).filter((r) => r.text.trim());
   for (const r of recs) { const th = classify(r.text, themes); r.themeKey = th?.key || null; }
-  const leftovers = recs.filter((r) => !r.themeKey);
+  // Emerging themes come from problems: with a rating column, the top fifth of the scale
+  // (NPS 9-10, 4-5 stars) is praise, so it stays out of discovery.
+  const ratingOf = (r) => (mapping.rating ? Number(r.raw[mapping.rating]) : NaN);
+  const maxRating = Math.max(...recs.map(ratingOf).filter(Number.isFinite), 0);
+  const praise = (r) => maxRating > 0 && ratingOf(r) >= Math.ceil(maxRating * 0.8);
+  const leftovers = recs.filter((r) => !r.themeKey && !praise(r));
   const found = discoverThemes(leftovers.map((r) => r.text), { all: recs.map((r) => r.text) });
   // Keys are by term, not by file, so the same emerging theme in two uploads lands on one signal.
   const newThemes = found.map(({ term, members }) => {

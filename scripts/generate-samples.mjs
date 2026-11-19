@@ -110,4 +110,42 @@ for (const t of Object.values(REVIEWS)) {
 }
 reviews.sort((a, b) => b.date.localeCompare(a.date));
 writeFileSync(join(out, "app-reviews-sample.json"), JSON.stringify({ app: "Example Airline", exported: "2026-11-18", reviews }, null, 1) + "\n");
-console.log(`Wrote ${rows.length} tickets and ${reviews.length} reviews to ${out}`);
+// NPS survey export: score 0-10 plus a verbatim. Promoters' comments are varied praise.
+const NPS = {
+  soldout: { n: 34, g: 1.6, s: [0, 6], c: ["Fare sold out while booking and the site offered nothing else.", "When my flight sold out I had to call to find another option.", "Last seat disappeared at payment, no alternate flight suggested."] },
+  irops: { n: 46, g: 1.5, s: [0, 5], c: ["Cancelled for weather and rebooking took hours on hold.", "Missed my connection after a delay and nobody helped me rebook.", "The app wouldn't let me rebook myself during the storm."] },
+  baggage: { n: 28, g: 1.2, s: [0, 5], c: ["My checked bag took three days to show up.", "Bag tracking said delivered but my suitcase was lost.", "Damaged luggage and the claim process is slow."] },
+  loyalty: { n: 22, g: 1.3, s: [3, 8], c: ["Hard to use miles for an upgrade on an existing booking.", "The AAdvantage upgrade list never moves.", "Using miles is confusing compared with other airlines."] },
+  wifi: { n: 26, g: 2.0, s: [2, 7], c: ["Wifi didn't work for most of the flight.", "Paid for wifi and couldn't connect.", "Inflight wifi is too slow to do any work."] },
+  lounge: { n: 24, g: 2.3, s: [2, 7], c: ["The lounge in DFW was so crowded there were no seats.", "Admirals Club lounge had a line out the door.", "Lounge was overcrowded and out of food by noon."] },
+  boarding: { n: 20, g: 1.4, s: [3, 7], c: ["Boarding groups are chaotic, everyone crowds the gate.", "Too many boarding groups, group 9 never gets bin space.", "Boarding groups make no sense anymore."] },
+  promoters: { n: 100, g: 1, s: [9, 10], c: ["Crew was wonderful and we landed early.", "Smooth from check-in to landing.", "Friendly gate agent fixed my seat in seconds.", "On time both ways, could not ask for more.", "Comfortable seat and a kind flight attendant.", "Quick security, quick boarding, quick flight.", "Pilot kept us informed the whole way.", "Snacks were good and the cabin was clean.", "Got to sit with my family without any hassle.", "Mobile check-in was effortless.", "Arrived early and bags came out fast.", "Best trip I have had in years.", "Staff in Miami went above and beyond.", "Upgrade cleared and the service was excellent.", "Really pleasant flight, thank you."] },
+};
+const nps = [];
+let nid = 1;
+for (const t of Object.values(NPS)) for (let i = 0; i < t.n; i++) {
+  nps.push({ id: `NPS-${String(55000 + nid++)}`, at: when(t.g), score: t.s[0] + Math.floor(rand() * (t.s[1] - t.s[0] + 1)), comment: pick(t.c), segment: pick(["General", "Gold", "Platinum", "Executive Platinum", "General"]), route: pick(["DFW-LGA", "CLT-MIA", "ORD-LAX", "PHX-DFW", "PHL-BOS", "MIA-JFK"]) });
+}
+nps.sort((a, b) => b.at.localeCompare(a.at));
+writeFileSync(join(out, "nps-survey-sample.csv"), ["Response ID,Submitted,Score,Comment,Segment,Route", ...nps.map((r) => [r.id, r.at.slice(0, 10), r.score, q(r.comment), r.segment, r.route].join(","))].join("\r\n") + "\r\n");
+
+// Chatbot transcripts: the customer's opening message per conversation.
+const CHAT = {
+  irops: { n: 40, g: 1.5, i: "Rebook", m: ["My flight got cancelled, can you rebook me?", "Flight is delayed and I'll miss my connection. What are my options?", "Does the weather waiver cover my trip tomorrow?"] },
+  refund: { n: 26, g: 1.8, i: "Refund", m: ["I want a refund for my cancelled flight.", "How do I get cash back instead of a travel credit?", "Where is my refund? It has been 3 weeks."] },
+  baggage: { n: 24, g: 1.2, i: "Bags", m: ["Where is my bag? It didn't arrive.", "How do I report damaged luggage?", "My suitcase is still missing."] },
+  soldout: { n: 22, g: 1.6, i: "Booking", m: ["The flight I wanted is sold out, is there another flight today?", "Fare disappeared while I was booking, can you find an alternate flight?"] },
+  minor: { n: 18, g: 2.0, i: "Other", m: ["How do I book an unaccompanied minor ticket?", "What is the unaccompanied minor fee?", "Can my 12 year old fly as an unaccompanied minor on a connection?"] },
+  petcab: { n: 16, g: 1.7, i: "Other", m: ["Can I bring my cat in the cabin? Need pet carrier sizes.", "What size pet carrier fits under the seat?", "Is there a fee for a pet carrier in the cabin?"] },
+  misc: { n: 34, g: 1, i: "Other", m: ["What time does check-in open for international flights?", "Can I change the name on my reservation?", "I need a receipt for my last trip.", "How early should I get to the airport?", "Do you have flights to Lisbon in March?", "Can I add my known traveler number?", "What is the carry-on size limit?", "How do I select a meal?", "Is my flight on time?", "Hi", "Talk to a person please."] },
+};
+const chats = [];
+let cid = 1;
+for (const t of Object.values(CHAT)) for (let i = 0; i < t.n; i++) {
+  const handed = rand() < (t.i === "Rebook" || t.i === "Refund" ? 0.55 : 0.25);
+  chats.push({ conversation_id: `CB-${String(810000 + cid++)}`, started_at: when(t.g), channel: pick(["web", "ios", "android"]), intent: t.i, customer_message: pick(t.m), turns: 2 + Math.floor(rand() * 9), handed_to_agent: handed, resolved: !handed && rand() < 0.8 });
+}
+chats.sort((a, b) => b.started_at.localeCompare(a.started_at));
+writeFileSync(join(out, "chatbot-transcripts-sample.json"), JSON.stringify({ bot: "Booking & rebooking assistant", exported: "2026-11-18", conversations: chats }, null, 1) + "\n");
+
+console.log(`Wrote ${rows.length} tickets, ${reviews.length} reviews, ${nps.length} NPS responses, ${chats.length} chats to ${out}`);

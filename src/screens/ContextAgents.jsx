@@ -100,7 +100,7 @@ function SourceRow({ s, agents, admin, user }) {
         <input className="input" style={{ width: 160, padding: "5px 9px", fontSize: 12 }} autoFocus value={tag} onChange={(e) => setTag(e.target.value)}
           onBlur={async () => { setEditTag(false); if (tag !== s.tag) await api.updateSource(s.id, { tag }, user.id); }} onKeyDown={(e) => e.key === "Enter" && e.target.blur()} />
       ) : <span className="tag" style={{ cursor: admin ? "pointer" : "default", background: "var(--navy-soft)", color: "var(--navy)", borderColor: "transparent" }} onClick={() => admin && setEditTag(true)} title={admin ? "AI-generated tag. Click to edit" : "AI-generated tag"}>{s.tag}{admin && <i className="ti ti-pencil" style={{ fontSize: 11, marginLeft: 4 }} />}</span>}
-      {s.config?.feed && admin && <button className="iconbtn" title="Sync now" aria-label={`Sync ${s.name} now`} disabled={busy} onClick={() => api.syncSource(s.id, user.id).catch(() => {})}><i className="ti ti-refresh" /></button>}
+      {(s.config?.feed || s.config?.url) && admin && <button className="iconbtn" title="Sync now" aria-label={`Sync ${s.name} now`} disabled={busy} onClick={() => api.syncSource(s.id, user.id).catch(() => {})}><i className="ti ti-refresh" /></button>}
       {admin && s.kind !== "manual" && s.kind !== "file" ? (
         <select className="select" style={{ width: 100, padding: "5px 8px", fontSize: 12 }} value={s.schedule} aria-label="Schedule" onChange={(e) => api.updateSource(s.id, { schedule: e.target.value }, user.id)}>
           {SCHEDULES.map((x) => <option key={x}>{x}</option>)}</select>
@@ -168,7 +168,7 @@ function AddSourceModal({ agents, user, stream, streams, onClose }) {
       <Field label="Real data · works now">{connectors && chips(connectors.filter((x) => x.real))}</Field>
       <Field label="Simulated connectors · client build">{connectors && chips(connectors.filter((x) => !x.real))}</Field>
     </>);
-  if (c?.id === "file") return <FileImport user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
+  if (c?.id === "file" || c?.id === "url") return <FileImport key={c.id} fromUrl={c.id === "url"} user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   if (c?.feed) return <FeedConnect c={c} user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   return (
     <Modal title="Add a source" icon="ti-plug-connected" onClose={onClose}
@@ -188,24 +188,31 @@ function AddSourceModal({ agents, user, stream, streams, onClose }) {
 }
 
 const MAP_FIELDS = [["text", "Record text", true], ["title", "Subject / title"], ["date", "Created date"], ["id", "Record ID"], ["category", "Category"], ["channel", "Channel / source"], ["rating", "Rating"], ["tier", "Customer tier"]];
-const SAMPLES = [["support-tickets-sample.csv", "Support tickets (CSV, 240 rows)"], ["app-reviews-sample.json", "App reviews (JSON, 90 rows)"]];
+const SAMPLES = [["support-tickets-sample.csv", "Support tickets (CSV, 240)"], ["app-reviews-sample.json", "App reviews (JSON, 90)"], ["nps-survey-sample.csv", "NPS survey (CSV, 300)"], ["chatbot-transcripts-sample.json", "Chatbot transcripts (JSON, 180)"]];
 
-function FileImport({ user, stream, streams, onDone, onClose, picker }) {
+function FileImport({ fromUrl, user, stream, streams, onDone, onClose, picker }) {
   const [file, setFile] = useState(null);
+  const [url, setUrl] = useState("");
+  const [fetching, setFetching] = useState(false);
   const [map, setMap] = useState({});
   const [type, setType] = useState("support");
   const [streamId, setStreamId] = useState(stream.id);
   const [name, setName] = useState("");
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
-  const load = (fileName, text) => {
+  const load = (fileName, text, fromLink) => {
     try {
       const p = parseFile(fileName, text);
       if (!p.rows.length) throw new Error("No rows found. Is the first row a header?");
       const m = guessMapping(p.headers);
-      setFile({ fileName, ...p }); setMap(m); setType(m.rating ? "feedback" : "support"); setErr("");
-      setName(fileName.replace(/\.(csv|json|txt)$/i, "").replace(/[-_]+/g, " ").replace(/^\w/, (x) => x.toUpperCase()));
+      setFile({ fileName, url: fromLink, ...p }); setMap(m); setType(m.rating ? "feedback" : "support"); setErr("");
+      setName(fromLink && /docs\.google\.com/.test(fromLink) ? "Google Sheet" : fileName.replace(/\.(csv|json|txt)$/i, "").replace(/[-_]+/g, " ").replace(/^\w/, (x) => x.toUpperCase()));
     } catch (e) { setErr(`Couldn't read ${fileName}: ${e.message}`); setFile(null); }
+  };
+  const fromLink = async () => {
+    setFetching(true); setErr("");
+    try { const r = await api.loadUrl(url.trim()); load(r.fileName, r.text, url.trim()); } catch (e) { setErr(`Couldn't load that link: ${e.message}.`); setFile(null); }
+    setFetching(false);
   };
   const onPick = async (e) => { const fl = e.target.files?.[0]; if (fl) load(fl.name, await fl.text()); };
   const sample = async (fn) => {
@@ -214,24 +221,30 @@ function FileImport({ user, stream, streams, onDone, onClose, picker }) {
   };
   const go = async () => {
     setBusy(true);
-    try { onDone(await api.importFile({ name: name.trim(), fileName: file.fileName, recordType: type, rows: file.rows, mapping: map, streamId }, user.id)); }
+    try { onDone(await api.importFile({ name: name.trim(), fileName: file.fileName, url: file.url, recordType: type, rows: file.rows, mapping: map, streamId }, user.id)); }
     catch (e) { setErr(e.message); setBusy(false); }
   };
   const preview = file?.rows.slice(0, 3) || [];
   return (
-    <Modal wide title="Import a file" icon="ti-file-upload" onClose={onClose}
+    <Modal wide title={fromUrl ? "Import from a link" : "Import a file"} icon={fromUrl ? "ti-table-share" : "ti-file-upload"} onClose={onClose}
       footer={<><button className="btn out sm" onClick={onClose}>Cancel</button>
         <button className="btn primary sm" disabled={!file || !map.text || !name.trim() || busy} onClick={go}>{busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-file-import" />} Import {file ? file.rows.length.toLocaleString() : ""} records</button></>}>
       {picker}
       <div className="note"><i className="ti ti-bolt" /><div><b>Real data.</b> Upload any export (Salesforce, Zendesk, Jira, a survey tool, a spreadsheet saved as CSV). The file stays in this browser. The ingestion agent maps the columns, the signals agent themes every record and raises or corroborates signals. Up to 5,000 rows.</div></div>
+      {fromUrl ? (
+        <div className="row" style={{ gap: 9 }}>
+          <input className="input grow" placeholder="Paste a Google Sheets link (shared: anyone with the link) or any CSV/JSON URL" value={url} onChange={(e) => setUrl(e.target.value)} onKeyDown={(e) => e.key === "Enter" && url.trim() && fromLink()} />
+          <button className="btn out sm" disabled={!url.trim() || fetching} onClick={fromLink}>{fetching ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-download" />} Load</button>
+        </div>) : (
       <div className="row" style={{ gap: 9, flexWrap: "wrap" }}>
         <label className="btn out sm" style={{ cursor: "pointer" }}><i className="ti ti-upload" /> Choose CSV or JSON<input type="file" accept=".csv,.json,.txt,text/csv,application/json" hidden onChange={onPick} /></label>
         <span className="tiny faint">or try a sample:</span>
         {SAMPLES.map(([fn, label]) => <button key={fn} className="btn link small" onClick={() => sample(fn)}><i className="ti ti-file-text" /> {label}</button>)}
-      </div>
+      </div>)}
+      {fromUrl && <div className="tiny faint" style={{ marginTop: -6 }}>Linked sources keep their link: edit the sheet, then hit refresh on the source and the signals update.</div>}
       {err && <div className="tiny" style={{ color: "var(--red-ink)" }}><i className="ti ti-alert-triangle" /> {err}</div>}
       {file && <>
-        <div className="tiny faint"><b className="soft">{file.fileName}</b> · {file.total.toLocaleString()} rows · {file.headers.length} columns{file.truncated ? " · only the first 5,000 rows will be imported" : ""}</div>
+        <div className="tiny faint"><b className="soft">{file.url ? "Linked sheet / URL" : file.fileName}</b> · {file.total.toLocaleString()} rows · {file.headers.length} columns{file.truncated ? " · only the first 5,000 rows will be imported" : ""}</div>
         <div style={{ overflowX: "auto", border: "1px solid var(--line)", borderRadius: 9 }}>
           <table style={{ borderCollapse: "collapse", fontSize: 11.5, width: "100%" }}>
             <thead><tr>{file.headers.map((h) => <th key={h} style={{ textAlign: "left", padding: "6px 9px", background: "var(--surface-2)", borderBottom: "1px solid var(--line)", whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
@@ -261,7 +274,7 @@ function FeedConnect({ c, user, stream, streams, onDone, onClose, picker }) {
   const feed = FEEDS[c.feed];
   const [terms, setTerms] = useState(feed.defaults.terms);
   const [streamId, setStreamId] = useState(stream.id);
-  const [name, setName] = useState(c.feed === "fedreg" ? "DOT rulemaking · Federal Register" : "Airline news · Hacker News");
+  const [name, setName] = useState(feed.name);
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
   const go = async () => {
@@ -275,8 +288,7 @@ function FeedConnect({ c, user, stream, streams, onDone, onClose, picker }) {
         <button className="btn primary sm" disabled={!terms.trim() || !name.trim() || busy} onClick={go}>{busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-plug-connected" />} Connect and sync</button></>}>
       {picker}
       <div className="note"><i className="ti ti-bolt" /><div><b>Real data, live.</b> {feed.help} The Workbench calls it straight from your browser; use the refresh button on the source to pull again.</div></div>
-      <Field label="Search terms"><input className="input" value={terms} onChange={(e) => setTerms(e.target.value)} /></Field>
-      {c.feed === "fedreg" && <div className="tiny faint" style={{ marginTop: -8 }}>Limited to the Department of Transportation, last 12 months.</div>}
+      <Field label={feed.field}><input className="input" value={terms} onChange={(e) => setTerms(e.target.value)} /></Field>
       <div className="row" style={{ alignItems: "flex-start" }}>
         <div className="grow"><Field label="Name in the Workbench"><input className="input" value={name} onChange={(e) => setName(e.target.value)} /></Field></div>
         <div className="grow"><Field label="New themes go to"><select className="select" value={streamId} onChange={(e) => setStreamId(e.target.value)}>{streams.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}</select></Field></div>
@@ -306,7 +318,7 @@ function ImportResult({ result, streams, onClose }) {
       </div>
       {result.discovered > 0 && <div className="tiny faint"><i className="ti ti-sparkles" /> {result.discovered} emerging theme{result.discovered > 1 ? "s" : ""} found in records no known theme matched.</div>}
       <div className="table">{result.created.map((x) => row(x, "new"))}{result.corroborated.map((x) => row(x, "corroborates"))}{result.updated.map((x) => row(x, "updated"))}</div>
-      {!result.records && <div className="small faint">The feed returned nothing for those terms. Try broader terms, then use the source's refresh button.</div>}
+      {!result.records && <div className="small faint">Nothing came back for those settings right now (for weather: no risky forecast at those hubs this week). Try broader settings, or use the refresh button on the source later.</div>}
     </Modal>
   );
 }

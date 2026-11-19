@@ -1,0 +1,1806 @@
+{
+ "bot": "Booking & rebooking assistant",
+ "exported": "2026-11-18",
+ "conversations": [
+  {
+   "conversation_id": "CB-810143",
+   "started_at": "2026-11-17T15:34:27.598Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810117",
+   "started_at": "2026-11-17T15:04:09.806Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810119",
+   "started_at": "2026-11-17T15:02:09.061Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810120",
+   "started_at": "2026-11-17T14:53:41.521Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810122",
+   "started_at": "2026-11-17T09:42:24.668Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810044",
+   "started_at": "2026-11-17T09:29:56.098Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810118",
+   "started_at": "2026-11-17T02:45:26.472Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810036",
+   "started_at": "2026-11-17T01:00:42.777Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810054",
+   "started_at": "2026-11-17T00:56:10.651Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810130",
+   "started_at": "2026-11-17T00:38:46.914Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810145",
+   "started_at": "2026-11-17T00:21:19.445Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Is there a fee for a pet carrier in the cabin?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810005",
+   "started_at": "2026-11-16T21:07:24.986Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810040",
+   "started_at": "2026-11-16T21:06:30.676Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810123",
+   "started_at": "2026-11-16T20:34:59.624Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810121",
+   "started_at": "2026-11-16T20:11:48.270Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810134",
+   "started_at": "2026-11-16T18:38:53.875Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What size pet carrier fits under the seat?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810140",
+   "started_at": "2026-11-16T18:17:14.601Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Is there a fee for a pet carrier in the cabin?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810042",
+   "started_at": "2026-11-16T17:30:15.444Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810065",
+   "started_at": "2026-11-16T17:13:34.943Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810116",
+   "started_at": "2026-11-16T11:16:23.137Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810001",
+   "started_at": "2026-11-16T07:47:45.037Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810028",
+   "started_at": "2026-11-16T01:43:00.837Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810043",
+   "started_at": "2026-11-16T00:13:18.666Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810060",
+   "started_at": "2026-11-15T23:57:40.169Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810029",
+   "started_at": "2026-11-15T09:11:43.456Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810021",
+   "started_at": "2026-11-15T02:44:35.097Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810115",
+   "started_at": "2026-11-15T02:24:41.209Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810153",
+   "started_at": "2026-11-14T12:38:01.715Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can I add my known traveler number?",
+   "turns": 8,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810163",
+   "started_at": "2026-11-14T10:36:23.053Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Can I add my known traveler number?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810086",
+   "started_at": "2026-11-14T06:29:03.281Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810104",
+   "started_at": "2026-11-13T22:18:26.469Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810014",
+   "started_at": "2026-11-13T21:46:09.953Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810033",
+   "started_at": "2026-11-13T13:15:20.279Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810081",
+   "started_at": "2026-11-12T19:18:47.272Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810092",
+   "started_at": "2026-11-12T13:02:38.908Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810158",
+   "started_at": "2026-11-11T23:39:15.261Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "How early should I get to the airport?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810159",
+   "started_at": "2026-11-11T22:25:09.112Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Do you have flights to Lisbon in March?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810019",
+   "started_at": "2026-11-11T21:27:04.412Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810088",
+   "started_at": "2026-11-11T21:09:40.849Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810157",
+   "started_at": "2026-11-11T19:12:02.764Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I add my known traveler number?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810074",
+   "started_at": "2026-11-10T18:19:03.268Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810149",
+   "started_at": "2026-11-10T10:06:25.543Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What time does check-in open for international flights?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810106",
+   "started_at": "2026-11-10T03:00:37.265Z",
+   "channel": "android",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810022",
+   "started_at": "2026-11-10T02:47:39.567Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 7,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810075",
+   "started_at": "2026-11-10T01:57:37.266Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810003",
+   "started_at": "2026-11-10T01:52:08.474Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810125",
+   "started_at": "2026-11-09T15:44:02.410Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810004",
+   "started_at": "2026-11-09T11:28:20.729Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 7,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810071",
+   "started_at": "2026-11-09T03:33:33.545Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810024",
+   "started_at": "2026-11-08T17:58:26.016Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810061",
+   "started_at": "2026-11-07T13:07:05.631Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 8,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810109",
+   "started_at": "2026-11-07T08:04:22.347Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810111",
+   "started_at": "2026-11-07T06:24:46.409Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810020",
+   "started_at": "2026-11-07T02:37:59.128Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 4,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810089",
+   "started_at": "2026-11-06T10:28:11.143Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810090",
+   "started_at": "2026-11-06T08:34:00.237Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810142",
+   "started_at": "2026-11-06T03:14:54.590Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What size pet carrier fits under the seat?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810155",
+   "started_at": "2026-11-06T01:28:31.101Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "I need a receipt for my last trip.",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810137",
+   "started_at": "2026-11-05T13:51:58.298Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What size pet carrier fits under the seat?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810079",
+   "started_at": "2026-11-05T09:51:12.880Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810035",
+   "started_at": "2026-11-04T21:47:29.686Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810018",
+   "started_at": "2026-11-04T21:03:45.213Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810050",
+   "started_at": "2026-11-04T15:02:00.672Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810113",
+   "started_at": "2026-11-04T02:31:31.170Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810015",
+   "started_at": "2026-11-03T15:35:52.706Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810058",
+   "started_at": "2026-11-03T11:27:08.569Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810096",
+   "started_at": "2026-11-03T03:30:15.423Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810031",
+   "started_at": "2026-11-03T00:22:01.913Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810037",
+   "started_at": "2026-11-03T00:00:45.721Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810127",
+   "started_at": "2026-11-02T23:50:34.888Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can my 12 year old fly as an unaccompanied minor on a connection?",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810068",
+   "started_at": "2026-11-02T20:04:52.587Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810023",
+   "started_at": "2026-11-02T11:53:31.981Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810170",
+   "started_at": "2026-11-02T04:03:01.168Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I change the name on my reservation?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810064",
+   "started_at": "2026-11-01T21:57:02.760Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810070",
+   "started_at": "2026-11-01T21:45:31.219Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810166",
+   "started_at": "2026-11-01T20:32:39.637Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Do you have flights to Lisbon in March?",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810049",
+   "started_at": "2026-11-01T15:27:21.008Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810126",
+   "started_at": "2026-11-01T14:48:36.946Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810172",
+   "started_at": "2026-11-01T13:57:39.923Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "I need a receipt for my last trip.",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810152",
+   "started_at": "2026-11-01T13:01:41.408Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Can I change the name on my reservation?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810147",
+   "started_at": "2026-11-01T06:43:40.487Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 8,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810099",
+   "started_at": "2026-10-31T13:48:13.363Z",
+   "channel": "android",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810174",
+   "started_at": "2026-10-31T01:53:38.988Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "I need a receipt for my last trip.",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810093",
+   "started_at": "2026-10-31T01:34:25.660Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810177",
+   "started_at": "2026-10-30T11:44:09.535Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810026",
+   "started_at": "2026-10-30T05:39:22.555Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810173",
+   "started_at": "2026-10-29T18:12:28.684Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810094",
+   "started_at": "2026-10-29T02:32:35.244Z",
+   "channel": "android",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810085",
+   "started_at": "2026-10-28T12:49:14.341Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810141",
+   "started_at": "2026-10-28T04:26:48.591Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What size pet carrier fits under the seat?",
+   "turns": 7,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810091",
+   "started_at": "2026-10-28T02:23:30.710Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810002",
+   "started_at": "2026-10-27T23:10:16.038Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810052",
+   "started_at": "2026-10-27T18:29:13.254Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810133",
+   "started_at": "2026-10-27T09:24:13.203Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810048",
+   "started_at": "2026-10-26T14:12:20.973Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810138",
+   "started_at": "2026-10-26T10:54:11.215Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Is there a fee for a pet carrier in the cabin?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810073",
+   "started_at": "2026-10-26T02:58:25.697Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810056",
+   "started_at": "2026-10-26T00:22:29.877Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810156",
+   "started_at": "2026-10-25T18:16:34.352Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I add my known traveler number?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810110",
+   "started_at": "2026-10-25T05:14:52.770Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810076",
+   "started_at": "2026-10-25T02:45:12.147Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810025",
+   "started_at": "2026-10-24T16:07:54.915Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 8,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810169",
+   "started_at": "2026-10-24T12:10:29.188Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I change the name on my reservation?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810078",
+   "started_at": "2026-10-23T23:39:15.459Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810171",
+   "started_at": "2026-10-23T11:31:39.482Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Do you have flights to Lisbon in March?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810055",
+   "started_at": "2026-10-23T10:43:48.311Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810047",
+   "started_at": "2026-10-23T03:25:33.232Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810103",
+   "started_at": "2026-10-23T01:34:33.601Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810095",
+   "started_at": "2026-10-22T21:04:47.599Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810010",
+   "started_at": "2026-10-22T16:51:13.917Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810084",
+   "started_at": "2026-10-22T14:28:50.330Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 4,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810039",
+   "started_at": "2026-10-22T13:48:30.409Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810034",
+   "started_at": "2026-10-22T01:48:45.261Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810102",
+   "started_at": "2026-10-21T20:44:49.715Z",
+   "channel": "android",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 4,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810146",
+   "started_at": "2026-10-21T18:07:15.883Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Is there a fee for a pet carrier in the cabin?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810105",
+   "started_at": "2026-10-21T11:31:14.371Z",
+   "channel": "android",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810083",
+   "started_at": "2026-10-21T04:13:56.887Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "How do I report damaged luggage?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810160",
+   "started_at": "2026-10-21T03:37:15.660Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "How early should I get to the airport?",
+   "turns": 9,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810161",
+   "started_at": "2026-10-21T01:20:09.015Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "I need a receipt for my last trip.",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810072",
+   "started_at": "2026-10-20T18:36:23.090Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810144",
+   "started_at": "2026-10-20T11:09:33.253Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810038",
+   "started_at": "2026-10-20T11:08:49.665Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810030",
+   "started_at": "2026-10-20T06:09:52.315Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810131",
+   "started_at": "2026-10-19T13:07:12.718Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 9,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810016",
+   "started_at": "2026-10-19T06:42:54.468Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810063",
+   "started_at": "2026-10-18T23:31:24.032Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 7,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810062",
+   "started_at": "2026-10-18T02:49:19.154Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810032",
+   "started_at": "2026-10-17T16:45:45.779Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810013",
+   "started_at": "2026-10-16T15:20:11.099Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810057",
+   "started_at": "2026-10-16T09:26:54.877Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810008",
+   "started_at": "2026-10-15T01:15:25.897Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810097",
+   "started_at": "2026-10-15T00:07:14.328Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810162",
+   "started_at": "2026-10-14T05:04:56.635Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Is my flight on time?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810009",
+   "started_at": "2026-10-13T03:40:46.103Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810167",
+   "started_at": "2026-10-13T01:01:41.243Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What time does check-in open for international flights?",
+   "turns": 10,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810067",
+   "started_at": "2026-10-12T21:40:35.010Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 4,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810164",
+   "started_at": "2026-10-12T08:51:18.445Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What time does check-in open for international flights?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810053",
+   "started_at": "2026-10-11T22:16:44.051Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810150",
+   "started_at": "2026-10-11T19:06:16.090Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Do you have flights to Lisbon in March?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810112",
+   "started_at": "2026-10-11T18:14:20.982Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810108",
+   "started_at": "2026-10-11T10:35:37.356Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "Fare disappeared while I was booking, can you find an alternate flight?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810176",
+   "started_at": "2026-10-11T10:08:16.452Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810139",
+   "started_at": "2026-10-11T02:48:06.428Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810066",
+   "started_at": "2026-10-10T22:37:56.124Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 7,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810175",
+   "started_at": "2026-10-10T16:19:19.865Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I add my known traveler number?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810168",
+   "started_at": "2026-10-09T20:00:25.763Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Is my flight on time?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810154",
+   "started_at": "2026-10-08T23:57:31.737Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810179",
+   "started_at": "2026-10-08T13:12:21.605Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "Is my flight on time?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810132",
+   "started_at": "2026-10-08T11:09:07.051Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Is there a fee for a pet carrier in the cabin?",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810082",
+   "started_at": "2026-10-06T21:41:52.732Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810011",
+   "started_at": "2026-10-06T11:48:57.144Z",
+   "channel": "ios",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810151",
+   "started_at": "2026-10-06T10:51:59.101Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the carry-on size limit?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810087",
+   "started_at": "2026-10-06T06:22:06.960Z",
+   "channel": "ios",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810041",
+   "started_at": "2026-10-05T05:51:41.043Z",
+   "channel": "web",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810007",
+   "started_at": "2026-10-04T13:33:21.998Z",
+   "channel": "web",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810017",
+   "started_at": "2026-10-04T11:09:31.451Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Flight is delayed and I'll miss my connection. What are my options?",
+   "turns": 4,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810098",
+   "started_at": "2026-10-04T07:21:42.433Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 6,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810178",
+   "started_at": "2026-10-03T15:11:42.686Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Hi",
+   "turns": 6,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810046",
+   "started_at": "2026-10-03T14:23:50.084Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "How do I get cash back instead of a travel credit?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810107",
+   "started_at": "2026-10-02T19:56:56.577Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810128",
+   "started_at": "2026-10-01T04:50:45.582Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810148",
+   "started_at": "2026-10-01T03:29:58.819Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "Can I change the name on my reservation?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810165",
+   "started_at": "2026-09-30T12:17:31.639Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Talk to a person please.",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810124",
+   "started_at": "2026-09-29T22:34:13.805Z",
+   "channel": "ios",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810136",
+   "started_at": "2026-09-29T17:37:15.272Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "What size pet carrier fits under the seat?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810012",
+   "started_at": "2026-09-29T09:13:38.063Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 5,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810051",
+   "started_at": "2026-09-29T01:02:47.192Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810080",
+   "started_at": "2026-09-29T00:28:40.532Z",
+   "channel": "web",
+   "intent": "Bags",
+   "customer_message": "Where is my bag? It didn't arrive.",
+   "turns": 3,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810059",
+   "started_at": "2026-09-28T20:04:53.401Z",
+   "channel": "android",
+   "intent": "Refund",
+   "customer_message": "I want a refund for my cancelled flight.",
+   "turns": 3,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810077",
+   "started_at": "2026-09-28T08:54:34.397Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 5,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810027",
+   "started_at": "2026-09-26T16:41:09.397Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "My flight got cancelled, can you rebook me?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810180",
+   "started_at": "2026-09-25T07:41:06.823Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can I change the name on my reservation?",
+   "turns": 2,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810101",
+   "started_at": "2026-09-25T07:31:57.190Z",
+   "channel": "web",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 7,
+   "handed_to_agent": false,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810069",
+   "started_at": "2026-09-24T20:16:20.688Z",
+   "channel": "android",
+   "intent": "Bags",
+   "customer_message": "My suitcase is still missing.",
+   "turns": 9,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810114",
+   "started_at": "2026-09-24T17:14:46.776Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "What is the unaccompanied minor fee?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810129",
+   "started_at": "2026-09-24T16:57:22.264Z",
+   "channel": "web",
+   "intent": "Other",
+   "customer_message": "How do I book an unaccompanied minor ticket?",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810135",
+   "started_at": "2026-09-24T09:36:19.990Z",
+   "channel": "android",
+   "intent": "Other",
+   "customer_message": "Can I bring my cat in the cabin? Need pet carrier sizes.",
+   "turns": 2,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810100",
+   "started_at": "2026-09-23T15:16:46.403Z",
+   "channel": "ios",
+   "intent": "Booking",
+   "customer_message": "The flight I wanted is sold out, is there another flight today?",
+   "turns": 9,
+   "handed_to_agent": true,
+   "resolved": false
+  },
+  {
+   "conversation_id": "CB-810045",
+   "started_at": "2026-09-23T01:07:44.029Z",
+   "channel": "ios",
+   "intent": "Refund",
+   "customer_message": "Where is my refund? It has been 3 weeks.",
+   "turns": 8,
+   "handed_to_agent": false,
+   "resolved": true
+  },
+  {
+   "conversation_id": "CB-810006",
+   "started_at": "2026-09-23T00:10:41.341Z",
+   "channel": "android",
+   "intent": "Rebook",
+   "customer_message": "Does the weather waiver cover my trip tomorrow?",
+   "turns": 10,
+   "handed_to_agent": false,
+   "resolved": false
+  }
+ ]
+}
