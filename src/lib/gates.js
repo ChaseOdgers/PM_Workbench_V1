@@ -36,6 +36,7 @@ export function readiness(opp, triggered, proto) {
 }
 
 export function oppStatus(opp, triggered, proto) {
+  if (opp.delivered) return { label: "Delivered", cls: "done" };
   if (opp.handoff) return { label: "Handed off", cls: "done" };
   if (opp.phase === "Sense") return { label: "Sensing", cls: "sens" };
   if (opp.phase === "Shape") return { label: "Shaping", cls: "ready" };

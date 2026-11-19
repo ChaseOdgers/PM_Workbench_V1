@@ -12,7 +12,7 @@ import { FEEDS, fetchText } from "../lib/feeds";
 import { SYSTEMS, HOSTED_BASE, fetchSystem, endpointUrl } from "../lib/enterprise";
 import { growthOf } from "../lib/ranking";
 import { draftPack } from "../lib/delivery";
-import { TRANSITIONS, PRESETS, CHECKS, WHO, WHEN, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
+import { TRANSITIONS, PRESETS, CHECKS, WHO, WHEN, GROUPS, canDo, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
 import { can } from "../lib/perms";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
@@ -534,7 +534,7 @@ function enrich(d, o) {
 
 // Moving forward checks the current phase's checklist. Required items block unless a director
 // overrides with a reason (when the rules allow it). Every forward move keeps a snapshot.
-const ORDER = ["Sense", "Shape", "Prototype", "Handoff"];
+const ORDER = ["Sense", "Shape", "Prototype", "Handoff", "Delivered"];
 function advance(d, o, to, by, override) {
   const forward = ORDER.indexOf(to) > ORDER.indexOf(o.phase);
   if (!forward) return;
@@ -552,6 +552,16 @@ function advance(d, o, to, by, override) {
   if (!c.ready) audit(d, by, "overrode phase checklist", o.id, `${c.transition.label}: ${override}`);
 }
 
+// The last checklist: after handoff, the team confirms it shipped and was measured.
+export function markDelivered(id, by, override) {
+  return ok(mutate((d) => {
+    const o = d.opportunities.find((x) => x.id === id);
+    advance(d, o, "Delivered", by, override);
+    o.delivered = { at: now(), by };
+    audit(d, by, "marked delivered", id);
+  }));
+}
+
 export function getPhaseRules() {
   const d = getDb();
   const r = phaseRules(d);
@@ -564,7 +574,7 @@ export function getPhaseRules() {
   });
   return ok({ org: r.org, streams: r.streams || {}, list: streams, transitions: TRANSITIONS,
     presets: Object.fromEntries(Object.entries(PRESETS).map(([k, p]) => [k, { label: p.label, blurb: p.blurb }])),
-    checks: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { label: c.label(c.n ?? "N"), takesN: c.n != null, n: c.n, data: !!c.data }])), who: WHO, when: WHEN,
+    checks: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { label: c.label(c.n ?? "N"), takesN: c.n != null, n: c.n, data: !!c.data }])), who: WHO, when: WHEN, groups: GROUPS,
     gates: d.gates.filter((g) => g.enabled !== false).map((g) => ({ id: g.id, name: g.name })) });
 }
 export function savePhaseRules(scope, rules, by) {
@@ -596,8 +606,7 @@ export function requestSignoff(oppId, itemId, to, by) {
     audit(d, by, to ? "requested sign-off" : "cancelled sign-off request", oppId, to ? `from ${nameOf(d, to)}` : "");
   }));
 }
-const WHO_FITS = { anyone: () => true, pm: (u) => ["pm", "director"].includes(u.persona), director: (u) => u.persona === "director", reviewer: (u) => u.persona === "reviewer" };
-export const canSign = (user, item) => (WHO_FITS[item.who] || WHO_FITS.anyone)(user);
+export const canSign = (user, item) => canDo(user, item.who);
 // Sign-offs waiting on a person: asked of them by name, or open for their role in their streams.
 export function listSignoffs(user) {
   const d = getDb();
@@ -1039,7 +1048,7 @@ export function getPortfolio(user) {
     else {
       const c = checklist(d, o, undefined, e.trig, e.proto);
       const mine = c?.items.filter((i) => i.check === "manual" && !i.ok && (i.request?.to === user.id || (!i.request && i.who === "director"))) || [];
-      if (mine.length) attention.push({ ...base, kind: "signoff", why: `Your sign-off: ${mine[0].label}` });
+      if (mine.length) attention.push({ ...base, kind: "signoff", why: `Your task: ${mine[0].label}` });
       else if (c?.overdue) attention.push({ ...base, kind: "overdue", why: `${c.overdue} day${c.overdue > 1 ? "s" : ""} past the ${c.transition.from} target (${c.target}d)` });
     }
   }

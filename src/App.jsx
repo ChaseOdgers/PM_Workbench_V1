@@ -14,7 +14,7 @@ import Activity from "./screens/Activity";
 import Portfolio from "./screens/Portfolio";
 import SharePrototype from "./screens/SharePrototype";
 
-const HOME = { director: "/portfolio", pm: "/signals", admin: "/context", reviewer: "/reviews" };
+const HOME = { director: "/portfolio", pm: "/signals", admin: "/context", reviewer: "/reviews", engineer: "/opportunities" };
 
 function Guard({ children }) {
   const { user } = useSession();

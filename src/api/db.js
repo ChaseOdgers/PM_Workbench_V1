@@ -3,7 +3,7 @@
 // replace the functions in src/api/index.js with fetch() calls; the screens don't change.
 import { loadPack } from "../data/packs";
 
-const KEY = "pmwb.v2.db"; // v2: records come from the mock enterprise API
+const KEY = "pmwb.v3.db"; // v3: task-based phase checklists + seeded opportunities in every phase
 const listeners = new Set();
 let db = null;
 

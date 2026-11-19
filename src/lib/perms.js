@@ -3,6 +3,7 @@ export const PERSONAS = {
   director: { label: "Director / Group PM", icon: "ti-hierarchy-2", blurb: "Reviews signals across streams, approves opportunities, sees all agents" },
   pm: { label: "Product Manager", icon: "ti-bulb", blurb: "Triages signals, shapes opportunities, runs the prototype loop, hands off" },
   admin: { label: "Workspace Admin", icon: "ti-settings", blurb: "Adds users and roles, connects sources, manages agents and policies" },
+  engineer: { label: "Engineering lead", icon: "ti-code", blurb: "Consulted on feasibility and sizing, reviews prototypes and stories, runs delivery tasks" },
   reviewer: { label: "Reviewer", icon: "ti-gavel", blurb: "Approves or rejects governance gates and leaves comments" },
 };
 
@@ -11,6 +12,7 @@ const MATRIX = {
   pm: ["signal.triage", "signal.rules", "opp.create", "opp.edit", "proto.edit", "handoff"],
   admin: ["sources.manage", "agents.manage", "agents.toggle", "gov.manage", "users.manage", "phases.manage"],
   reviewer: ["gate.review"],
+  engineer: [],
 };
 
 export const can = (user, action) => !!user && (MATRIX[user.persona] || []).includes(action);

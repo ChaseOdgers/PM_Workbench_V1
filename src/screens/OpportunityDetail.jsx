@@ -7,6 +7,7 @@ import { useQuery, useAction } from "../api/hooks";
 import * as api from "../api";
 import { can, canReview } from "../lib/perms";
 import { ago } from "../lib/format";
+import { canDo, GROUPS } from "../lib/phases";
 
 export default function OpportunityDetail() {
   const { id } = useParams();
@@ -285,7 +286,6 @@ function LineageCard({ o, user }) {
   );
 }
 
-const WHO_OK = { anyone: () => true, pm: (u) => ["pm", "director"].includes(u.persona), director: (u) => u.persona === "director", reviewer: (u) => u.persona === "reviewer" };
 
 // The checklist that follows the opportunity: what's done in past phases (snapshots), what the
 // current phase still needs, and what later phases will ask for. Rules come from the org or team.
@@ -310,35 +310,37 @@ function PhaseChecklistCard({ o, user, nameOf }) {
     const to = c.transition.to;
     if (to === "Prototype") { await api.generatePrototype(o.id, user.id, reason); nav(`/opportunities/${o.id}/prototype`); }
     else if (to === "Handoff") nav(`/opportunities/${o.id}/handoff`);
+    else if (to === "Delivered") await api.markDelivered(o.id, user.id, reason);
     else await api.setPhase(o.id, to, user.id, reason);
     setOver(false); setReason("");
   });
   const presetName = sc?.preset === "custom" ? "Custom" : { fast: "Fast lane", balanced: "Balanced", strict: "Strict" }[sc?.preset] || sc?.preset;
   const Item = ({ i, live }) => {
-    const mineToSign = live && i.check === "manual" && inStream && !o.handoff && (WHO_OK[i.who] || WHO_OK.anyone)(user);
-    const canAsk = live && i.check === "manual" && !i.ok && inStream && can(user, "opp.edit") && !o.handoff;
+    const open = !o.delivered;
+    const mineToSign = live && i.check === "manual" && inStream && open && canDo(user, i.who);
+    const canAsk = live && i.check === "manual" && !i.ok && inStream && can(user, "opp.edit") && open;
     return (
       <div className={`check ${i.ok ? "ok" : i.level === "required" ? "no" : "opt"}`} style={{ alignItems: "flex-start" }}>
-        <i className={`ti ${i.ok ? "ti-circle-check-filled" : i.check === "manual" ? "ti-signature" : i.level === "required" ? "ti-circle" : "ti-alert-circle"}`} style={{ marginTop: 2 }} />
+        <i className={`ti ${i.ok ? "ti-circle-check-filled" : i.check === "manual" ? "ti-square" : i.level === "required" ? "ti-circle" : "ti-alert-circle"}`} style={{ marginTop: 2 }} title={i.check === "manual" ? "Task" : "Checked automatically"} />
         <div className="grow">
           <div>{i.label}{i.locked && <i className="ti ti-lock faint" title="Set by the organization" style={{ fontSize: 12, marginLeft: 4 }} />}{i.when && i.when !== "always" && <span className="tiny faint"> · {i.when.startsWith("gate:") ? "gate triggered" : "applies here"}</span>}</div>
-          {i.attested ? <div className="tiny faint">Signed off by {nameOf(i.attested.by)} · {ago(i.attested.at)}{i.attested.note && <> · “{i.attested.note}”</>}</div>
-            : i.request ? <div className="tiny" style={{ color: "var(--amber-ink)" }}><i className="ti ti-send" /> Requested from {nameOf(i.request.to)} by {nameOf(i.request.by)} · {ago(i.request.at)}</div>
-            : i.detail && <div className="tiny faint">{i.detail}</div>}
+          {i.attested ? <div className="tiny faint">Done by {nameOf(i.attested.by)} · {ago(i.attested.at)}{i.attested.note && <> · “{i.attested.note}”</>}</div>
+            : i.request ? <div className="tiny" style={{ color: "var(--amber-ink)" }}><i className="ti ti-user-share" /> Assigned to {nameOf(i.request.to)} by {nameOf(i.request.by)} · {ago(i.request.at)}</div>
+            : i.detail && <div className="tiny faint">{i.check === "manual" ? <><i className="ti ti-user" /> {i.detail}</> : i.detail}</div>}
           {live && signing === i.id && <div className="row" style={{ gap: 6, marginTop: 6 }}>
-            <input className="input inl" autoFocus placeholder="Note or link (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
-            <button className="btn green xs" onClick={async () => { await api.toggleCheck(o.id, i.id, user.id, note); setSigning(null); setNote(""); }}><i className="ti ti-check" /> Sign off</button>
+            <input className="input inl" autoFocus placeholder="What was done or decided? Add a link (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
+            <button className="btn green xs" onClick={async () => { await api.toggleCheck(o.id, i.id, user.id, note); setSigning(null); setNote(""); }}><i className="ti ti-check" /> Done</button>
             <button className="btn link small" onClick={() => setSigning(null)}>Cancel</button></div>}
           {live && asking === i.id && <div className="row" style={{ gap: 6, marginTop: 6 }}>
             <select className="select" style={{ padding: "4px 8px", fontSize: 12 }} defaultValue="" onChange={async (e) => { if (e.target.value) { await api.requestSignoff(o.id, i.id, e.target.value, user.id); setAsking(null); } }}>
-              <option value="" disabled>Ask who?</option>{(signers || []).map((u) => <option key={u.id} value={u.id}>{u.name} · {u.title}</option>)}</select>
+              <option value="" disabled>Assign to…</option>{(signers || []).map((u) => <option key={u.id} value={u.id}>{u.name} · {u.title}</option>)}</select>
             <button className="btn link small" onClick={() => setAsking(null)}>Cancel</button></div>}
           {live && i.check === "manual" && signing !== i.id && asking !== i.id && (
             <div className="row" style={{ gap: 10, marginTop: 3 }}>
-              {mineToSign && !i.ok && <button className="btn link small" style={{ padding: 0 }} onClick={() => { setSigning(i.id); setNote(""); }}><i className="ti ti-signature" /> Sign off</button>}
-              {mineToSign && i.ok && i.attested?.by === user.id && <button className="btn link small" style={{ padding: 0 }} onClick={() => api.toggleCheck(o.id, i.id, user.id)}>Withdraw</button>}
-              {canAsk && !i.request && <button className="btn link small" style={{ padding: 0 }} onClick={() => setAsking(i.id)}><i className="ti ti-send" /> Request</button>}
-              {canAsk && i.request && <button className="btn link small" style={{ padding: 0 }} onClick={() => api.requestSignoff(o.id, i.id, null, user.id)}>Cancel request</button>}
+              {mineToSign && !i.ok && <button className="btn link small" style={{ padding: 0 }} onClick={() => { setSigning(i.id); setNote(""); }}><i className="ti ti-check" /> Mark done</button>}
+              {mineToSign && i.ok && i.attested?.by === user.id && <button className="btn link small" style={{ padding: 0 }} onClick={() => api.toggleCheck(o.id, i.id, user.id)}>Reopen</button>}
+              {canAsk && !i.request && <button className="btn link small" style={{ padding: 0 }} onClick={() => setAsking(i.id)}><i className="ti ti-user-share" /> Assign</button>}
+              {canAsk && i.request && <button className="btn link small" style={{ padding: 0 }} onClick={() => api.requestSignoff(o.id, i.id, null, user.id)}>Unassign</button>}
             </div>)}
         </div>
         <span className={`lvl ${i.level}`}>{i.level === "required" ? "required" : "nice to have"}</span>
@@ -365,7 +367,13 @@ function PhaseChecklistCard({ o, user, nameOf }) {
         <div className="meter"><span style={{ width: `${c.total ? (c.done / c.total) * 100 : 100}%` }} /></div>
         <div className="tiny faint" style={{ margin: "4px 0 8px" }}>{c.transition.hint} {c.done} of {c.total} done.{c.overdue ? <b style={{ color: "var(--amber-ink)" }}> {c.overdue} day{c.overdue > 1 ? "s" : ""} past this team's target.</b> : ""}</div>
         {c.items.length === 0 && <div className="small faint">No requirements for this move. This team moves ideas fast.</div>}
-        {c.items.map((i) => <Item key={i.id} i={i} live />)}
+        {GROUPS.concat("Other").map((grp) => {
+          const list = c.items.filter((i) => (i.group && GROUPS.includes(i.group) ? i.group : "Other") === grp);
+          if (!list.length) return null;
+          const done = list.filter((i) => i.ok).length;
+          return <div key={grp} className="cgroup"><div className="cghead"><span>{grp}</span><span className="faint">{done}/{list.length}</span></div>{list.map((i) => <Item key={i.id} i={i} live />)}</div>;
+        })}
+        {c.ready && c.transition.to === "Delivered" && can(user, "opp.edit") && inStream && <button className="btn green sm" style={{ marginTop: 10 }} disabled={busy} onClick={() => run(() => api.markDelivered(o.id, user.id))}><i className="ti ti-flag-check" /> Mark delivered</button>}
         {c.skipped.length > 0 && <>
           <button className="btn link small" style={{ padding: 0, marginTop: 4 }} onClick={() => setShowSkipped(!showSkipped)}>{c.skipped.length} conditional item{c.skipped.length > 1 ? "s don't" : " doesn't"} apply here</button>
           {showSkipped && c.skipped.map((i) => <div key={i.id} className="tiny faint" style={{ padding: "3px 0 0 24px" }}>{i.label} · {i.when?.startsWith("gate:") ? "its gate isn't triggered" : "doesn't apply to this idea"}</div>)}
@@ -386,7 +394,7 @@ function PhaseChecklistCard({ o, user, nameOf }) {
           </div>)}
         {error && <div className="tiny" style={{ color: "var(--red-ink)", marginTop: 6 }}>{error}</div>}
         {o.proto && c.transition.to === "Handoff" && <div className="tiny faint" style={{ marginTop: 6 }}>{o.proto.versions} prototype version{o.proto.versions === 1 ? "" : "s"}{o.proto.approvedVersion ? ` · v${o.proto.approvedVersion} approved` : ""}</div>}
-      </> : o.handoff && <div className="small faint" style={{ marginTop: 8 }}>Handed off. Every phase checklist is recorded above.</div>}
+      </> : o.delivered && <div className="small" style={{ marginTop: 8, color: "var(--green-ink)" }}><i className="ti ti-flag-check" /> Delivered {ago(o.delivered.at)}. Every phase checklist is recorded above.</div>}
 
       {o.upcoming.slice(1).map((u) => u && (
         <div key={u.transition.key} className="phasenext"><i className="ti ti-lock faint" /> <span className="grow">Later: {u.transition.label}</span>

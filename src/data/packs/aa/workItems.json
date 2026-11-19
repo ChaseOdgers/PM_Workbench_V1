@@ -1,4 +1,8 @@
 [
-  {"key":"BOOK-240","type":"Epic","title":"Fare-search relevance revamp","status":"Done","oppId":null,"system":"ADO"},
-  {"key":"BOOK-231","type":"Epic","title":"Rebooking reminder nudges","status":"Done","oppId":null,"system":"ADO"}
+  {"key": "BOOK-240", "type": "Epic", "title": "Fare-search relevance revamp", "status": "Active", "oppId": "OPP-2240", "system": "ADO"},
+  {"key": "BOOK-241", "type": "Story", "parent": "BOOK-240", "title": "Re-rank results by price, duration and stops", "status": "Done", "oppId": "OPP-2240", "system": "ADO"},
+  {"key": "BOOK-242", "type": "Story", "parent": "BOOK-240", "title": "Explain why a flight is recommended", "status": "Active", "oppId": "OPP-2240", "system": "ADO"},
+  {"key": "BOOK-205", "type": "Epic", "title": "Seat-selection upsell at checkout", "status": "Done", "oppId": "OPP-2205", "system": "ADO"},
+  {"key": "CARE-231", "type": "Epic", "title": "Rebooking reminder nudges", "status": "Active", "oppId": "OPP-2231", "system": "ADO"},
+  {"key": "BAG-218", "type": "Epic", "title": "Baggage mishandling alerts", "status": "Done", "oppId": "OPP-2218", "system": "ADO"}
 ]

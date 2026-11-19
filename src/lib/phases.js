@@ -9,6 +9,7 @@ export const TRANSITIONS = [
   { key: "Sense>Shape", from: "Sense", to: "Shape", label: "Sense → Shape", hint: "Is the problem real and worth shaping?" },
   { key: "Shape>Prototype", from: "Shape", to: "Prototype", label: "Shape → Prototype", hint: "Is it worth building something to test?" },
   { key: "Prototype>Handoff", from: "Prototype", to: "Handoff", label: "Prototype → Handoff", hint: "Is it ready for engineering?" },
+  { key: "Handoff>Done", from: "Handoff", to: "Delivered", label: "Handoff → Delivered", hint: "Did it ship, and did it work?" },
 ];
 export const transitionFrom = (phase) => TRANSITIONS.find((t) => t.from === phase) || null;
 
@@ -35,7 +36,20 @@ export const CHECKS = {
   growing: { label: (n) => `A linked signal is growing ${n}%+ over 8 weeks`, n: 20, data: true, test: (c, n) => [Math.round((c.data?.growth || 0) * 100) >= n, `fastest +${Math.round((c.data?.growth || 0) * 100)}%`] },
   deliveryTests: { label: () => "Every Must story has a test scenario", test: (c) => { const p = c.o.delivery; if (!p) return [false, "no pack yet"]; const miss = p.stories.filter((s) => s.priority === "Must" && !p.scenarios.some((t) => t.include && t.storyId === s.id)).length; return [miss === 0, miss ? `${miss} untested` : ""]; } },
 };
-export const WHO = { anyone: "Anyone on the team", pm: "Product manager", director: "Director", reviewer: "Reviewer" };
+// Who can mark a task done. Compliance and security map to reviewers with that approver role.
+export const WHO = { pm: "Product manager", engineering: "Engineering lead", compliance: "Compliance / legal", security: "Security", director: "Director", anyone: "Anyone on the team" };
+const FITS = {
+  anyone: () => true,
+  pm: (u) => ["pm", "director"].includes(u.persona),
+  director: (u) => u.persona === "director",
+  engineering: (u) => u.persona === "engineer",
+  compliance: (u) => u.persona === "reviewer" && (u.approverRoles || []).some((r) => ["Legal", "Compliance", "Accessibility"].includes(r)),
+  security: (u) => u.persona === "reviewer" && (u.approverRoles || []).includes("Security"),
+  reviewer: (u) => u.persona === "reviewer",
+};
+export const canDo = (user, who) => !!user && (FITS[who] || FITS.anyone)(user);
+// Sections a checklist is shown in, in order.
+export const GROUPS = ["Evidence", "Qualify", "Scope", "Validate", "Consult", "Governance", "Ready", "Deliver", "Measure", "Approve"];
 
 const auto = (check, level, n) => ({ check, level, ...(n != null ? { n } : {}) });
 const manual = (label, level, who) => ({ check: "manual", label, level, who });
@@ -46,24 +60,94 @@ const withIds = (transitions) => Object.fromEntries(Object.entries(transitions).
 
 // `when` makes an item conditional: "gate:<id>" (that governance gate triggered), "origin:human"
 // (a person created the idea) or "origin:agent" (the signals agent drafted it).
+// Tasks (check: "manual") are the work of the phase; a named role marks each one done.
+const g = (group, it) => ({ ...it, group });
+const task = (group, label, level, who, extra = {}) => ({ ...manual(label, level, who), group, ...extra });
+const lock = (it) => ({ ...it, locked: true });
 export const PRESETS = {
-  fast: { label: "Fast lane", blurb: "Ideas move quickly. Only governance is mandatory; everything else is a nudge.", allowOverride: true, targets: { "Sense>Shape": 7, "Shape>Prototype": 10, "Prototype>Handoff": 14 }, transitions: {
-    "Sense>Shape": [auto("signals", "recommended", 1)],
-    "Shape>Prototype": [auto("problem", "recommended", 10), auto("records", "recommended", 10)],
-    "Prototype>Handoff": [{ ...auto("gatesCleared", "required"), locked: true }, { ...auto("noRejected", "required"), locked: true }, auto("protoApproved", "recommended"), auto("delivery", "recommended")],
+  fast: { label: "Fast lane", blurb: "Ideas move quickly. Only governance is mandatory; most tasks are nudges.", allowOverride: true,
+    targets: { "Sense>Shape": 7, "Shape>Prototype": 10, "Prototype>Handoff": 14, "Handoff>Done": 30 }, transitions: {
+    "Sense>Shape": [g("Evidence", auto("signals", "recommended", 1)), task("Qualify", "Size it: who's affected, how often, what it costs", "recommended", "pm")],
+    "Shape>Prototype": [task("Scope", "Problem, target users and success metric written", "required", "pm"), task("Consult", "Engineering gut-check on feasibility", "recommended", "engineering"),
+      task("Consult", "Compliance consulted on the rules that apply", "recommended", "compliance")],
+    "Prototype>Handoff": [g("Governance", lock(auto("gatesCleared", "required"))), g("Governance", lock(auto("noRejected", "required"))), g("Validate", auto("protoApproved", "recommended")),
+      task("Validate", "Quick test with customers or frontline agents", "recommended", "pm"), g("Ready", auto("delivery", "recommended"))],
+    "Handoff>Done": [task("Deliver", "Engineering kickoff held with the delivery team", "recommended", "engineering"), task("Measure", "Success metric instrumented and on the dashboard", "required", "pm")],
   } },
-  balanced: { label: "Balanced", blurb: "Grounded in real data before shaping, approved before handoff. Light on ceremony.", allowOverride: true, targets: { "Sense>Shape": 14, "Shape>Prototype": 21, "Prototype>Handoff": 30 }, transitions: {
-    "Sense>Shape": [auto("signals", "required", 1), auto("problem", "recommended", 20)],
-    "Shape>Prototype": [auto("signals", "required", 1), auto("records", "recommended", 25), auto("systems", "recommended", 2), auto("goalFit", "recommended"), auto("evidence", "recommended", 1),
-      { ...manual("Security architect consulted on payment data", "recommended", "reviewer"), when: "gate:gate-pci" }],
-    "Prototype>Handoff": [auto("protoApproved", "required"), { ...auto("gatesCleared", "required"), locked: true }, auto("gatesReviewed", "recommended"), { ...auto("noRejected", "required"), locked: true }, auto("director", "required"), auto("delivery", "recommended")],
+  balanced: { label: "Balanced", blurb: "Qualified with real data, scoped with engineering and compliance, tested before handoff.", allowOverride: true,
+    targets: { "Sense>Shape": 14, "Shape>Prototype": 21, "Prototype>Handoff": 30, "Handoff>Done": 45 }, transitions: {
+    "Sense>Shape": [
+      g("Evidence", auto("signals", "required", 1)), g("Evidence", auto("records", "recommended", 25)), g("Evidence", auto("systems", "recommended", 2)),
+      task("Qualify", "Size it: who's affected, how often, what it costs", "required", "pm"),
+      task("Qualify", "Check the roadmap and backlog for overlapping work", "required", "pm"),
+      task("Qualify", "Confirm the pain with frontline agents or customers", "recommended", "pm"),
+      g("Qualify", auto("owner", "required")),
+      task("Approve", "Director agrees it's worth shaping", "recommended", "director")],
+    "Shape>Prototype": [
+      g("Evidence", auto("signals", "required", 1)), g("Evidence", auto("goalFit", "recommended")),
+      task("Scope", "Problem, target users and success metric written", "required", "pm"),
+      task("Scope", "In scope and out of scope agreed", "required", "pm"),
+      g("Scope", auto("delivery", "recommended")),
+      task("Consult", "Engineering: feasibility, dependencies and rough size", "required", "engineering"),
+      task("Consult", "Compliance: which rules apply (DOT, PCI, ACAA, privacy)", "required", "compliance"),
+      task("Consult", "Security architect consulted on payment data", "required", "security", { when: "gate:gate-pci" }),
+      task("Consult", "Analytics: baseline for the success metric pulled", "recommended", "anyone"),
+      task("Approve", "Director approves the scope", "recommended", "director")],
+    "Prototype>Handoff": [
+      g("Validate", auto("proto", "required")), g("Validate", auto("protoApproved", "required")),
+      task("Validate", "Tested with 5+ customers; findings logged", "required", "pm"),
+      task("Consult", "Engineering reviewed the prototype and stories; estimates in", "required", "engineering"),
+      task("Consult", "Compliance reviewed customer-facing copy and flows", "required", "compliance", { when: "gate:gate-dot" }),
+      g("Governance", lock(auto("gatesCleared", "required"))), g("Governance", auto("gatesReviewed", "recommended")), g("Governance", lock(auto("noRejected", "required"))),
+      g("Ready", auto("delivery", "required")), g("Ready", auto("deliveryAC", "recommended")), g("Ready", auto("deliveryTests", "recommended")),
+      task("Ready", "Launch and rollout plan drafted", "recommended", "pm"),
+      g("Approve", auto("director", "required"))],
+    "Handoff>Done": [
+      task("Deliver", "Engineering kickoff held with the delivery team", "required", "engineering"),
+      task("Deliver", "Stories accepted into a sprint", "required", "engineering"),
+      task("Deliver", "Released behind a feature flag", "required", "engineering"),
+      task("Deliver", "Support team briefed and FAQ updated", "recommended", "anyone"),
+      task("Measure", "Success metric instrumented and on the dashboard", "required", "pm"),
+      task("Measure", "30-day results reviewed against the baseline", "required", "pm"),
+      task("Measure", "Learnings shared back to the team", "recommended", "pm")],
   } },
-  strict: { label: "Strict (regulated)", blurb: "Every idea is validated with fresh data, presented and signed off. No overrides.", allowOverride: false, targets: { "Sense>Shape": 30, "Shape>Prototype": 45, "Prototype>Handoff": 60 }, transitions: {
-    "Sense>Shape": [auto("signals", "required", 2), auto("records", "required", 50), auto("fresh", "required", 7), auto("problem", "required", 40), auto("owner", "required"), manual("Problem validated with customer data or research", "required", "pm"),
-      { ...manual("Executive sponsor confirms the ask", "required", "director"), when: "origin:human" }],
-    "Shape>Prototype": [auto("goalFit", "required"), auto("systems", "required", 3), auto("growing", "recommended", 20), auto("evidence", "required", 2), manual("Presented at the product review council", "required", "director"), manual("Engineering lead consulted on feasibility", "required", "pm")],
-    "Prototype>Handoff": [auto("protoApproved", "required"), { ...auto("gatesCleared", "required"), locked: true }, auto("gatesReviewed", "required"), { ...auto("noRejected", "required"), locked: true }, auto("director", "required"), auto("delivery", "required"), auto("deliveryAC", "required"), auto("deliveryTests", "required"),
-      { ...manual("Legal sign-off on customer-facing fare copy", "required", "reviewer"), when: "gate:gate-dot" }, { ...manual("Accessibility lead reviewed the prototype", "required", "reviewer"), when: "gate:gate-acaa" }],
+  strict: { label: "Strict (regulated)", blurb: "Validated with fresh data, presented at council, every consult signed. No overrides.", allowOverride: false,
+    targets: { "Sense>Shape": 30, "Shape>Prototype": 45, "Prototype>Handoff": 60, "Handoff>Done": 60 }, transitions: {
+    "Sense>Shape": [
+      g("Evidence", auto("signals", "required", 2)), g("Evidence", auto("records", "required", 50)), g("Evidence", auto("fresh", "required", 7)), g("Evidence", auto("problem", "required", 40)),
+      task("Qualify", "Size it: who's affected, how often, what it costs", "required", "pm"),
+      task("Qualify", "Check the roadmap and backlog for overlapping work", "required", "pm"),
+      task("Qualify", "Problem validated with customer data or research", "required", "pm"),
+      g("Qualify", auto("owner", "required")),
+      task("Approve", "Executive sponsor confirms the ask", "required", "director", { when: "origin:human" }),
+      task("Approve", "Director agrees it's worth shaping", "required", "director")],
+    "Shape>Prototype": [
+      g("Evidence", auto("goalFit", "required")), g("Evidence", auto("systems", "required", 3)), g("Evidence", auto("growing", "recommended", 20)),
+      task("Scope", "Problem, target users and success metric written", "required", "pm"),
+      task("Scope", "In scope and out of scope agreed", "required", "pm"),
+      task("Consult", "Engineering: feasibility, dependencies and rough size", "required", "engineering"),
+      task("Consult", "Compliance: which rules apply (DOT, PCI, ACAA, privacy)", "required", "compliance"),
+      task("Consult", "Privacy impact assessment completed", "required", "compliance"),
+      task("Consult", "Security architect consulted on payment data", "required", "security", { when: "gate:gate-pci" }),
+      task("Approve", "Presented at the product review council", "required", "director")],
+    "Prototype>Handoff": [
+      g("Validate", auto("protoApproved", "required")),
+      task("Validate", "Tested with 5+ customers; findings logged", "required", "pm"),
+      task("Validate", "Accessibility lead reviewed the prototype", "required", "compliance", { when: "gate:gate-acaa" }),
+      task("Consult", "Engineering reviewed the prototype and stories; estimates in", "required", "engineering"),
+      task("Consult", "Legal sign-off on customer-facing fare copy", "required", "compliance", { when: "gate:gate-dot" }),
+      g("Governance", lock(auto("gatesCleared", "required"))), g("Governance", auto("gatesReviewed", "required")), g("Governance", lock(auto("noRejected", "required"))),
+      g("Ready", auto("delivery", "required")), g("Ready", auto("deliveryAC", "required")), g("Ready", auto("deliveryTests", "required")),
+      task("Ready", "Launch and rollout plan approved", "required", "director"),
+      g("Approve", auto("director", "required"))],
+    "Handoff>Done": [
+      task("Deliver", "Engineering kickoff held with the delivery team", "required", "engineering"),
+      task("Deliver", "Stories accepted into a sprint", "required", "engineering"),
+      task("Deliver", "Released behind a feature flag", "required", "engineering"),
+      task("Deliver", "Support team briefed and FAQ updated", "required", "anyone"),
+      task("Measure", "Success metric instrumented and on the dashboard", "required", "pm"),
+      task("Measure", "30-day results reviewed against the baseline", "required", "pm"),
+      task("Approve", "Post-launch review at the product council", "required", "director")],
   } },
 };
 export const WHEN = { always: "Always", "origin:human": "Only for ideas a person created", "origin:agent": "Only for agent-drafted ideas" };
@@ -110,13 +194,13 @@ export const whenLabel = (w, gates = []) => (!w || w === "always" ? "" : w.start
 
 // ctx: { o, stream, proto, trig, data } → checklist for the move out of the opportunity's current phase.
 export function evaluate(rules, ctx, transitionKey) {
-  const t = transitionKey ? TRANSITIONS.find((x) => x.key === transitionKey) : transitionFrom(ctx.o.phase);
+  const t = transitionKey ? TRANSITIONS.find((x) => x.key === transitionKey) : ctx.o.delivered ? null : transitionFrom(ctx.o.phase);
   if (!t) return null;
   const all = (rules.transitions[t.key] || []).map((it) => {
     const base = { ...it, applies: applies(it, ctx), request: ctx.o.requests?.[it.id] || null };
     if (it.check === "manual") {
       const a = ctx.o.checks?.[it.id];
-      return { ...base, ok: !!a, detail: a ? a.note || "" : `${WHO[it.who] || "Anyone"} signs off`, attested: a || null };
+      return { ...base, ok: !!a, detail: a ? a.note || "" : WHO[it.who] || "Anyone on the team", attested: a || null };
     }
     const def = CHECKS[it.check];
     if (!def) return { ...base, label: it.check, ok: true, detail: "unknown check" };

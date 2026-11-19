@@ -26,14 +26,14 @@ export default function Reviews() {
       <h3 className="srcgroup"><i className="ti ti-clock" /> Waiting on you · {pending.length}</h3>
       {pending.length ? <div className="table">{pending.map((r) => <Row key={r.opp.id + r.gate.id} r={r} />)}</div>
         : <Empty icon="ti-circle-check" title="Nothing waiting" text="New reviews appear here when an opportunity with one of your gates moves into Prototype." />}
-      <h3 className="srcgroup" style={{ marginTop: 24 }}><i className="ti ti-signature" /> Checklist sign-offs · {signoffs?.length || 0}</h3>
+      <h3 className="srcgroup" style={{ marginTop: 24 }}><i className="ti ti-list-check" /> Checklist tasks for you · {signoffs?.length || 0}</h3>
       {signoffs?.length ? <div className="table">{signoffs.map((x) => (
         <Link key={x.opp.id + x.item.id} to={`/opportunities/${x.opp.id}`} className="tr click" style={{ gridTemplateColumns: "1.6fr 1.6fr 140px", textDecoration: "none", color: "inherit" }}>
           <div><div className="oid">{x.opp.id} · {x.stream}</div><div className="lt">{x.opp.title}</div></div>
           <div><div className="small" style={{ fontWeight: 600 }}>{x.item.label}</div><div className="ls">Before {x.to} · {x.item.level}</div></div>
-          <div>{x.asked ? <span className="status flag">asked by {x.request.byName}</span> : <span className="status none">open for your role</span>}</div>
+          <div>{x.asked ? <span className="status flag">assigned by {x.request.byName}</span> : <span className="status none">open for your role</span>}</div>
         </Link>))}</div>
-        : <Empty icon="ti-signature" title="No sign-offs waiting" text="When a team's phase checklist needs your sign-off, it shows up here." />}
+        : <Empty icon="ti-signature" title="No tasks waiting" text="When a team's phase checklist needs compliance or security input from you, it shows up here." />}
       {done.length > 0 && <><h3 className="srcgroup" style={{ marginTop: 24 }}><i className="ti ti-history" /> Decided</h3>
         <div className="table">{done.map((r) => <Row key={r.opp.id + r.gate.id} r={r} />)}</div></>}
     </Shell>

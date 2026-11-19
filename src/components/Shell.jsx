@@ -10,6 +10,7 @@ const NAV = {
   director: [["portfolio", "ti-layout-dashboard", "Portfolio"], ["signals", "ti-radar-2", "Signals"], ["opportunities", "ti-bulb", "Opportunities"], ["context", "ti-database", "Context & agents"], ["governance", "ti-shield-check", "Governance"], ["activity", "ti-history", "Activity"]],
   pm: [["signals", "ti-radar-2", "Signals"], ["opportunities", "ti-bulb", "Opportunities"], ["context", "ti-database", "Context & agents"], ["governance", "ti-shield-check", "Governance"], ["activity", "ti-history", "Activity"]],
   admin: [["context", "ti-database", "Context & agents"], ["governance", "ti-shield-check", "Governance"], ["users", "ti-users", "Users & roles"], ["opportunities", "ti-bulb", "Opportunities"], ["activity", "ti-history", "Activity"]],
+  engineer: [["opportunities", "ti-bulb", "Opportunities"], ["signals", "ti-radar-2", "Signals"], ["activity", "ti-history", "Activity"]],
   reviewer: [["reviews", "ti-gavel", "Review queue"], ["opportunities", "ti-bulb", "Opportunities"], ["governance", "ti-shield-check", "Governance"]],
 };
 

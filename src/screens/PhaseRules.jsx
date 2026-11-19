@@ -76,7 +76,7 @@ export default function PhaseRules({ user, editable }) {
           </div>)}
         <div className="stack">
           {data.transitions.map((t) => (
-            <TransitionCard key={t.key} t={t} items={shown.transitions[t.key] || []} checks={data.checks} who={data.who} when={data.when} gates={data.gates}
+            <TransitionCard key={t.key} t={t} items={shown.transitions[t.key] || []} checks={data.checks} who={data.who} when={data.when} gates={data.gates} groups={data.groups}
               scope={scope} orgItems={scope === "org" ? [] : (data.org.transitions[t.key] || []).filter((x) => x.locked || data.org.teamPolicy === "tighten")}
               target={shown.targets?.[t.key] ?? ""} onTarget={(v) => set({ ...shown, targets: { ...(shown.targets || {}), [t.key]: v ? Number(v) : undefined } })}
               edit={editable && (!inherits || !!draft)} onChange={(items) => setItems(t.key, items)} />))}
@@ -97,7 +97,7 @@ export default function PhaseRules({ user, editable }) {
   );
 }
 
-function TransitionCard({ t, items, checks, who, when, gates, scope, orgItems, target, onTarget, edit, onChange }) {
+function TransitionCard({ t, items, checks, who, when, gates, groups, scope, orgItems, target, onTarget, edit, onChange }) {
   const [adding, setAdding] = useState("");
   const [text, setText] = useState("");
   // Org items a team must keep: shown read-only at the top unless the team already has them.
@@ -107,7 +107,7 @@ function TransitionCard({ t, items, checks, who, when, gates, scope, orgItems, t
   const req = all.filter((i) => i.level === "required").length;
   const upd = (k, patch) => onChange(items.map((x, j) => (j === k ? { ...x, ...patch } : x)));
   const add = () => {
-    const it = adding === "manual" ? { check: "manual", label: text.trim(), level: "required", who: "pm" } : { check: adding, level: "required", ...(checks[adding].takesN ? { n: checks[adding].n } : {}) };
+    const it = adding === "manual" ? { check: "manual", label: text.trim(), level: "required", who: "pm", group: "Consult" } : { check: adding, level: "required", group: checks[adding].data ? "Evidence" : "Ready", ...(checks[adding].takesN ? { n: checks[adding].n } : {}) };
     const id = itemId(t.key, it);
     if (items.some((x) => x.id === id)) return;
     onChange([...items, { id, ...it }]); setAdding(""); setText("");
@@ -117,7 +117,7 @@ function TransitionCard({ t, items, checks, who, when, gates, scope, orgItems, t
     <div className="card">
       <h3><i className="ti ti-arrow-right" /> {t.label} <span className="right faint" style={{ textTransform: "none", letterSpacing: 0 }}>{t.hint} · {req} required · {all.length - req} nice to have</span></h3>
       <div className="row tiny faint" style={{ margin: "-6px 0 8px", gap: 10, flexWrap: "wrap" }}>
-        <span><i className="ti ti-robot" /> checked automatically · <i className="ti ti-database" /> uses connected data · <i className="ti ti-signature" /> signed off by a person</span>
+        <span><i className="ti ti-robot" /> checked automatically · <i className="ti ti-database" /> uses connected data · <i className="ti ti-signature" /> a task a person marks done</span>
         <span className="grow" />
         <span className="row" style={{ gap: 6 }}><i className="ti ti-clock" /> Target time in {t.from}:
           {edit ? <input className="input inl" type="number" min="1" style={{ width: 64, flex: "none" }} placeholder="—" value={target} onChange={(e) => onTarget(e.target.value)} /> : <b>{target || "none"}</b>} days</span>
@@ -141,6 +141,8 @@ function TransitionCard({ t, items, checks, who, when, gates, scope, orgItems, t
                 {it.check === "manual" && <span>Signed off by: {!ro
                   ? <select className="select" style={{ width: "auto", padding: "2px 6px", fontSize: 11.5, display: "inline-block" }} value={it.who} onChange={(e) => upd(k, { who: e.target.value })}>{Object.entries(who).map(([w, l]) => <option key={w} value={w}>{l}</option>)}</select>
                   : who[it.who] || "Anyone"}</span>}
+                {!ro ? <select className="select" style={{ width: "auto", padding: "2px 6px", fontSize: 11.5 }} value={it.group || ""} onChange={(e) => upd(k, { group: e.target.value })} aria-label="Section"><option value="">Section…</option>{groups.map((x) => <option key={x}>{x}</option>)}</select>
+                  : it.group && <span className="tag" style={{ fontSize: 10 }}>{it.group}</span>}
                 {!ro ? <select className="select" style={{ width: "auto", padding: "2px 6px", fontSize: 11.5 }} value={it.when || "always"} onChange={(e) => upd(k, { when: e.target.value })} aria-label="Applies when">{whenOpts.map(([v, l]) => <option key={v} value={v}>{l}</option>)}</select>
                   : it.when && it.when !== "always" && <span><i className="ti ti-filter" /> {whenLabel(it.when, gates)}</span>}
                 {fromOrg && <span style={{ color: "var(--navy)" }}><i className="ti ti-lock" /> set by the organization</span>}
@@ -160,9 +162,9 @@ function TransitionCard({ t, items, checks, who, when, gates, scope, orgItems, t
             <option value="">Add a requirement…</option>
             <optgroup label="From connected data">{Object.entries(checks).filter(([, c]) => c.data).map(([k, c]) => <option key={k} value={k}>{c.label}</option>)}</optgroup>
             <optgroup label="Checked automatically">{Object.entries(checks).filter(([, c]) => !c.data).map(([k, c]) => <option key={k} value={k}>{c.label}</option>)}</optgroup>
-            <optgroup label="Signed off by a person"><option value="manual">Custom sign-off (e.g. presented at council)</option></optgroup>
+            <optgroup label="A task someone does"><option value="manual">Custom task (e.g. consult the devs, present at council)</option></optgroup>
           </select>
-          {adding === "manual" && <input className="input inl" style={{ maxWidth: 320 }} placeholder="What must be true?" value={text} onChange={(e) => setText(e.target.value)} />}
+          {adding === "manual" && <input className="input inl" style={{ maxWidth: 320 }} placeholder="What needs to be done?" value={text} onChange={(e) => setText(e.target.value)} />}
           {adding && <button className="btn out sm" disabled={adding === "manual" && !text.trim()} onClick={add}><i className="ti ti-plus" /> Add</button>}
         </div>)}
     </div>
