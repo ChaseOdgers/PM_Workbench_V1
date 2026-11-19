@@ -3,7 +3,7 @@
 // replace the functions in src/api/index.js with fetch() calls; the screens don't change.
 import { loadPack } from "../data/packs";
 
-const KEY = "pmwb.v1.db";
+const KEY = "pmwb.v2.db"; // v2: records come from the mock enterprise API
 const listeners = new Set();
 let db = null;
 
@@ -13,6 +13,7 @@ function hydrate(node, now) {
   if (!node || typeof node !== "object") return;
   for (const k of Object.keys(node)) {
     if (k === "ago") { node.at = new Date(now - node.ago * 60000).toISOString(); delete node.ago; }
+    else if (k === "phaseAgo") { node.phaseAt = new Date(now - node.phaseAgo * 60000).toISOString(); delete node.phaseAgo; }
     else if (k === "syncAgo") { node.lastSync = new Date(now - node.syncAgo * 60000).toISOString(); delete node.syncAgo; }
     else hydrate(node[k], now);
   }

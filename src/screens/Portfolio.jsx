@@ -7,7 +7,8 @@ import * as api from "../api";
 import { ago } from "../lib/format";
 
 const PHASE_COLORS = { Sense: "var(--line-2)", Shape: "var(--amber)", Prototype: "var(--accent)", Handoff: "var(--green)" };
-const KIND = { approve: ["ti-user-check", "wait", "Approve"], rejected: ["ti-alert-triangle", "bad", "Review"], ready: ["ti-send", "ready", "Hand off"] };
+const KIND = { approve: ["ti-user-check", "wait", "Approve"], rejected: ["ti-alert-triangle", "bad", "Review"], ready: ["ti-send", "ready", "Hand off"],
+  signoff: ["ti-signature", "wait", "Sign off"], overdue: ["ti-clock-exclamation", "wait", "Open"] };
 
 export default function Portfolio() {
   const { user } = useSession();

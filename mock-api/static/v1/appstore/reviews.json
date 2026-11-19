@@ -1,0 +1,1246 @@
+{
+ "reviews": [
+  {
+   "id": "rev-3300041",
+   "updated": "2026-11-18T20:48:26.995Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300018",
+   "updated": "2026-11-18T13:42:53.152Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300027",
+   "updated": "2026-11-18T10:53:32.839Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Had no signal at JFK security and the boarding p",
+   "content": "Had no signal at JFK security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300050",
+   "updated": "2026-11-18T09:34:39.531Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Had no signal at PHX security and the boarding p",
+   "content": "Had no signal at PHX security and the boarding pass would not open offline.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300013",
+   "updated": "2026-11-18T09:06:34.620Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300131",
+   "updated": "2026-11-18T08:32:57.905Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Paid the pet fee at the airport because I could ",
+   "content": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300119",
+   "updated": "2026-11-18T07:24:53.992Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Why can't I see my position on the upgrade list ",
+   "content": "Why can't I see my position on the upgrade list until the gate?",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300110",
+   "updated": "2026-11-18T00:12:31.913Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Missed my upgrade because I did not know the sta",
+   "content": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300031",
+   "updated": "2026-11-17T18:00:49.931Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300062",
+   "updated": "2026-11-17T05:35:18.572Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300015",
+   "updated": "2026-11-17T04:14:28.103Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300032",
+   "updated": "2026-11-16T21:56:20.884Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300023",
+   "updated": "2026-11-16T17:18:42.801Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Had no signal at DCA security and the boarding p",
+   "content": "Had no signal at DCA security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300009",
+   "updated": "2026-11-16T06:36:33.757Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300046",
+   "updated": "2026-11-16T03:16:26.180Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300090",
+   "updated": "2026-11-15T22:38:59.364Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300051",
+   "updated": "2026-11-15T20:47:43.536Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300093",
+   "updated": "2026-11-15T16:12:27.613Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "The flight I picked sold out",
+   "content": "The flight I picked sold out, had to call to find another flight the same day.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300024",
+   "updated": "2026-11-15T13:01:29.147Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300065",
+   "updated": "2026-11-15T09:21:07.090Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300083",
+   "updated": "2026-11-15T06:36:42.837Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300121",
+   "updated": "2026-11-14T21:04:07.213Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Missed my upgrade because I did not know the sta",
+   "content": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300049",
+   "updated": "2026-11-14T20:07:13.403Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300100",
+   "updated": "2026-11-14T16:55:18.737Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Fare sold out while I was paying for PHX-LGA and",
+   "content": "Fare sold out while I was paying for PHX-LGA and the site offered nothing else.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300006",
+   "updated": "2026-11-13T23:04:15.908Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300063",
+   "updated": "2026-11-13T18:27:50.497Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300040",
+   "updated": "2026-11-13T09:45:30.283Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300052",
+   "updated": "2026-11-13T09:13:00.250Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300133",
+   "updated": "2026-11-12T21:56:17.069Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Called twice to add my cat to my reservation",
+   "content": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300011",
+   "updated": "2026-11-12T21:22:27.951Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Had no signal at MIA security and the boarding p",
+   "content": "Had no signal at MIA security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300037",
+   "updated": "2026-11-12T17:50:12.653Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300072",
+   "updated": "2026-11-12T06:48:50.412Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300098",
+   "updated": "2026-11-11T09:38:08.245Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300014",
+   "updated": "2026-11-11T08:24:02.803Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300016",
+   "updated": "2026-11-11T07:15:08.188Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass QR code is blank in the app",
+   "content": "Boarding pass QR code is blank in the app.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300064",
+   "updated": "2026-11-11T00:35:57.553Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300010",
+   "updated": "2026-11-10T16:25:13.404Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Boarding pass QR code is blank in the app",
+   "content": "Boarding pass QR code is blank in the app.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300055",
+   "updated": "2026-11-10T13:00:28.383Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300127",
+   "updated": "2026-11-10T08:06:37.775Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300137",
+   "updated": "2026-11-09T22:11:33.000Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Is there room for a pet carrier on flight 1352",
+   "content": "Is there room for a pet carrier on flight 1352? The app will not tell me.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300002",
+   "updated": "2026-11-09T03:15:11.392Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Had no signal at DCA security and the boarding p",
+   "content": "Had no signal at DCA security and the boarding pass would not open offline.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300007",
+   "updated": "2026-11-08T19:21:32.587Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Had no signal at DCA security and the boarding p",
+   "content": "Had no signal at DCA security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300128",
+   "updated": "2026-11-06T17:43:03.194Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Called twice to add my cat to my reservation",
+   "content": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300003",
+   "updated": "2026-11-06T10:32:44.037Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Had no signal at CLT security and the boarding p",
+   "content": "Had no signal at CLT security and the boarding pass would not open offline.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300034",
+   "updated": "2026-11-06T00:43:37.431Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300035",
+   "updated": "2026-11-05T22:20:56.494Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300099",
+   "updated": "2026-11-04T14:25:49.960Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Sold out message with no alternatives",
+   "content": "Sold out message with no alternatives, ended up booking another airline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300088",
+   "updated": "2026-11-04T12:35:35.661Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Fare sold out while I was paying for LAX-PHX and",
+   "content": "Fare sold out while I was paying for LAX-PHX and the site offered nothing else.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300069",
+   "updated": "2026-11-04T10:00:50.829Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300005",
+   "updated": "2026-11-04T04:56:00.742Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass QR code is blank in the app",
+   "content": "Boarding pass QR code is blank in the app.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300039",
+   "updated": "2026-11-04T01:07:00.078Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300038",
+   "updated": "2026-11-03T20:32:01.873Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300078",
+   "updated": "2026-11-03T16:52:24.051Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300112",
+   "updated": "2026-11-03T16:39:56.005Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300004",
+   "updated": "2026-11-01T21:56:25.452Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300020",
+   "updated": "2026-11-01T18:56:07.655Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Had no signal at PHL security and the boarding p",
+   "content": "Had no signal at PHL security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300022",
+   "updated": "2026-10-31T23:46:45.660Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass QR code is blank in the app",
+   "content": "Boarding pass QR code is blank in the app.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300106",
+   "updated": "2026-10-29T11:31:10.404Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300028",
+   "updated": "2026-10-29T07:00:28.329Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Had no signal at PHX security and the boarding p",
+   "content": "Had no signal at PHX security and the boarding pass would not open offline.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300054",
+   "updated": "2026-10-28T19:20:49.624Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300000",
+   "updated": "2026-10-27T14:26:13.081Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300092",
+   "updated": "2026-10-27T13:53:24.899Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Fare sold out while I was paying for PHX-DFW and",
+   "content": "Fare sold out while I was paying for PHX-DFW and the site offered nothing else.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300060",
+   "updated": "2026-10-27T04:45:05.069Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300108",
+   "updated": "2026-10-26T13:52:02.494Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300026",
+   "updated": "2026-10-25T18:03:41.100Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300103",
+   "updated": "2026-10-24T10:33:06.323Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "I get no notification when my upgrade clears",
+   "content": "I get no notification when my upgrade clears, found out at the gate.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300124",
+   "updated": "2026-10-24T10:32:59.578Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Missed my upgrade because I did not know the sta",
+   "content": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300129",
+   "updated": "2026-10-22T21:30:46.909Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Paid the pet fee at the airport because I could ",
+   "content": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300036",
+   "updated": "2026-10-22T12:48:34.796Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300017",
+   "updated": "2026-10-22T01:15:35.451Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300102",
+   "updated": "2026-10-21T20:47:50.917Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Missed my upgrade because I did not know the sta",
+   "content": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300080",
+   "updated": "2026-10-20T23:13:40.085Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300118",
+   "updated": "2026-10-19T05:48:52.819Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "I get no notification when my upgrade clears",
+   "content": "I get no notification when my upgrade clears, found out at the gate.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300111",
+   "updated": "2026-10-18T15:40:46.164Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300135",
+   "updated": "2026-10-18T12:21:55.783Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300059",
+   "updated": "2026-10-17T09:33:18.083Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300058",
+   "updated": "2026-10-15T14:31:30.524Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300132",
+   "updated": "2026-10-15T04:28:58.002Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Called twice to add my cat to my reservation",
+   "content": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300094",
+   "updated": "2026-10-14T14:09:13.911Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300008",
+   "updated": "2026-10-14T12:56:30.233Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300074",
+   "updated": "2026-10-13T19:13:58.008Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300067",
+   "updated": "2026-10-12T20:50:17.731Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300136",
+   "updated": "2026-10-12T20:34:07.246Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300033",
+   "updated": "2026-10-12T00:52:42.706Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300087",
+   "updated": "2026-10-11T19:42:10.738Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300086",
+   "updated": "2026-10-10T16:12:24.300Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Fare sold out while I was paying for LGA-DFW and",
+   "content": "Fare sold out while I was paying for LGA-DFW and the site offered nothing else.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300042",
+   "updated": "2026-10-10T08:02:14.870Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300120",
+   "updated": "2026-10-10T01:02:56.701Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Why can't I see my position on the upgrade list ",
+   "content": "Why can't I see my position on the upgrade list until the gate?",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300056",
+   "updated": "2026-10-09T18:45:50.115Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300075",
+   "updated": "2026-10-09T05:50:28.110Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300081",
+   "updated": "2026-10-08T06:01:51.701Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300107",
+   "updated": "2026-10-07T12:28:12.499Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300029",
+   "updated": "2026-10-07T06:52:17.666Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300082",
+   "updated": "2026-10-07T00:38:28.024Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300105",
+   "updated": "2026-10-06T19:58:20.742Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Upgrade list position keeps jumping around in th",
+   "content": "Upgrade list position keeps jumping around in the app.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300057",
+   "updated": "2026-10-06T05:27:58.080Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300045",
+   "updated": "2026-10-05T10:10:11.897Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300091",
+   "updated": "2026-10-03T15:53:27.672Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "The flight I picked sold out",
+   "content": "The flight I picked sold out, had to call to find another flight the same day.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300096",
+   "updated": "2026-10-03T06:30:09.176Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Sold out message with no alternatives",
+   "content": "Sold out message with no alternatives, ended up booking another airline.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300077",
+   "updated": "2026-10-01T02:26:34.268Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300134",
+   "updated": "2026-09-30T15:45:45.800Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300126",
+   "updated": "2026-09-30T15:39:36.783Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300048",
+   "updated": "2026-09-30T05:17:44.025Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass QR code is blank in the app",
+   "content": "Boarding pass QR code is blank in the app.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300025",
+   "updated": "2026-09-29T23:10:56.207Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300085",
+   "updated": "2026-09-29T21:47:00.042Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300109",
+   "updated": "2026-09-29T16:00:54.546Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Upgrade list said I cleared",
+   "content": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300001",
+   "updated": "2026-09-28T21:09:44.017Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "App logged me out right at boarding and my board",
+   "content": "App logged me out right at boarding and my boarding pass was gone.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300066",
+   "updated": "2026-09-27T06:13:01.205Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300095",
+   "updated": "2026-09-26T01:41:58.457Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Sold out message with no alternatives",
+   "content": "Sold out message with no alternatives, ended up booking another airline.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300043",
+   "updated": "2026-09-24T12:55:13.849Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Boarding pass shows the old gate after the gate ",
+   "content": "Boarding pass shows the old gate after the gate change.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300053",
+   "updated": "2026-09-24T06:01:11.488Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Had no signal at CLT security and the boarding p",
+   "content": "Had no signal at CLT security and the boarding pass would not open offline.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300044",
+   "updated": "2026-09-23T16:07:09.868Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Had no signal at MIA security and the boarding p",
+   "content": "Had no signal at MIA security and the boarding pass would not open offline.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300104",
+   "updated": "2026-09-23T03:23:10.284Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300073",
+   "updated": "2026-09-22T05:05:14.902Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300123",
+   "updated": "2026-09-21T06:01:12.520Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Missed my upgrade because I did not know the sta",
+   "content": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300019",
+   "updated": "2026-09-20T16:49:24.170Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300122",
+   "updated": "2026-09-20T00:23:39.497Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "I get no notification when my upgrade clears",
+   "content": "I get no notification when my upgrade clears, found out at the gate.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300047",
+   "updated": "2026-09-19T04:13:15.417Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300115",
+   "updated": "2026-09-17T03:37:25.416Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Upgrade list said I cleared",
+   "content": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300076",
+   "updated": "2026-09-16T05:52:48.807Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300070",
+   "updated": "2026-09-15T20:46:11.012Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Saved card is missing at checkout again",
+   "content": "Saved card is missing at checkout again.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300021",
+   "updated": "2026-09-15T03:59:43.619Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300061",
+   "updated": "2026-09-10T17:48:34.533Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300079",
+   "updated": "2026-09-10T01:54:24.164Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300030",
+   "updated": "2026-09-08T06:42:10.322Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Boarding pass will not save to my wallet anymore",
+   "content": "Boarding pass will not save to my wallet anymore.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300084",
+   "updated": "2026-09-07T19:39:31.021Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Fare sold out while I was paying for ORD-PHL and",
+   "content": "Fare sold out while I was paying for ORD-PHL and the site offered nothing else.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300012",
+   "updated": "2026-09-07T14:14:32.998Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Mobile boarding pass would not load at the gate",
+   "content": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300116",
+   "updated": "2026-09-06T12:17:17.204Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Upgrade list said I cleared",
+   "content": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300101",
+   "updated": "2026-09-05T02:42:49.039Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300068",
+   "updated": "2026-09-03T20:08:58.065Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Payment page timed out on my phone and I re-ente",
+   "content": "Payment page timed out on my phone and I re-entered everything.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300125",
+   "updated": "2026-09-01T16:25:43.371Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Upgrade list said I cleared",
+   "content": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "version": "2026.11.1"
+  },
+  {
+   "id": "rev-3300130",
+   "updated": "2026-08-31T08:23:17.579Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Trying to book my dog in the cabin",
+   "content": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "version": "2026.11.0"
+  },
+  {
+   "id": "rev-3300089",
+   "updated": "2026-08-30T22:57:41.601Z",
+   "store": "App Store",
+   "rating": 2,
+   "title": "Fare sold out while I was paying for ORD-JFK and",
+   "content": "Fare sold out while I was paying for ORD-JFK and the site offered nothing else.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300113",
+   "updated": "2026-08-30T18:25:34.698Z",
+   "store": "Google Play",
+   "rating": 1,
+   "title": "The upgrade list showed me number 2 and then som",
+   "content": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300114",
+   "updated": "2026-08-28T13:58:46.802Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "I get no notification when my upgrade clears",
+   "content": "I get no notification when my upgrade clears, found out at the gate.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300071",
+   "updated": "2026-08-27T17:08:25.750Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Card declined in the app but works on the websit",
+   "content": "Card declined in the app but works on the website.",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300097",
+   "updated": "2026-08-26T19:28:07.874Z",
+   "store": "App Store",
+   "rating": 1,
+   "title": "Last seat disappeared at checkout",
+   "content": "Last seat disappeared at checkout. Is there a later flight?",
+   "version": "2026.10.2"
+  },
+  {
+   "id": "rev-3300117",
+   "updated": "2026-08-26T10:58:51.082Z",
+   "store": "Google Play",
+   "rating": 2,
+   "title": "Why can't I see my position on the upgrade list ",
+   "content": "Why can't I see my position on the upgrade list until the gate?",
+   "version": "2026.10.2"
+  }
+ ]
+}

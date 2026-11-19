@@ -1,8 +1,18 @@
 {
-  "org": { "preset": "balanced" },
-  "streams": {
-    "res": { "inherit": true },
-    "care": { "inherit": false, "preset": "fast" },
-    "bag": { "inherit": false, "preset": "strict" }
+ "org": {
+  "preset": "balanced"
+ },
+ "streams": {
+  "res": {
+   "inherit": true
+  },
+  "care": {
+   "inherit": false,
+   "preset": "fast"
+  },
+  "bag": {
+   "inherit": false,
+   "preset": "strict"
   }
+ }
 }

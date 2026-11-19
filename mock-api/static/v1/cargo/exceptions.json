@@ -1,0 +1,709 @@
+{
+ "items": [
+  {
+   "awb": "001-48200061",
+   "createdAt": "2026-11-18T17:28:56.991Z",
+   "station": "MIA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Northwind Freight",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200011",
+   "createdAt": "2026-11-18T12:56:35.048Z",
+   "station": "LAX",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at PHL for a day with no alert."
+  },
+  {
+   "awb": "001-48200021",
+   "createdAt": "2026-11-18T07:34:55.721Z",
+   "station": "LGA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200073",
+   "createdAt": "2026-11-18T01:50:59.763Z",
+   "station": "CLT",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Tailspin Parts",
+   "note": "Need proactive status for pallets moving LGA to DCA, we track by calling the station."
+  },
+  {
+   "awb": "001-48200042",
+   "createdAt": "2026-11-18T01:40:25.744Z",
+   "station": "LGA",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Shipment AWB 001-18302733 shows no status since departure from CLT."
+  },
+  {
+   "awb": "001-48200044",
+   "createdAt": "2026-11-17T21:52:34.521Z",
+   "station": "CLT",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at CLT for a day with no alert."
+  },
+  {
+   "awb": "001-48200072",
+   "createdAt": "2026-11-17T18:02:45.321Z",
+   "station": "JFK",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in MIA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200068",
+   "createdAt": "2026-11-17T17:41:05.418Z",
+   "station": "LAX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Litware Logistics",
+   "note": "Need proactive status for pallets moving PHX to DCA, we track by calling the station."
+  },
+  {
+   "awb": "001-48200071",
+   "createdAt": "2026-11-17T15:59:54.490Z",
+   "station": "MIA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Litware Logistics",
+   "note": "Shipment AWB 001-17721402 shows no status since departure from PHX."
+  },
+  {
+   "awb": "001-48200036",
+   "createdAt": "2026-11-17T15:00:16.674Z",
+   "station": "DCA",
+   "exceptionCode": "OFLD",
+   "customer": "Fabrikam Foods",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200056",
+   "createdAt": "2026-11-17T14:12:45.147Z",
+   "station": "PHL",
+   "exceptionCode": "NFD",
+   "customer": "Litware Logistics",
+   "note": "Shipment AWB 001-22182040 shows no status since departure from DFW."
+  },
+  {
+   "awb": "001-48200080",
+   "createdAt": "2026-11-17T10:17:31.835Z",
+   "station": "PHX",
+   "exceptionCode": "MSCA",
+   "customer": "Tailspin Parts",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200062",
+   "createdAt": "2026-11-16T23:29:50.205Z",
+   "station": "PHX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200054",
+   "createdAt": "2026-11-16T23:16:12.877Z",
+   "station": "PHX",
+   "exceptionCode": "MSCA",
+   "customer": "Fabrikam Foods",
+   "note": "Our freight missed the connection in DCA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200023",
+   "createdAt": "2026-11-16T17:51:51.437Z",
+   "station": "LGA",
+   "exceptionCode": "MSCA",
+   "customer": "Tailspin Parts",
+   "note": "Need proactive status for pallets moving DFW to DFW, we track by calling the station."
+  },
+  {
+   "awb": "001-48200057",
+   "createdAt": "2026-11-16T07:02:33.688Z",
+   "station": "PHL",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Tailspin Parts",
+   "note": "Need proactive status for pallets moving DFW to LGA, we track by calling the station."
+  },
+  {
+   "awb": "001-48200060",
+   "createdAt": "2026-11-16T00:11:12.753Z",
+   "station": "MIA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Litware Logistics",
+   "note": "Need proactive status for pallets moving ORD to JFK, we track by calling the station."
+  },
+  {
+   "awb": "001-48200078",
+   "createdAt": "2026-11-15T20:02:41.050Z",
+   "station": "CLT",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Fabrikam Foods",
+   "note": "Our freight missed the connection in ORD and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200083",
+   "createdAt": "2026-11-15T13:24:07.970Z",
+   "station": "MIA",
+   "exceptionCode": "NFD",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in JFK and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200074",
+   "createdAt": "2026-11-14T22:42:52.629Z",
+   "station": "LAX",
+   "exceptionCode": "NFD",
+   "customer": "Tailspin Parts",
+   "note": "Need proactive status for pallets moving JFK to PHL, we track by calling the station."
+  },
+  {
+   "awb": "001-48200051",
+   "createdAt": "2026-11-14T22:18:29.740Z",
+   "station": "PHL",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Contoso Pharma",
+   "note": "Need proactive status for pallets moving MIA to PHX, we track by calling the station."
+  },
+  {
+   "awb": "001-48200008",
+   "createdAt": "2026-11-14T12:49:48.661Z",
+   "station": "CLT",
+   "exceptionCode": "NFD",
+   "customer": "Northwind Freight",
+   "note": "Perishable shipment sat at PHL for a day with no alert."
+  },
+  {
+   "awb": "001-48200059",
+   "createdAt": "2026-11-13T13:35:48.823Z",
+   "station": "DFW",
+   "exceptionCode": "OFLD",
+   "customer": "Fabrikam Foods",
+   "note": "Shipment AWB 001-21051197 shows no status since departure from PHL."
+  },
+  {
+   "awb": "001-48200049",
+   "createdAt": "2026-11-13T01:11:15.232Z",
+   "station": "CLT",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in LAX and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200048",
+   "createdAt": "2026-11-12T18:46:16.620Z",
+   "station": "JFK",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Shipment AWB 001-1232725 shows no status since departure from MIA."
+  },
+  {
+   "awb": "001-48200052",
+   "createdAt": "2026-11-10T19:51:38.390Z",
+   "station": "CLT",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Need proactive status for pallets moving MIA to CLT, we track by calling the station."
+  },
+  {
+   "awb": "001-48200086",
+   "createdAt": "2026-11-10T13:31:19.198Z",
+   "station": "MIA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200058",
+   "createdAt": "2026-11-10T09:56:04.645Z",
+   "station": "ORD",
+   "exceptionCode": "NFD",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in DCA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200041",
+   "createdAt": "2026-11-09T16:23:21.193Z",
+   "station": "LAX",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Litware Logistics",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200024",
+   "createdAt": "2026-11-08T21:42:31.643Z",
+   "station": "DCA",
+   "exceptionCode": "OFLD",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in ORD and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200053",
+   "createdAt": "2026-11-08T05:40:53.867Z",
+   "station": "LGA",
+   "exceptionCode": "NFD",
+   "customer": "Fabrikam Foods",
+   "note": "Shipment AWB 001-21121581 shows no status since departure from JFK."
+  },
+  {
+   "awb": "001-48200063",
+   "createdAt": "2026-11-07T09:07:45.962Z",
+   "station": "MIA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Perishable shipment sat at MIA for a day with no alert."
+  },
+  {
+   "awb": "001-48200087",
+   "createdAt": "2026-11-05T19:21:23.507Z",
+   "station": "DFW",
+   "exceptionCode": "MSCA",
+   "customer": "Fabrikam Foods",
+   "note": "Our freight missed the connection in LGA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200066",
+   "createdAt": "2026-11-05T18:38:39.716Z",
+   "station": "LAX",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at JFK for a day with no alert."
+  },
+  {
+   "awb": "001-48200001",
+   "createdAt": "2026-11-05T08:51:23.223Z",
+   "station": "DFW",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Tailspin Parts",
+   "note": "Our freight missed the connection in CLT and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200037",
+   "createdAt": "2026-11-05T02:32:05.576Z",
+   "station": "DFW",
+   "exceptionCode": "NFD",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at DFW for a day with no alert."
+  },
+  {
+   "awb": "001-48200005",
+   "createdAt": "2026-11-04T22:58:11.347Z",
+   "station": "LGA",
+   "exceptionCode": "NFD",
+   "customer": "Contoso Pharma",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200027",
+   "createdAt": "2026-11-03T20:05:01.983Z",
+   "station": "ORD",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200088",
+   "createdAt": "2026-11-03T03:33:03.996Z",
+   "station": "PHX",
+   "exceptionCode": "OFLD",
+   "customer": "Contoso Pharma",
+   "note": "Our freight missed the connection in LAX and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200019",
+   "createdAt": "2026-11-02T17:44:41.680Z",
+   "station": "CLT",
+   "exceptionCode": "MSCA",
+   "customer": "Tailspin Parts",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200018",
+   "createdAt": "2026-11-02T12:45:42.114Z",
+   "station": "PHX",
+   "exceptionCode": "OFLD",
+   "customer": "Contoso Pharma",
+   "note": "Our freight missed the connection in DCA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200026",
+   "createdAt": "2026-11-02T12:35:33.148Z",
+   "station": "DCA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Northwind Freight",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200040",
+   "createdAt": "2026-11-01T23:55:09.807Z",
+   "station": "PHL",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Our freight missed the connection in LGA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200014",
+   "createdAt": "2026-10-31T18:43:56.985Z",
+   "station": "ORD",
+   "exceptionCode": "MSCA",
+   "customer": "Contoso Pharma",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200006",
+   "createdAt": "2026-10-30T22:28:02.087Z",
+   "station": "JFK",
+   "exceptionCode": "NFD",
+   "customer": "Litware Logistics",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200015",
+   "createdAt": "2026-10-30T14:38:18.904Z",
+   "station": "LAX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Contoso Pharma",
+   "note": "Our freight missed the connection in PHX and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200075",
+   "createdAt": "2026-10-29T09:14:16.586Z",
+   "station": "LGA",
+   "exceptionCode": "OFLD",
+   "customer": "Litware Logistics",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200009",
+   "createdAt": "2026-10-29T05:47:03.335Z",
+   "station": "PHX",
+   "exceptionCode": "NFD",
+   "customer": "Northwind Freight",
+   "note": "Need proactive status for pallets moving CLT to LAX, we track by calling the station."
+  },
+  {
+   "awb": "001-48200004",
+   "createdAt": "2026-10-29T05:07:01.177Z",
+   "station": "DFW",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Litware Logistics",
+   "note": "Shipment AWB 001-21331397 shows no status since departure from CLT."
+  },
+  {
+   "awb": "001-48200003",
+   "createdAt": "2026-10-27T07:55:11.359Z",
+   "station": "LAX",
+   "exceptionCode": "OFLD",
+   "customer": "Fabrikam Foods",
+   "note": "Need proactive status for pallets moving CLT to JFK, we track by calling the station."
+  },
+  {
+   "awb": "001-48200010",
+   "createdAt": "2026-10-26T00:49:44.669Z",
+   "station": "LAX",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Northwind Freight",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200025",
+   "createdAt": "2026-10-24T13:50:39.405Z",
+   "station": "LGA",
+   "exceptionCode": "OFLD",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at ORD for a day with no alert."
+  },
+  {
+   "awb": "001-48200077",
+   "createdAt": "2026-10-24T12:56:42.521Z",
+   "station": "LGA",
+   "exceptionCode": "NFD",
+   "customer": "Northwind Freight",
+   "note": "Need proactive status for pallets moving PHL to ORD, we track by calling the station."
+  },
+  {
+   "awb": "001-48200032",
+   "createdAt": "2026-10-23T16:40:40.533Z",
+   "station": "CLT",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Tailspin Parts",
+   "note": "Shipment AWB 001-12482798 shows no status since departure from MIA."
+  },
+  {
+   "awb": "001-48200029",
+   "createdAt": "2026-10-22T09:59:09.953Z",
+   "station": "DFW",
+   "exceptionCode": "MSCA",
+   "customer": "Contoso Pharma",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200013",
+   "createdAt": "2026-10-22T02:26:24.438Z",
+   "station": "PHL",
+   "exceptionCode": "OFLD",
+   "customer": "Contoso Pharma",
+   "note": "Shipment AWB 001-23751975 shows no status since departure from LGA."
+  },
+  {
+   "awb": "001-48200016",
+   "createdAt": "2026-10-17T09:35:07.004Z",
+   "station": "JFK",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200031",
+   "createdAt": "2026-10-11T12:00:15.491Z",
+   "station": "CLT",
+   "exceptionCode": "NFD",
+   "customer": "Fabrikam Foods",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200030",
+   "createdAt": "2026-10-08T06:37:37.312Z",
+   "station": "MIA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Tailspin Parts",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200069",
+   "createdAt": "2026-10-07T10:37:40.025Z",
+   "station": "DCA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Tailspin Parts",
+   "note": "Perishable shipment sat at DFW for a day with no alert."
+  },
+  {
+   "awb": "001-48200022",
+   "createdAt": "2026-10-06T14:34:18.941Z",
+   "station": "MIA",
+   "exceptionCode": "OFLD",
+   "customer": "Northwind Freight",
+   "note": "Need proactive status for pallets moving LGA to PHL, we track by calling the station."
+  },
+  {
+   "awb": "001-48200082",
+   "createdAt": "2026-10-05T11:48:26.226Z",
+   "station": "MIA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Shipment AWB 001-15942301 shows no status since departure from CLT."
+  },
+  {
+   "awb": "001-48200047",
+   "createdAt": "2026-10-04T20:01:30.551Z",
+   "station": "CLT",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Litware Logistics",
+   "note": "Shipment AWB 001-1463180 shows no status since departure from JFK."
+  },
+  {
+   "awb": "001-48200079",
+   "createdAt": "2026-10-02T15:35:33.700Z",
+   "station": "PHX",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Perishable shipment sat at ORD for a day with no alert."
+  },
+  {
+   "awb": "001-48200035",
+   "createdAt": "2026-10-02T01:40:40.334Z",
+   "station": "LGA",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Shipment AWB 001-11981777 shows no status since departure from ORD."
+  },
+  {
+   "awb": "001-48200034",
+   "createdAt": "2026-09-28T16:13:34.500Z",
+   "station": "LAX",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Tailspin Parts",
+   "note": "Shipment AWB 001-2229322 shows no status since departure from CLT."
+  },
+  {
+   "awb": "001-48200038",
+   "createdAt": "2026-09-28T03:45:29.741Z",
+   "station": "JFK",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Contoso Pharma",
+   "note": "Shipment AWB 001-8711889 shows no status since departure from LGA."
+  },
+  {
+   "awb": "001-48200012",
+   "createdAt": "2026-09-27T15:11:12.475Z",
+   "station": "DCA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Northwind Freight",
+   "note": "Need proactive status for pallets moving LAX to MIA, we track by calling the station."
+  },
+  {
+   "awb": "001-48200039",
+   "createdAt": "2026-09-27T08:16:50.352Z",
+   "station": "PHX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Contoso Pharma",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200055",
+   "createdAt": "2026-09-24T15:36:07.061Z",
+   "station": "CLT",
+   "exceptionCode": "OFLD",
+   "customer": "Contoso Pharma",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200043",
+   "createdAt": "2026-09-24T15:25:00.961Z",
+   "station": "PHL",
+   "exceptionCode": "MSCA",
+   "customer": "Northwind Freight",
+   "note": "Our freight missed the connection in CLT and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200028",
+   "createdAt": "2026-09-23T18:40:39.979Z",
+   "station": "DFW",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Fabrikam Foods",
+   "note": "Our freight missed the connection in PHX and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200084",
+   "createdAt": "2026-09-18T13:03:02.556Z",
+   "station": "LGA",
+   "exceptionCode": "MSCA",
+   "customer": "Contoso Pharma",
+   "note": "Need proactive status for pallets moving ORD to LAX, we track by calling the station."
+  },
+  {
+   "awb": "001-48200045",
+   "createdAt": "2026-09-17T11:43:26.652Z",
+   "station": "ORD",
+   "exceptionCode": "MSCA",
+   "customer": "Northwind Freight",
+   "note": "Our freight missed the connection in LAX and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200067",
+   "createdAt": "2026-09-14T20:20:44.840Z",
+   "station": "CLT",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Litware Logistics",
+   "note": "Perishable shipment sat at MIA for a day with no alert."
+  },
+  {
+   "awb": "001-48200020",
+   "createdAt": "2026-09-14T00:53:26.556Z",
+   "station": "LGA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Fabrikam Foods",
+   "note": "Perishable shipment sat at DFW for a day with no alert."
+  },
+  {
+   "awb": "001-48200085",
+   "createdAt": "2026-09-11T16:37:28.849Z",
+   "station": "ORD",
+   "exceptionCode": "MSCA",
+   "customer": "Northwind Freight",
+   "note": "Shipment AWB 001-10271284 shows no status since departure from CLT."
+  },
+  {
+   "awb": "001-48200070",
+   "createdAt": "2026-09-08T01:23:18.873Z",
+   "station": "JFK",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Fabrikam Foods",
+   "note": "Shipment AWB 001-27381993 shows no status since departure from PHL."
+  },
+  {
+   "awb": "001-48200007",
+   "createdAt": "2026-09-07T02:06:00.618Z",
+   "station": "LAX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Fabrikam Foods",
+   "note": "Shipment AWB 001-22351751 shows no status since departure from PHL."
+  },
+  {
+   "awb": "001-48200076",
+   "createdAt": "2026-09-05T02:44:40.819Z",
+   "station": "LGA",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Fabrikam Foods",
+   "note": "Our freight missed the connection in MIA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200033",
+   "createdAt": "2026-09-05T00:01:20.146Z",
+   "station": "JFK",
+   "exceptionCode": "DLV-LATE",
+   "customer": "Contoso Pharma",
+   "note": "Shipment AWB 001-8482009 shows no status since departure from MIA."
+  },
+  {
+   "awb": "001-48200064",
+   "createdAt": "2026-09-04T21:56:18.315Z",
+   "station": "PHX",
+   "exceptionCode": "OFLD",
+   "customer": "Litware Logistics",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200065",
+   "createdAt": "2026-09-04T15:48:58.620Z",
+   "station": "LGA",
+   "exceptionCode": "MSCA",
+   "customer": "Northwind Freight",
+   "note": "Cargo tracking page says received, the customer says it is not there."
+  },
+  {
+   "awb": "001-48200046",
+   "createdAt": "2026-09-02T23:30:10.532Z",
+   "station": "PHL",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Contoso Pharma",
+   "note": "Shipment AWB 001-5471297 shows no status since departure from MIA."
+  },
+  {
+   "awb": "001-48200050",
+   "createdAt": "2026-09-02T11:29:31.050Z",
+   "station": "LAX",
+   "exceptionCode": "STATUS-GAP",
+   "customer": "Northwind Freight",
+   "note": "Air waybill status has not updated in 30 hours."
+  },
+  {
+   "awb": "001-48200002",
+   "createdAt": "2026-08-31T09:12:44.116Z",
+   "station": "LGA",
+   "exceptionCode": "MSCA",
+   "customer": "Contoso Pharma",
+   "note": "Perishable shipment sat at CLT for a day with no alert."
+  },
+  {
+   "awb": "001-48200017",
+   "createdAt": "2026-08-29T00:11:34.659Z",
+   "station": "LAX",
+   "exceptionCode": "MSCA",
+   "customer": "Litware Logistics",
+   "note": "Our freight missed the connection in DCA and nobody told us until the consignee called."
+  },
+  {
+   "awb": "001-48200081",
+   "createdAt": "2026-08-28T14:01:38.043Z",
+   "station": "PHL",
+   "exceptionCode": "MSCA",
+   "customer": "Northwind Freight",
+   "note": "Air waybill status has not updated in 30 hours."
+  }
+ ],
+ "count": 88
+}

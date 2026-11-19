@@ -1,0 +1,2303 @@
+{
+ "data": [
+  {
+   "responseId": "r_7700030",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Is my ticket covered by the weather waiver for JFK?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700081",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "My checked bag never arrived in LAX, no update for two days.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700100",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700139",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 6,
+   "touchpoint": "Post-trip",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in LAX when I landed.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700165",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Boarding pass shows the old gate after the gate change.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700187",
+   "surveyDate": "2026-11-18",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700007",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Fare sold out while I was paying for LAX-MIA and the site offered nothing else.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700027",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700076",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700176",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700193",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Is there room for a pet carrier on flight 1631? The app will not tell me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700264",
+   "surveyDate": "2026-11-17",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700034",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 2,
+   "touchpoint": "Post-trip",
+   "comment": "Is my ticket covered by the weather waiver for LAX?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700080",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700087",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700112",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700174",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700262",
+   "surveyDate": "2026-11-16",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Gate agent in DFW was very helpful.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700023",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700103",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "I get no notification when my upgrade clears, found out at the gate.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700138",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Waited 50 minutes for wheelchair assistance and missed my connection.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700146",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in LGA when I landed.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700164",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 4,
+   "touchpoint": "Inflight",
+   "comment": "App logged me out right at boarding and my boarding pass was gone.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700191",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700198",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Clean cabin and on time.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700203",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Clean cabin and on time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700244",
+   "surveyDate": "2026-11-15",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Gate agent in LAX was very helpful.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700050",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Missed my connection in MIA after a delay and the app would not rebook me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700067",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Flight 1063 cancelled at DFW, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700097",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700106",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 6,
+   "touchpoint": "Inflight",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700181",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 6,
+   "touchpoint": "Post-trip",
+   "comment": "Is there room for a pet carrier on flight 2030? The app will not tell me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700261",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700271",
+   "surveyDate": "2026-11-14",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Clean cabin and on time.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700005",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700049",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Flight 245 cancelled at LGA, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700052",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Missed my connection in PHX after a delay and the app would not rebook me.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700062",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Is my ticket covered by the weather waiver for JFK?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700116",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700133",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "My mother needs mobility assistance, the request did not carry over after the rebooking.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700145",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "My mother needs mobility assistance, the request did not carry over after the rebooking.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700147",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Special assistance agent never showed for the connection in ORD.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700170",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "Boarding pass QR code is blank in the app.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700220",
+   "surveyDate": "2026-11-13",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in CLT was very helpful.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700022",
+   "surveyDate": "2026-11-12",
+   "ltrScore": 1,
+   "touchpoint": "Inflight",
+   "comment": "Fare sold out while I was paying for DFW-PHX and the site offered nothing else.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700024",
+   "surveyDate": "2026-11-12",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "Fare sold out while I was paying for CLT-DCA and the site offered nothing else.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700039",
+   "surveyDate": "2026-11-12",
+   "ltrScore": 6,
+   "touchpoint": "Post-trip",
+   "comment": "Flight 1435 cancelled at MIA, two hours on hold to rebook.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700069",
+   "surveyDate": "2026-11-12",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Flight 2202 cancelled at JFK, two hours on hold to rebook.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700129",
+   "surveyDate": "2026-11-12",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in DFW when I landed.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700020",
+   "surveyDate": "2026-11-11",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700047",
+   "surveyDate": "2026-11-11",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Is my ticket covered by the weather waiver for LGA?",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700118",
+   "surveyDate": "2026-11-11",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700199",
+   "surveyDate": "2026-11-11",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in LGA was very helpful.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700121",
+   "surveyDate": "2026-11-10",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700154",
+   "surveyDate": "2026-11-10",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Special assistance agent never showed for the connection in JFK.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700167",
+   "surveyDate": "2026-11-10",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Boarding pass QR code is blank in the app.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700213",
+   "surveyDate": "2026-11-10",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700273",
+   "surveyDate": "2026-11-10",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700021",
+   "surveyDate": "2026-11-09",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700057",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700091",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700162",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Boarding pass QR code is blank in the app.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700169",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700183",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700186",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700192",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700268",
+   "surveyDate": "2026-11-08",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Easy rebooking, fast.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700019",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700028",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700029",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Fare sold out while I was paying for PHL-CLT and the site offered nothing else.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700126",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700233",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Crew was great and we landed early.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700246",
+   "surveyDate": "2026-11-07",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700014",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700061",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Is my ticket covered by the weather waiver for ORD?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700099",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700161",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700177",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Had no signal at MIA security and the boarding pass would not open offline.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700182",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 2,
+   "touchpoint": "Booking",
+   "comment": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700280",
+   "surveyDate": "2026-11-06",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Crew was great and we landed early.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700114",
+   "surveyDate": "2026-11-05",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700221",
+   "surveyDate": "2026-11-05",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700260",
+   "surveyDate": "2026-11-05",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700270",
+   "surveyDate": "2026-11-05",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700053",
+   "surveyDate": "2026-11-04",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Is my ticket covered by the weather waiver for LAX?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700095",
+   "surveyDate": "2026-11-04",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700098",
+   "surveyDate": "2026-11-04",
+   "ltrScore": 1,
+   "touchpoint": "Inflight",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700131",
+   "surveyDate": "2026-11-04",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in PHL when I landed.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700166",
+   "surveyDate": "2026-11-04",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Boarding pass QR code is blank in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700036",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Missed my connection in LAX after a delay and the app would not rebook me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700109",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700137",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Special assistance agent never showed for the connection in PHL.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700153",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "My mother needs mobility assistance, the request did not carry over after the rebooking.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700188",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Is there room for a pet carrier on flight 1027? The app will not tell me.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700194",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 6,
+   "touchpoint": "Inflight",
+   "comment": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700218",
+   "surveyDate": "2026-11-03",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in PHL was very helpful.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700002",
+   "surveyDate": "2026-11-02",
+   "ltrScore": 2,
+   "touchpoint": "Booking",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700269",
+   "surveyDate": "2026-11-02",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700195",
+   "surveyDate": "2026-11-01",
+   "ltrScore": 2,
+   "touchpoint": "Inflight",
+   "comment": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700202",
+   "surveyDate": "2026-11-01",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700009",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Fare sold out while I was paying for PHX-PHL and the site offered nothing else.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700043",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Flight 215 cancelled at PHL, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700092",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700130",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 6,
+   "touchpoint": "Inflight",
+   "comment": "Waited 50 minutes for wheelchair assistance and missed my connection.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700149",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in LAX when I landed.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700168",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "App logged me out right at boarding and my boarding pass was gone.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700185",
+   "surveyDate": "2026-10-31",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700064",
+   "surveyDate": "2026-10-30",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Is my ticket covered by the weather waiver for LAX?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700068",
+   "surveyDate": "2026-10-30",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Flight 1751 cancelled at MIA, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700079",
+   "surveyDate": "2026-10-30",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700197",
+   "surveyDate": "2026-10-30",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Gate agent in ORD was very helpful.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700284",
+   "surveyDate": "2026-10-30",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700003",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 2,
+   "touchpoint": "Booking",
+   "comment": "Fare sold out while I was paying for ORD-LGA and the site offered nothing else.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700037",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Is my ticket covered by the weather waiver for PHX?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700123",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700124",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700159",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Had no signal at PHX security and the boarding pass would not open offline.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700251",
+   "surveyDate": "2026-10-29",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700017",
+   "surveyDate": "2026-10-28",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700058",
+   "surveyDate": "2026-10-28",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Flight 2898 cancelled at JFK, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700115",
+   "surveyDate": "2026-10-28",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700128",
+   "surveyDate": "2026-10-28",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700242",
+   "surveyDate": "2026-10-28",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700026",
+   "surveyDate": "2026-10-27",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700089",
+   "surveyDate": "2026-10-27",
+   "ltrScore": 1,
+   "touchpoint": "Inflight",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700207",
+   "surveyDate": "2026-10-27",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Gate agent in DCA was very helpful.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700212",
+   "surveyDate": "2026-10-27",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700054",
+   "surveyDate": "2026-10-26",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700051",
+   "surveyDate": "2026-10-25",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700156",
+   "surveyDate": "2026-10-25",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "No assistance at the ORD gate even though it was on the reservation.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700157",
+   "surveyDate": "2026-10-25",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700179",
+   "surveyDate": "2026-10-25",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700189",
+   "surveyDate": "2026-10-25",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Is there room for a pet carrier on flight 1900? The app will not tell me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700013",
+   "surveyDate": "2026-10-24",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700038",
+   "surveyDate": "2026-10-23",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Flight 2891 cancelled at ORD, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700158",
+   "surveyDate": "2026-10-23",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Had no signal at PHX security and the boarding pass would not open offline.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700104",
+   "surveyDate": "2026-10-22",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700210",
+   "surveyDate": "2026-10-22",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700001",
+   "surveyDate": "2026-10-21",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700107",
+   "surveyDate": "2026-10-21",
+   "ltrScore": 2,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700108",
+   "surveyDate": "2026-10-21",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700222",
+   "surveyDate": "2026-10-21",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700228",
+   "surveyDate": "2026-10-21",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700134",
+   "surveyDate": "2026-10-20",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in PHL when I landed.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700152",
+   "surveyDate": "2026-10-20",
+   "ltrScore": 4,
+   "touchpoint": "Inflight",
+   "comment": "Wheelchair request disappeared after the schedule change.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700190",
+   "surveyDate": "2026-10-20",
+   "ltrScore": 4,
+   "touchpoint": "Inflight",
+   "comment": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700241",
+   "surveyDate": "2026-10-20",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700247",
+   "surveyDate": "2026-10-20",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700042",
+   "surveyDate": "2026-10-19",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Flight 315 cancelled at ORD, two hours on hold to rebook.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700084",
+   "surveyDate": "2026-10-19",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700111",
+   "surveyDate": "2026-10-19",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700230",
+   "surveyDate": "2026-10-19",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in LGA was very helpful.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700060",
+   "surveyDate": "2026-10-18",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Missed my connection in ORD after a delay and the app would not rebook me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700151",
+   "surveyDate": "2026-10-18",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Waited 50 minutes for wheelchair assistance and missed my connection.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700018",
+   "surveyDate": "2026-10-17",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700155",
+   "surveyDate": "2026-10-17",
+   "ltrScore": 4,
+   "touchpoint": "Inflight",
+   "comment": "Special assistance agent never showed for the connection in PHX.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700184",
+   "surveyDate": "2026-10-17",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700279",
+   "surveyDate": "2026-10-17",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700074",
+   "surveyDate": "2026-10-16",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700135",
+   "surveyDate": "2026-10-16",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Special assistance agent never showed for the connection in MIA.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700281",
+   "surveyDate": "2026-10-16",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700285",
+   "surveyDate": "2026-10-16",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700006",
+   "surveyDate": "2026-10-15",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700239",
+   "surveyDate": "2026-10-15",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700274",
+   "surveyDate": "2026-10-15",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700012",
+   "surveyDate": "2026-10-14",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Fare sold out while I was paying for JFK-ORD and the site offered nothing else.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700150",
+   "surveyDate": "2026-10-14",
+   "ltrScore": 2,
+   "touchpoint": "Inflight",
+   "comment": "Waited 50 minutes for wheelchair assistance and missed my connection.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700206",
+   "surveyDate": "2026-10-14",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700254",
+   "surveyDate": "2026-10-14",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700082",
+   "surveyDate": "2026-10-13",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700000",
+   "surveyDate": "2026-10-11",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "The flight I picked sold out, had to call to find another flight the same day.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700090",
+   "surveyDate": "2026-10-11",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "My checked bag never arrived in ORD, no update for two days.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700272",
+   "surveyDate": "2026-10-11",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700011",
+   "surveyDate": "2026-10-10",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700096",
+   "surveyDate": "2026-10-10",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700219",
+   "surveyDate": "2026-10-10",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700237",
+   "surveyDate": "2026-10-10",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700257",
+   "surveyDate": "2026-10-10",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700008",
+   "surveyDate": "2026-10-09",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Fare sold out while I was paying for DFW-LGA and the site offered nothing else.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700044",
+   "surveyDate": "2026-10-09",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Flight 1481 cancelled at PHX, two hours on hold to rebook.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700119",
+   "surveyDate": "2026-10-08",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700120",
+   "surveyDate": "2026-10-08",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "I get no notification when my upgrade clears, found out at the gate.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700140",
+   "surveyDate": "2026-10-06",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "My mother needs mobility assistance, the request did not carry over after the rebooking.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700215",
+   "surveyDate": "2026-10-06",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700266",
+   "surveyDate": "2026-10-06",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700141",
+   "surveyDate": "2026-10-05",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Special assistance agent never showed for the connection in JFK.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700010",
+   "surveyDate": "2026-10-04",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700040",
+   "surveyDate": "2026-10-04",
+   "ltrScore": 0,
+   "touchpoint": "Inflight",
+   "comment": "Missed my connection in DFW after a delay and the app would not rebook me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700073",
+   "surveyDate": "2026-10-04",
+   "ltrScore": 2,
+   "touchpoint": "Post-trip",
+   "comment": "My checked bag never arrived in DFW, no update for two days.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700110",
+   "surveyDate": "2026-10-03",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700234",
+   "surveyDate": "2026-10-03",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700041",
+   "surveyDate": "2026-10-02",
+   "ltrScore": 0,
+   "touchpoint": "Inflight",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700048",
+   "surveyDate": "2026-10-02",
+   "ltrScore": 0,
+   "touchpoint": "Inflight",
+   "comment": "Flight 2000 cancelled at CLT, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700180",
+   "surveyDate": "2026-10-02",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Is there room for a pet carrier on flight 2285? The app will not tell me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700033",
+   "surveyDate": "2026-09-30",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700173",
+   "surveyDate": "2026-09-30",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700229",
+   "surveyDate": "2026-09-30",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700240",
+   "surveyDate": "2026-09-30",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700117",
+   "surveyDate": "2026-09-29",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700148",
+   "surveyDate": "2026-09-29",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in LAX when I landed.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700201",
+   "surveyDate": "2026-09-29",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Clean cabin and on time.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700045",
+   "surveyDate": "2026-09-28",
+   "ltrScore": 0,
+   "touchpoint": "Post-trip",
+   "comment": "Is my ticket covered by the weather waiver for CLT?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700077",
+   "surveyDate": "2026-09-28",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "My checked bag never arrived in JFK, no update for two days.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700093",
+   "surveyDate": "2026-09-27",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700253",
+   "surveyDate": "2026-09-27",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700286",
+   "surveyDate": "2026-09-27",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700088",
+   "surveyDate": "2026-09-26",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700208",
+   "surveyDate": "2026-09-25",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700083",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 2,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700172",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "App logged me out right at boarding and my boarding pass was gone.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700205",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700226",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700232",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700238",
+   "surveyDate": "2026-09-24",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Crew was great and we landed early.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700223",
+   "surveyDate": "2026-09-23",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Clean cabin and on time.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700032",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 0,
+   "touchpoint": "Airport",
+   "comment": "Flight 1813 cancelled at ORD, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700101",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700142",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "Wheelchair request disappeared after the schedule change.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700204",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Clean cabin and on time.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700231",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Clean cabin and on time.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700236",
+   "surveyDate": "2026-09-22",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in PHX was very helpful.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700224",
+   "surveyDate": "2026-09-21",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700259",
+   "surveyDate": "2026-09-21",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700065",
+   "surveyDate": "2026-09-19",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700132",
+   "surveyDate": "2026-09-19",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Requested a wheelchair at booking, nobody was at the gate in CLT when I landed.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700160",
+   "surveyDate": "2026-09-19",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700171",
+   "surveyDate": "2026-09-19",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Boarding pass QR code is blank in the app.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700035",
+   "surveyDate": "2026-09-18",
+   "ltrScore": 0,
+   "touchpoint": "Booking",
+   "comment": "Is my ticket covered by the weather waiver for PHX?",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700216",
+   "surveyDate": "2026-09-18",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700256",
+   "surveyDate": "2026-09-18",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700258",
+   "surveyDate": "2026-09-18",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700163",
+   "surveyDate": "2026-09-17",
+   "ltrScore": 2,
+   "touchpoint": "Post-trip",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700175",
+   "surveyDate": "2026-09-17",
+   "ltrScore": 3,
+   "touchpoint": "Inflight",
+   "comment": "Boarding pass will not save to my wallet anymore.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700211",
+   "surveyDate": "2026-09-16",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Easy rebooking, fast.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700265",
+   "surveyDate": "2026-09-16",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700105",
+   "surveyDate": "2026-09-15",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700136",
+   "surveyDate": "2026-09-15",
+   "ltrScore": 3,
+   "touchpoint": "Booking",
+   "comment": "Wheelchair request disappeared after the schedule change.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700283",
+   "surveyDate": "2026-09-15",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700004",
+   "surveyDate": "2026-09-14",
+   "ltrScore": 5,
+   "touchpoint": "Inflight",
+   "comment": "Sold out message with no alternatives, ended up booking another airline.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700078",
+   "surveyDate": "2026-09-14",
+   "ltrScore": 1,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700055",
+   "surveyDate": "2026-09-13",
+   "ltrScore": 4,
+   "touchpoint": "Post-trip",
+   "comment": "Rebooked onto a flight two days later, I need to travel today.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700071",
+   "surveyDate": "2026-09-13",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700059",
+   "surveyDate": "2026-09-12",
+   "ltrScore": 6,
+   "touchpoint": "Booking",
+   "comment": "Missed my connection in DFW after a delay and the app would not rebook me.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700085",
+   "surveyDate": "2026-09-11",
+   "ltrScore": 6,
+   "touchpoint": "Inflight",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700127",
+   "surveyDate": "2026-09-11",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700235",
+   "surveyDate": "2026-09-11",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700275",
+   "surveyDate": "2026-09-11",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700056",
+   "surveyDate": "2026-09-10",
+   "ltrScore": 5,
+   "touchpoint": "Airport",
+   "comment": "Flight 1837 cancelled at ORD, two hours on hold to rebook.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700200",
+   "surveyDate": "2026-09-10",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700248",
+   "surveyDate": "2026-09-10",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700250",
+   "surveyDate": "2026-09-10",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700025",
+   "surveyDate": "2026-09-09",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700046",
+   "surveyDate": "2026-09-09",
+   "ltrScore": 6,
+   "touchpoint": "Airport",
+   "comment": "Flight 2442 cancelled at DCA, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700086",
+   "surveyDate": "2026-09-08",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "My checked bag never arrived in PHX, no update for two days.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700196",
+   "surveyDate": "2026-09-08",
+   "ltrScore": 2,
+   "touchpoint": "Booking",
+   "comment": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700227",
+   "surveyDate": "2026-09-08",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Crew was great and we landed early.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700075",
+   "surveyDate": "2026-09-07",
+   "ltrScore": 4,
+   "touchpoint": "Airport",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700178",
+   "surveyDate": "2026-09-07",
+   "ltrScore": 4,
+   "touchpoint": "Inflight",
+   "comment": "Had no signal at LAX security and the boarding pass would not open offline.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700217",
+   "surveyDate": "2026-09-07",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700255",
+   "surveyDate": "2026-09-07",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700063",
+   "surveyDate": "2026-09-06",
+   "ltrScore": 2,
+   "touchpoint": "Post-trip",
+   "comment": "Flight 1192 cancelled at PHX, two hours on hold to rebook.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700113",
+   "surveyDate": "2026-09-06",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700102",
+   "surveyDate": "2026-09-05",
+   "ltrScore": 4,
+   "touchpoint": "Booking",
+   "comment": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700143",
+   "surveyDate": "2026-09-05",
+   "ltrScore": 0,
+   "touchpoint": "Inflight",
+   "comment": "No assistance at the LGA gate even though it was on the reservation.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700070",
+   "surveyDate": "2026-09-04",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Damaged suitcase, how long does the claim take?",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700072",
+   "surveyDate": "2026-09-04",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700209",
+   "surveyDate": "2026-09-04",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Easy rebooking, fast.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700276",
+   "surveyDate": "2026-09-04",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "Gold"
+  },
+  {
+   "responseId": "r_7700249",
+   "surveyDate": "2026-09-03",
+   "ltrScore": 10,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700263",
+   "surveyDate": "2026-09-03",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "Platinum Pro"
+  },
+  {
+   "responseId": "r_7700016",
+   "surveyDate": "2026-09-02",
+   "ltrScore": 0,
+   "touchpoint": "Inflight",
+   "comment": "Fare sold out while I was paying for JFK-LGA and the site offered nothing else.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700277",
+   "surveyDate": "2026-09-02",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700278",
+   "surveyDate": "2026-09-02",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Crew was great and we landed early.",
+   "segment": "Platinum"
+  },
+  {
+   "responseId": "r_7700015",
+   "surveyDate": "2026-09-01",
+   "ltrScore": 2,
+   "touchpoint": "Airport",
+   "comment": "Last seat disappeared at checkout. Is there a later flight?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700125",
+   "surveyDate": "2026-09-01",
+   "ltrScore": 5,
+   "touchpoint": "Post-trip",
+   "comment": "Upgrade list position keeps jumping around in the app.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700243",
+   "surveyDate": "2026-08-31",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Smooth trip, easy check-in.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700245",
+   "surveyDate": "2026-08-31",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700252",
+   "surveyDate": "2026-08-31",
+   "ltrScore": 9,
+   "touchpoint": "Booking",
+   "comment": "Crew was great and we landed early.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700267",
+   "surveyDate": "2026-08-31",
+   "ltrScore": 9,
+   "touchpoint": "Airport",
+   "comment": "Gate agent in PHX was very helpful.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700282",
+   "surveyDate": "2026-08-31",
+   "ltrScore": 10,
+   "touchpoint": "Airport",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700031",
+   "surveyDate": "2026-08-29",
+   "ltrScore": 1,
+   "touchpoint": "Airport",
+   "comment": "Missed my connection in DCA after a delay and the app would not rebook me.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700066",
+   "surveyDate": "2026-08-29",
+   "ltrScore": 3,
+   "touchpoint": "Post-trip",
+   "comment": "Is my ticket covered by the weather waiver for LGA?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700225",
+   "surveyDate": "2026-08-29",
+   "ltrScore": 9,
+   "touchpoint": "Inflight",
+   "comment": "Clean cabin and on time.",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700094",
+   "surveyDate": "2026-08-28",
+   "ltrScore": 5,
+   "touchpoint": "Booking",
+   "comment": "Bag tracking says loaded but my suitcase is not here.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700122",
+   "surveyDate": "2026-08-28",
+   "ltrScore": 1,
+   "touchpoint": "Booking",
+   "comment": "Why can't I see my position on the upgrade list until the gate?",
+   "segment": "General"
+  },
+  {
+   "responseId": "r_7700144",
+   "surveyDate": "2026-08-28",
+   "ltrScore": 3,
+   "touchpoint": "Airport",
+   "comment": "Waited 50 minutes for wheelchair assistance and missed my connection.",
+   "segment": "Executive Platinum"
+  },
+  {
+   "responseId": "r_7700214",
+   "surveyDate": "2026-08-27",
+   "ltrScore": 10,
+   "touchpoint": "Inflight",
+   "comment": "Comfortable flight, thanks.",
+   "segment": "General"
+  }
+ ],
+ "paging": {
+  "total": 287
+ }
+}

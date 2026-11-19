@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
@@ -17,6 +17,7 @@ export default function Shell({ title, children }) {
   const { ws, user, stream } = useSession();
   const nav = useNavigate();
   const [open, setOpen] = useState(false);
+  useEffect(() => { api.autoSync(); }, []); // pull from the mock enterprise API once per page load
   const counts = useQuery(async () => {
     const [sig, opps, q, src] = await Promise.all([
       api.listSignals(stream.id), api.listOpportunities(user.streams), api.listReviewQueue(user), api.listSources(),

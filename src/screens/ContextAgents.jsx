@@ -4,6 +4,7 @@ import Shell from "../components/Shell";
 import { Modal, Field } from "../components/ui";
 import { parseFile, guessMapping } from "../lib/ingest";
 import { FEEDS } from "../lib/feeds";
+import { HOSTED_BASE, LOCAL_BASE } from "../lib/enterprise";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
 import * as api from "../api";
@@ -47,6 +48,7 @@ export default function ContextAgents() {
         <button className={tab === "notes" ? "on" : ""} onClick={() => setTab("notes")}><i className="ti ti-note" /> Notes · {stream.name} <span className="ct">{notes?.length || 0}</span></button>
       </div>
 
+      {tab === "sources" && <EnterpriseApi sources={sources} admin={admin} user={user} />}
       {tab === "sources" && KINDS.map(([k, icon, label]) => {
         const list = sources.filter((s) => s.kind === k);
         if (!list.length) return null;
@@ -84,6 +86,51 @@ export default function ContextAgents() {
   );
 }
 
+// The mock enterprise systems live outside the app (mock-api/ in the repo). Point the Workbench at
+// the hosted snapshot on GitHub or a local server, and sync every connected system from there.
+function EnterpriseApi({ sources, admin, user }) {
+  const cfg = useQuery(() => api.getMockApi(), []);
+  const [edit, setEdit] = useState(false);
+  const [f, setF] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  const list = sources.filter((s) => s.config?.api);
+  if (!cfg || !list.length) return null;
+  const mode = cfg.base === HOSTED_BASE ? "hosted" : cfg.base === LOCAL_BASE ? "local" : "custom";
+  const synced = list.filter((s) => s.status === "synced").length;
+  const records = list.reduce((n, s) => n + (s.records || 0), 0);
+  const sync = async () => { setBusy(true); setMsg(""); const r = await api.syncAllApi(user.id); setMsg(r.failed.length ? `${r.synced} synced, ${r.failed.length} failed: ${r.failed[0]}` : `${r.synced} systems synced`); setBusy(false); };
+  return (
+    <div className="card" style={{ marginBottom: 6, borderColor: "var(--navy)", borderWidth: 1.5 }}>
+      <div className="row" style={{ gap: 14, alignItems: "flex-start" }}>
+        <div className="lic" style={{ width: 42, height: 42, background: "var(--navy)", color: "#fff", borderColor: "transparent" }}><i className="ti ti-server-2" /></div>
+        <div className="grow">
+          <div className="lt">Enterprise systems (mock API) <span className="tag" style={{ marginLeft: 4, background: "var(--green-soft)", color: "var(--green-ink)", borderColor: "transparent" }}><i className="ti ti-bolt" style={{ fontSize: 11 }} /> outside the app</span></div>
+          <div className="small soft" style={{ marginTop: 3, lineHeight: 1.5 }}>Salesforce, Medallia, app reviews, chatbot logs, the ops event bus, cargo, Adobe and Snowflake are served over HTTP by a separate mock API, not bundled in the front end. {synced} of {list.length} systems synced · {records.toLocaleString()} records.</div>
+          <div className="tiny mono faint" style={{ marginTop: 4, wordBreak: "break-all" }}>{mode === "hosted" ? "Hosted snapshot on GitHub" : mode === "local" ? "Local server (npm run mock-api)" : "Custom"} · {cfg.base}{cfg.key ? " · API key set" : ""}</div>
+          {msg && <div className="tiny" style={{ marginTop: 4, color: /failed/.test(msg) ? "var(--red-ink)" : "var(--green-ink)" }}>{msg}</div>}
+        </div>
+        <div className="row" style={{ gap: 6 }}>
+          {admin && <button className="btn out sm" onClick={() => { setF({ ...cfg, mode }); setEdit(!edit); }}><i className="ti ti-settings" /> Endpoint</button>}
+          <button className="btn primary sm" disabled={busy} onClick={sync}>{busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-refresh" />} Sync all</button>
+        </div>
+      </div>
+      {edit && f && (
+        <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+          <div className="seg" style={{ marginBottom: 10 }}>
+            {[["hosted", "Hosted on GitHub", HOSTED_BASE], ["local", "Local server", LOCAL_BASE], ["custom", "Custom URL", f.base]].map(([m, l, b]) => <button key={m} className={f.mode === m ? "on" : ""} onClick={() => setF({ ...f, mode: m, base: b })}>{l}</button>)}
+          </div>
+          <div className="row" style={{ gap: 8, alignItems: "flex-end" }}>
+            <div className="grow"><Field label="Base URL"><input className="input" value={f.base} onChange={(e) => setF({ ...f, base: e.target.value, mode: "custom" })} /></Field></div>
+            <div style={{ width: 220 }}><Field label="API key (optional)"><input className="input" value={f.key} placeholder="x-api-key" onChange={(e) => setF({ ...f, key: e.target.value })} /></Field></div>
+            <button className="btn primary sm" style={{ marginBottom: 14 }} onClick={async () => { await api.setMockApi(f, user.id); setEdit(false); sync(); }}>Save and sync</button>
+          </div>
+          {f.mode === "local" && <div className="tiny faint">Run <span className="mono">npm run mock-api</span> in the repo (serves on port 4010). Add <span className="mono">MOCK_API_KEY=…</span> to require a key, or <span className="mono">LATENCY_MS=…</span> to slow it down.</div>}
+        </div>)}
+    </div>
+  );
+}
+
 function SourceRow({ s, agents, admin, user }) {
   const [editTag, setEditTag] = useState(false);
   const [tag, setTag] = useState(s.tag);
@@ -100,7 +147,7 @@ function SourceRow({ s, agents, admin, user }) {
         <input className="input" style={{ width: 160, padding: "5px 9px", fontSize: 12 }} autoFocus value={tag} onChange={(e) => setTag(e.target.value)}
           onBlur={async () => { setEditTag(false); if (tag !== s.tag) await api.updateSource(s.id, { tag }, user.id); }} onKeyDown={(e) => e.key === "Enter" && e.target.blur()} />
       ) : <span className="tag" style={{ cursor: admin ? "pointer" : "default", background: "var(--navy-soft)", color: "var(--navy)", borderColor: "transparent" }} onClick={() => admin && setEditTag(true)} title={admin ? "AI-generated tag. Click to edit" : "AI-generated tag"}>{s.tag}{admin && <i className="ti ti-pencil" style={{ fontSize: 11, marginLeft: 4 }} />}</span>}
-      {(s.config?.feed || s.config?.url) && admin && <button className="iconbtn" title="Sync now" aria-label={`Sync ${s.name} now`} disabled={busy} onClick={() => api.syncSource(s.id, user.id).catch(() => {})}><i className="ti ti-refresh" /></button>}
+      {(s.config?.feed || s.config?.url || s.config?.api) && admin && <button className="iconbtn" title="Sync now" aria-label={`Sync ${s.name} now`} disabled={busy} onClick={() => api.syncSource(s.id, user.id).catch(() => {})}><i className="ti ti-refresh" /></button>}
       {admin && s.kind !== "manual" && s.kind !== "file" ? (
         <select className="select" style={{ width: 100, padding: "5px 8px", fontSize: 12 }} value={s.schedule} aria-label="Schedule" onChange={(e) => api.updateSource(s.id, { schedule: e.target.value }, user.id)}>
           {SCHEDULES.map((x) => <option key={x}>{x}</option>)}</select>

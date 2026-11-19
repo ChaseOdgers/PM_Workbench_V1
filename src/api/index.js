@@ -9,8 +9,10 @@ import { applyInstruction, renderPrototype, DEFAULT_OPTIONS } from "../lib/proto
 import { PACKS, loadPack } from "../data/packs";
 import { themeRows, weeklyTrend, trendAnchor, classify, parseFile } from "../lib/ingest";
 import { FEEDS, fetchText } from "../lib/feeds";
+import { SYSTEMS, HOSTED_BASE, fetchSystem, endpointUrl } from "../lib/enterprise";
+import { growthOf } from "../lib/ranking";
 import { draftPack } from "../lib/delivery";
-import { TRANSITIONS, PRESETS, CHECKS, WHO, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
+import { TRANSITIONS, PRESETS, CHECKS, WHO, WHEN, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
 import { can } from "../lib/perms";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
@@ -141,7 +143,7 @@ function raiseSignals(d, src, recs, unit) {
     const trend = weeklyTrend(list.map((r) => r.created), anchor);
     const own = d.signals.find((s) => s.generatedBy === src.id && s.rawKeys.includes(key));
     if (own) { Object.assign(own, { volume: list.length, trend }); out.updated.push({ id: own.id, theme: own.theme, n: list.length, streamId }); continue; }
-    const cands = d.signals.filter((s) => s.generatedBy !== src.id && s.streamId === streamId && s.rawKeys.includes(key));
+    const cands = d.signals.filter((s) => s.generatedBy !== src.id && !s.metric && s.streamId === streamId && s.rawKeys.includes(key));
     if (cands.length) {
       const pick = cands.find((s) => s.sourceIds.some((sid) => d.sources.find((x) => x.id === sid)?.tag === src.tag)) || cands[0];
       if (!pick.sourceIds.includes(src.id)) pick.sourceIds.push(src.id);
@@ -222,6 +224,137 @@ export async function connectFeed({ name, feed, config, streamId }, by) {
   return syncSource(id, by);
 }
 
+/* ---------- mock enterprise API (mock-api/) ---------- */
+const mockApi = (d) => ({ base: HOSTED_BASE, key: "", ...(d.workspace.mockApi || {}) });
+export const getMockApi = () => ok(mockApi(getDb()));
+export function setMockApi(cfg, by) {
+  return ok(mutate((d) => {
+    d.workspace.mockApi = { base: (cfg.base || HOSTED_BASE).trim().replace(/\/+$/, ""), key: (cfg.key || "").trim() };
+    audit(d, by, "changed enterprise API", "workspace", d.workspace.mockApi.base);
+  }));
+}
+
+// Signals raised from records span every source that feeds the theme: volume and trend are
+// recounted across all of them after each sync, so reach and volume stay honest.
+function refreshThemeSignals(d) {
+  const all = [...d.supportContacts, ...d.feedback, ...d.webItems];
+  for (const s of d.signals.filter((x) => x.generatedBy && !x.metric)) {
+    const recs = all.filter((r) => s.rawKeys.includes(r.themeKey));
+    if (!recs.length) continue;
+    const ids = [...new Set(recs.map((r) => r.sourceId))];
+    s.volume = recs.length;
+    s.trend = weeklyTrend(recs.map((r) => r.created), trendAnchor(recs.map((r) => r.created)));
+    s.sourceIds = [...new Set([...s.sourceIds.filter((id) => d.sources.some((x) => x.id === id)), ...ids])];
+    if (ids.length > 1) s.unit = "customer records";
+  }
+}
+// Weekly metrics (Adobe, Snowflake) update the signal they measure, or raise one.
+function ingestMetrics(d, src, series) {
+  const all = themesOf(d);
+  const out = { created: [], corroborated: [], updated: [] };
+  for (const m of series) {
+    const th = all.find((t) => t.key === m.themeKey);
+    const streamId = th?.streamId || d.valueStreams[0].id;
+    const vals = m.weeks.map((w) => w.value);
+    const fields = { volume: vals.reduce((a, b) => a + b, 0), trend: vals.slice(-8), series: m.weeks, metric: m.metric, metricLabel: m.label };
+    const s = d.signals.find((x) => x.metric === m.metric)
+      || d.signals.find((x) => !x.generatedBy && x.streamId === streamId && x.rawKeys.includes(m.themeKey) && x.sourceIds.includes(src.id) && x.unit === m.unit);
+    if (s) { Object.assign(s, fields); out.updated.push({ id: s.id, theme: s.theme, n: fields.volume, streamId }); continue; }
+    const sig = { id: nextId("SIG", "SIG"), streamId, icon: th?.icon || src.icon, theme: m.label, from: src.name, sourceIds: [src.id], unit: m.unit, rawKeys: [m.themeKey], promotedTo: null, muted: false, generatedBy: src.id, ...fields };
+    d.signals.push(sig);
+    out.created.push({ id: sig.id, theme: sig.theme, n: fields.volume, streamId });
+  }
+  return out;
+}
+// Opportunities seeded with theme keys pick up the signals for those themes as data arrives.
+function linkThemeOpps(d) {
+  for (const o of d.opportunities.filter((x) => x.themeKeys?.length && !x.handoff)) {
+    for (const s of d.signals.filter((x) => x.streamId === o.streamId && x.rawKeys.some((k) => o.themeKeys.includes(k)))) {
+      if (!o.signalIds.includes(s.id)) o.signalIds.push(s.id);
+      if (!s.promotedTo) s.promotedTo = o.id;
+    }
+  }
+}
+
+async function syncApi(s, by) {
+  const cfg = mockApi(getDb());
+  mutate((d) => { const x = d.sources.find((y) => y.id === s.id); if (x) x.status = "syncing"; });
+  let res;
+  try { res = await fetchSystem(cfg.base, s.config.api, cfg.key); } catch (e) {
+    mutate((d) => { const x = d.sources.find((y) => y.id === s.id); if (x) { x.status = "error"; x.error = e.message; } });
+    throw new Error(`${s.name}: ${e.message}`);
+  }
+  return ok(mutate((d) => {
+    const src = d.sources.find((x) => x.id === s.id);
+    if (!src) return null;
+    const sys = SYSTEMS[src.config.api];
+    let summary;
+    if (sys.metrics) summary = ingestMetrics(d, src, res.rows);
+    else {
+      const all = themesOf(d);
+      const streamOf = (k) => all.find((t) => t.key === k)?.streamId || src.streamId || d.valueStreams[0].id;
+      const recs = res.rows.map(({ praise, ...r }) => {
+        const themeKey = praise ? null : classify(r.text, all)?.key || null;
+        return sys.table === "support" ? { ...r, themeKey, streamId: streamOf(themeKey), sourceId: src.id } : { ...r, themeKey, sourceId: src.id };
+      });
+      const table = sys.table === "support" ? "supportContacts" : "feedback";
+      d[table] = d[table].filter((r) => r.sourceId !== src.id).concat(recs);
+      summary = raiseSignals(d, src, recs.filter((r) => r.themeKey), sys.unit);
+    }
+    refreshThemeSignals(d);
+    linkThemeOpps(d);
+    Object.assign(src, { records: res.rows.length, status: "synced", lastSync: now(), error: null, url: res.url });
+    logIngestRuns(d, src, res.rows.length, summary, src.agentId);
+    if (!by.startsWith("agt-")) audit(d, by, "synced source", src.name, `${res.rows.length} records from ${res.url}`);
+    return { sourceId: src.id, records: res.rows.length, url: res.url, ...summary };
+  }));
+}
+export async function syncAllApi(by) {
+  const ids = getDb().sources.filter((s) => s.config?.api).map((s) => s.id);
+  const out = { synced: 0, failed: [] };
+  for (const id of ids) { try { await syncApi(getDb().sources.find((s) => s.id === id), by); out.synced++; } catch (e) { out.failed.push(e.message); } }
+  return out;
+}
+// Pull from the enterprise API once per page load when any API source is stale.
+let autoSynced = false;
+export function autoSync() {
+  if (autoSynced) return;
+  autoSynced = true;
+  const stale = getDb().sources.some((s) => s.config?.api && (!s.lastSync || Date.now() - Date.parse(s.lastSync) > 3600000));
+  if (stale) syncAllApi("agt-ingest").catch(() => {});
+}
+
+// Where an opportunity's numbers come from: each source system, its endpoint, the records behind
+// the opportunity's themes, and any warehouse or analytics series.
+function lineageOf(d, o, signals) {
+  const keys = new Set([...(o.themeKeys || []), ...signals.flatMap((s) => s.rawKeys || [])]);
+  const recs = [...d.supportContacts, ...d.feedback, ...d.webItems].filter((r) => keys.has(r.themeKey));
+  const cfg = mockApi(d);
+  const bySrc = new Map();
+  for (const r of recs) { if (!bySrc.has(r.sourceId)) bySrc.set(r.sourceId, []); bySrc.get(r.sourceId).push(r); }
+  const sources = [...bySrc.entries()].map(([sid, list]) => {
+    const s = d.sources.find((x) => x.id === sid);
+    const latest = [...list].sort((a, b) => b.created.localeCompare(a.created));
+    return { id: sid, name: s?.name || sid, system: s?.system, icon: s?.icon, lastSync: s?.lastSync, status: s?.status, url: s?.config?.api ? endpointUrl(cfg.base, s.config.api) : s?.config?.url || null,
+      count: list.length, samples: latest.filter((r, i, a) => a.findIndex((x) => (x.text || x.title) === (r.text || r.title)) === i).slice(0, 3).map((r) => ({ id: r.id, text: r.text || r.title, created: r.created, meta: [r.channel || r.source, r.customerTier, r.rating != null && r.rating !== "" ? `rating ${r.rating}` : ""].filter(Boolean).join(" · ") })) };
+  }).sort((a, b) => b.count - a.count);
+  const metrics = signals.filter((s) => s.series).map((s) => {
+    const src = d.sources.find((x) => s.sourceIds.includes(x.id));
+    const v = s.series.map((w) => w.value);
+    return { id: s.id, label: s.metricLabel || s.theme, unit: s.unit, values: v, last: v[v.length - 1], change: v.length > 4 ? (v[v.length - 1] - v[v.length - 5]) / v[v.length - 5] : 0,
+      source: src?.name, url: src?.config?.api ? endpointUrl(cfg.base, src.config.api) : null };
+  });
+  const pending = d.sources.filter((s) => s.config?.api && s.status !== "synced").length;
+  return { keys: [...keys], total: recs.length, sources, metrics, pending, waiting: !!o.themeKeys?.length && !recs.length && !metrics.length };
+}
+function oppData(d, o) {
+  const signals = d.signals.filter((s) => o.signalIds.includes(s.id));
+  const l = lineageOf(d, o, signals);
+  const systems = new Set([...l.sources.map((s) => s.id), ...signals.flatMap((s) => s.series ? s.sourceIds : [])]);
+  const syncs = [...systems].map((id) => d.sources.find((s) => s.id === id)?.lastSync).filter(Boolean).sort();
+  return { records: l.total, systems: systems.size, lastSync: syncs.pop() || null, growth: Math.max(0, ...signals.map((s) => growthOf(s.trend || [0]))) };
+}
+
 async function resyncUrl(s, by) {
   mutate((d) => { d.sources.find((x) => x.id === s.id).status = "syncing"; });
   let rows;
@@ -242,6 +375,7 @@ async function resyncUrl(s, by) {
 export async function syncSource(id, by) {
   const s = getDb().sources.find((x) => x.id === id);
   if (s?.config?.url) return resyncUrl(s, by);
+  if (s?.config?.api) return syncApi(s, by);
   const feed = FEEDS[s?.config?.feed];
   if (!feed) throw new Error("This source has nothing to sync");
   mutate((d) => { d.sources.find((x) => x.id === id).status = "syncing"; });
@@ -382,7 +516,7 @@ function phaseRules(d) {
   return d.phaseRules;
 }
 function ctxOf(d, o, trig, proto) {
-  return { o: { checks: {}, ...o }, stream: d.valueStreams.find((s) => s.id === o.streamId), trig, proto };
+  return { o: { checks: {}, ...o }, stream: d.valueStreams.find((s) => s.id === o.streamId), trig, proto, data: oppData(d, o), users: d.users };
 }
 function checklist(d, o, transitionKey, trig = triggeredGates(o, d.gates), proto = d.prototypes.find((p) => p.oppId === o.id) || null) {
   return evaluate(rulesFor(phaseRules(d), o.streamId), ctxOf(d, o, trig, proto), transitionKey);
@@ -412,7 +546,8 @@ function advance(d, o, to, by, override) {
     if (!c.allowOverride) throw new Error("This team's rules don't allow overrides");
     if (!can(user, "phases.override")) throw new Error("Only a director can override a phase checklist");
   }
-  o.phaseLog = [...(o.phaseLog || []), { from: o.phase, to, at: now(), by, override: !c.ready ? override : null, preset: c.preset, scope: c.scope,
+  o.phaseAt = now();
+  o.phaseLog = [...(o.phaseLog || []), { from: o.phase, to, at: now(), by, override: !c.ready ? override : null, preset: c.preset, scope: c.scope, days: c.days, target: c.target,
     items: c.items.map((i) => ({ label: i.label, level: i.level, ok: i.ok, detail: i.detail })) }];
   if (!c.ready) audit(d, by, "overrode phase checklist", o.id, `${c.transition.label}: ${override}`);
 }
@@ -429,7 +564,8 @@ export function getPhaseRules() {
   });
   return ok({ org: r.org, streams: r.streams || {}, list: streams, transitions: TRANSITIONS,
     presets: Object.fromEntries(Object.entries(PRESETS).map(([k, p]) => [k, { label: p.label, blurb: p.blurb }])),
-    checks: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { label: c.label(c.n ?? "N"), takesN: c.n != null, n: c.n }])), who: WHO });
+    checks: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { label: c.label(c.n ?? "N"), takesN: c.n != null, n: c.n, data: !!c.data }])), who: WHO, when: WHEN,
+    gates: d.gates.filter((g) => g.enabled !== false).map((g) => ({ id: g.id, name: g.name })) });
 }
 export function savePhaseRules(scope, rules, by) {
   return ok(mutate((d) => {
@@ -443,14 +579,44 @@ export function savePhaseRules(scope, rules, by) {
 export const previewPreset = (key) => ok(presetRules(key));
 export { itemLabel };
 
-export function toggleCheck(oppId, itemId, by) {
+export function toggleCheck(oppId, itemId, by, note = "") {
   return ok(mutate((d) => {
     const o = d.opportunities.find((x) => x.id === oppId);
     o.checks = { ...(o.checks || {}) };
     if (o.checks[itemId]) delete o.checks[itemId];
-    else o.checks[itemId] = { by, at: now() };
-    audit(d, by, o.checks[itemId] ? "checked off" : "unchecked", oppId, itemId.split(":").pop());
+    else { o.checks[itemId] = { by, at: now(), note: note.trim() }; if (o.requests?.[itemId]) { o.requests = { ...o.requests }; delete o.requests[itemId]; } }
+    audit(d, by, o.checks[itemId] ? "signed off" : "withdrew sign-off", oppId, `${itemId.split(":").pop().replace(/^m-/, "").replace(/-/g, " ")}${note ? `: ${note}` : ""}`);
   }));
+}
+export function requestSignoff(oppId, itemId, to, by) {
+  return ok(mutate((d) => {
+    const o = d.opportunities.find((x) => x.id === oppId);
+    o.requests = { ...(o.requests || {}) };
+    if (to) o.requests[itemId] = { to, by, at: now() }; else delete o.requests[itemId];
+    audit(d, by, to ? "requested sign-off" : "cancelled sign-off request", oppId, to ? `from ${nameOf(d, to)}` : "");
+  }));
+}
+const WHO_FITS = { anyone: () => true, pm: (u) => ["pm", "director"].includes(u.persona), director: (u) => u.persona === "director", reviewer: (u) => u.persona === "reviewer" };
+export const canSign = (user, item) => (WHO_FITS[item.who] || WHO_FITS.anyone)(user);
+// Sign-offs waiting on a person: asked of them by name, or open for their role in their streams.
+export function listSignoffs(user) {
+  const d = getDb();
+  const out = [];
+  for (const o of d.opportunities.filter((x) => !x.handoff && user.streams.includes(x.streamId))) {
+    const c = checklist(d, o);
+    for (const i of c?.items || []) {
+      if (i.check !== "manual" || i.ok) continue;
+      const asked = i.request?.to === user.id;
+      if (asked || (!i.request && canSign(user, i) && user.persona !== "pm")) out.push({ opp: { id: o.id, title: o.title, phase: o.phase }, stream: d.valueStreams.find((s) => s.id === o.streamId)?.name, item: { id: i.id, label: i.label, level: i.level }, to: c.transition.to, request: i.request ? { ...i.request, byName: nameOf(d, i.request.by) } : null, asked });
+    }
+  }
+  return ok(out.sort((a, b) => Number(b.asked) - Number(a.asked)));
+}
+export function listSigners(oppId, itemId) {
+  const d = getDb();
+  const o = d.opportunities.find((x) => x.id === oppId);
+  const it = checklist(d, o)?.items.find((i) => i.id === itemId);
+  return ok(d.users.filter((u) => u.streams.includes(o.streamId) && it && canSign(u, it)).map((u) => ({ id: u.id, name: u.name, title: u.title })));
 }
 
 // When an opportunity reaches Prototype, each triggered gate opens a review and logs a flag.
@@ -472,7 +638,8 @@ export function listOpportunities(streamIds) {
       const e = enrich(d, o);
       const c = checklist(d, o, undefined, e.trig, e.proto);
       return { ...o, status: e.status, signalCount: o.signalIds.length, gateCount: e.trig.length, stream: d.valueStreams.find((s) => s.id === o.streamId)?.name,
-        next: c ? { to: c.transition.to, done: c.done, total: c.total, ready: c.ready } : null };
+        next: c ? { to: c.transition.to, done: c.done, total: c.total, ready: c.ready, blockers: c.missing.map((m) => m.label), days: c.days, target: c.target, overdue: c.overdue,
+          asks: c.items.filter((i) => i.request && !i.ok).length } : null };
     }));
 }
 
@@ -493,6 +660,7 @@ export function getOpportunity(id) {
     phaseRulesScope: rulesFor(phaseRules(d), o.streamId),
     upcoming: TRANSITIONS.filter((t) => ORDER.indexOf(t.from) > ORDER.indexOf(o.phase)).map((t) => checklist(d, o, t.key)),
     phaseLog: o.phaseLog || [],
+    lineage: lineageOf(d, o, d.signals.filter((s) => o.signalIds.includes(s.id))),
     gates: e.trig.map((t) => ({ ...t.gate, reason: t.reason, policy: d.policies.find((p) => p.id === t.gate.policyId), review: o.gateReviews[t.gate.id] || null })),
     allGates: d.gates,
     signals: all.filter((s) => o.signalIds.includes(s.id)),
@@ -868,6 +1036,12 @@ export function getPortfolio(user) {
     if (e.trig.some((t) => o.gateReviews[t.gate.id]?.status === "rejected")) attention.push({ ...base, kind: "rejected", why: "A reviewer rejected a gate" });
     else if (o.phase === "Prototype" && o.directorApproval?.status === "pending") attention.push({ ...base, kind: "approve", why: "Waiting on your approval" });
     else if (e.ready.ready) attention.push({ ...base, kind: "ready", why: "Cleared and ready to hand off" });
+    else {
+      const c = checklist(d, o, undefined, e.trig, e.proto);
+      const mine = c?.items.filter((i) => i.check === "manual" && !i.ok && (i.request?.to === user.id || (!i.request && i.who === "director"))) || [];
+      if (mine.length) attention.push({ ...base, kind: "signoff", why: `Your sign-off: ${mine[0].label}` });
+      else if (c?.overdue) attention.push({ ...base, kind: "overdue", why: `${c.overdue} day${c.overdue > 1 ? "s" : ""} past the ${c.transition.from} target (${c.target}d)` });
+    }
   }
   const handedOff = d.opportunities.filter((o) => user.streams.includes(o.streamId) && o.handoff).length;
   const totals = streams.reduce((t, s) => ({ open: t.open + s.open, high: t.high + s.signals.high, unclaimed: t.unclaimed + s.signals.unclaimed, gates: t.gates + s.pendingGates }), { open: 0, high: 0, unclaimed: 0, gates: 0 });

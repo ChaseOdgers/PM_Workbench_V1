@@ -1,0 +1,285 @@
+{
+ "warehouse": "BOOKING_ANALYTICS",
+ "series": [
+  {
+   "metric": "bookings_lost_soldout",
+   "themeKey": "soldout",
+   "label": "Bookings lost after a sell-out",
+   "unit": "bookings",
+   "weeks": [
+    {
+     "weekStart": "2026-08-30",
+     "value": 140
+    },
+    {
+     "weekStart": "2026-09-06",
+     "value": 146
+    },
+    {
+     "weekStart": "2026-09-13",
+     "value": 149
+    },
+    {
+     "weekStart": "2026-09-20",
+     "value": 161
+    },
+    {
+     "weekStart": "2026-09-27",
+     "value": 169
+    },
+    {
+     "weekStart": "2026-10-04",
+     "value": 170
+    },
+    {
+     "weekStart": "2026-10-11",
+     "value": 183
+    },
+    {
+     "weekStart": "2026-10-18",
+     "value": 191
+    },
+    {
+     "weekStart": "2026-10-25",
+     "value": 187
+    },
+    {
+     "weekStart": "2026-11-01",
+     "value": 204
+    },
+    {
+     "weekStart": "2026-11-08",
+     "value": 207
+    },
+    {
+     "weekStart": "2026-11-15",
+     "value": 210
+    }
+   ]
+  },
+  {
+   "metric": "bag_claims_filed",
+   "themeKey": "baggage",
+   "label": "Mishandled-bag claims filed",
+   "unit": "claims",
+   "weeks": [
+    {
+     "weekStart": "2026-08-30",
+     "value": 153
+    },
+    {
+     "weekStart": "2026-09-06",
+     "value": 151
+    },
+    {
+     "weekStart": "2026-09-13",
+     "value": 155
+    },
+    {
+     "weekStart": "2026-09-20",
+     "value": 156
+    },
+    {
+     "weekStart": "2026-09-27",
+     "value": 157
+    },
+    {
+     "weekStart": "2026-10-04",
+     "value": 169
+    },
+    {
+     "weekStart": "2026-10-11",
+     "value": 167
+    },
+    {
+     "weekStart": "2026-10-18",
+     "value": 171
+    },
+    {
+     "weekStart": "2026-10-25",
+     "value": 173
+    },
+    {
+     "weekStart": "2026-11-01",
+     "value": 170
+    },
+    {
+     "weekStart": "2026-11-08",
+     "value": 181
+    },
+    {
+     "weekStart": "2026-11-15",
+     "value": 174
+    }
+   ]
+  },
+  {
+   "metric": "pet_fee_collected_airport",
+   "themeKey": "pets",
+   "label": "Pet fees collected at the airport, not online",
+   "unit": "bookings",
+   "weeks": [
+    {
+     "weekStart": "2026-08-30",
+     "value": 164
+    },
+    {
+     "weekStart": "2026-09-06",
+     "value": 171
+    },
+    {
+     "weekStart": "2026-09-13",
+     "value": 171
+    },
+    {
+     "weekStart": "2026-09-20",
+     "value": 181
+    },
+    {
+     "weekStart": "2026-09-27",
+     "value": 187
+    },
+    {
+     "weekStart": "2026-10-04",
+     "value": 200
+    },
+    {
+     "weekStart": "2026-10-11",
+     "value": 200
+    },
+    {
+     "weekStart": "2026-10-18",
+     "value": 216
+    },
+    {
+     "weekStart": "2026-10-25",
+     "value": 214
+    },
+    {
+     "weekStart": "2026-11-01",
+     "value": 231
+    },
+    {
+     "weekStart": "2026-11-08",
+     "value": 242
+    },
+    {
+     "weekStart": "2026-11-15",
+     "value": 236
+    }
+   ]
+  },
+  {
+   "metric": "assist_requests_missed",
+   "themeKey": "assist",
+   "label": "Wheelchair requests not met within 15 minutes",
+   "unit": "requests",
+   "weeks": [
+    {
+     "weekStart": "2026-08-30",
+     "value": 72
+    },
+    {
+     "weekStart": "2026-09-06",
+     "value": 77
+    },
+    {
+     "weekStart": "2026-09-13",
+     "value": 87
+    },
+    {
+     "weekStart": "2026-09-20",
+     "value": 92
+    },
+    {
+     "weekStart": "2026-09-27",
+     "value": 98
+    },
+    {
+     "weekStart": "2026-10-04",
+     "value": 99
+    },
+    {
+     "weekStart": "2026-10-11",
+     "value": 104
+    },
+    {
+     "weekStart": "2026-10-18",
+     "value": 108
+    },
+    {
+     "weekStart": "2026-10-25",
+     "value": 116
+    },
+    {
+     "weekStart": "2026-11-01",
+     "value": 122
+    },
+    {
+     "weekStart": "2026-11-08",
+     "value": 123
+    },
+    {
+     "weekStart": "2026-11-15",
+     "value": 129
+    }
+   ]
+  },
+  {
+   "metric": "cargo_status_gaps",
+   "themeKey": "cargotrack",
+   "label": "Shipments with no status for 12h+",
+   "unit": "shipments",
+   "weeks": [
+    {
+     "weekStart": "2026-08-30",
+     "value": 52
+    },
+    {
+     "weekStart": "2026-09-06",
+     "value": 55
+    },
+    {
+     "weekStart": "2026-09-13",
+     "value": 60
+    },
+    {
+     "weekStart": "2026-09-20",
+     "value": 62
+    },
+    {
+     "weekStart": "2026-09-27",
+     "value": 62
+    },
+    {
+     "weekStart": "2026-10-04",
+     "value": 69
+    },
+    {
+     "weekStart": "2026-10-11",
+     "value": 66
+    },
+    {
+     "weekStart": "2026-10-18",
+     "value": 71
+    },
+    {
+     "weekStart": "2026-10-25",
+     "value": 76
+    },
+    {
+     "weekStart": "2026-11-01",
+     "value": 81
+    },
+    {
+     "weekStart": "2026-11-08",
+     "value": 80
+    },
+    {
+     "weekStart": "2026-11-15",
+     "value": 86
+    }
+   ]
+  }
+ ]
+}

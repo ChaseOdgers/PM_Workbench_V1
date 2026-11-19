@@ -1,0 +1,1709 @@
+{
+ "conversations": [
+  {
+   "conversationId": "CONV-920151",
+   "startedAt": "2026-11-18T17:13:11.028Z",
+   "channel": "web",
+   "firstCustomerMessage": "Had no signal at DFW security and the boarding pass would not open offline.",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920140",
+   "startedAt": "2026-11-18T14:28:47.501Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920115",
+   "startedAt": "2026-11-18T08:50:43.714Z",
+   "channel": "web",
+   "firstCustomerMessage": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920125",
+   "startedAt": "2026-11-18T08:13:35.852Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Is there room for a pet carrier on flight 2364? The app will not tell me.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920027",
+   "startedAt": "2026-11-18T04:57:49.881Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for ORD?",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920011",
+   "startedAt": "2026-11-18T04:14:30.393Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920057",
+   "startedAt": "2026-11-18T01:48:48.249Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for ORD?",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920087",
+   "startedAt": "2026-11-18T01:38:38.475Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920136",
+   "startedAt": "2026-11-17T18:49:44.622Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920090",
+   "startedAt": "2026-11-17T15:34:00.869Z",
+   "channel": "android",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920153",
+   "startedAt": "2026-11-17T11:58:04.479Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 4,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920018",
+   "startedAt": "2026-11-17T07:29:33.680Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 2198 cancelled at PHX, two hours on hold to rebook.",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920052",
+   "startedAt": "2026-11-17T04:19:28.377Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHX?",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920163",
+   "startedAt": "2026-11-17T04:01:39.215Z",
+   "channel": "android",
+   "firstCustomerMessage": "Had no signal at PHX security and the boarding pass would not open offline.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920161",
+   "startedAt": "2026-11-16T23:14:31.664Z",
+   "channel": "web",
+   "firstCustomerMessage": "Boarding pass QR code is blank in the app.",
+   "turns": 3,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920091",
+   "startedAt": "2026-11-16T18:50:41.376Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920082",
+   "startedAt": "2026-11-16T17:55:28.226Z",
+   "channel": "web",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 3,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920177",
+   "startedAt": "2026-11-16T16:22:30.379Z",
+   "channel": "web",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 8,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920058",
+   "startedAt": "2026-11-16T08:27:42.965Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in JFK after a delay and the app would not rebook me.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920149",
+   "startedAt": "2026-11-16T03:30:51.432Z",
+   "channel": "android",
+   "firstCustomerMessage": "Boarding pass QR code is blank in the app.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920158",
+   "startedAt": "2026-11-16T03:00:13.953Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Boarding pass shows the old gate after the gate change.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920016",
+   "startedAt": "2026-11-15T20:52:26.781Z",
+   "channel": "web",
+   "firstCustomerMessage": "Flight 132 cancelled at DCA, two hours on hold to rebook.",
+   "turns": 11,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920210",
+   "startedAt": "2026-11-15T14:39:15.986Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920038",
+   "startedAt": "2026-11-15T10:47:27.687Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in LGA after a delay and the app would not rebook me.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920107",
+   "startedAt": "2026-11-15T04:11:51.515Z",
+   "channel": "android",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920073",
+   "startedAt": "2026-11-14T21:49:32.987Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 7,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920129",
+   "startedAt": "2026-11-14T21:15:37.777Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is there room for a pet carrier on flight 1901? The app will not tell me.",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920046",
+   "startedAt": "2026-11-14T00:36:42.888Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 726 cancelled at DFW, two hours on hold to rebook.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920063",
+   "startedAt": "2026-11-13T23:15:47.411Z",
+   "channel": "android",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920023",
+   "startedAt": "2026-11-13T22:22:14.293Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920184",
+   "startedAt": "2026-11-13T16:35:47.064Z",
+   "channel": "web",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920032",
+   "startedAt": "2026-11-12T06:29:02.250Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Missed my connection in LGA after a delay and the app would not rebook me.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920099",
+   "startedAt": "2026-11-12T03:59:10.777Z",
+   "channel": "web",
+   "firstCustomerMessage": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920156",
+   "startedAt": "2026-11-12T02:42:20.444Z",
+   "channel": "android",
+   "firstCustomerMessage": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920127",
+   "startedAt": "2026-11-11T15:20:53.311Z",
+   "channel": "web",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920015",
+   "startedAt": "2026-11-11T08:04:07.514Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in DFW after a delay and the app would not rebook me.",
+   "turns": 3,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920205",
+   "startedAt": "2026-11-11T04:02:00.629Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920072",
+   "startedAt": "2026-11-11T03:54:32.882Z",
+   "channel": "android",
+   "firstCustomerMessage": "Fare sold out while I was paying for LGA-MIA and the site offered nothing else.",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920182",
+   "startedAt": "2026-11-10T21:36:01.100Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Why can't I see my position on the upgrade list until the gate?",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920170",
+   "startedAt": "2026-11-10T20:16:52.272Z",
+   "channel": "android",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920135",
+   "startedAt": "2026-11-10T17:48:04.455Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920183",
+   "startedAt": "2026-11-10T10:38:57.376Z",
+   "channel": "web",
+   "firstCustomerMessage": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "turns": 3,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920019",
+   "startedAt": "2026-11-10T06:02:08.342Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in LAX after a delay and the app would not rebook me.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920017",
+   "startedAt": "2026-11-10T02:19:57.160Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920165",
+   "startedAt": "2026-11-10T01:55:52.147Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920212",
+   "startedAt": "2026-11-09T20:08:22.542Z",
+   "channel": "web",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920193",
+   "startedAt": "2026-11-09T18:35:38.899Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920043",
+   "startedAt": "2026-11-09T13:56:14.921Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for DFW?",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920056",
+   "startedAt": "2026-11-09T08:42:37.746Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 5,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920185",
+   "startedAt": "2026-11-09T05:18:01.992Z",
+   "channel": "ios",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920128",
+   "startedAt": "2026-11-09T00:13:35.522Z",
+   "channel": "android",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920124",
+   "startedAt": "2026-11-08T10:58:40.811Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920121",
+   "startedAt": "2026-11-08T08:01:52.422Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 3,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920067",
+   "startedAt": "2026-11-08T07:01:31.484Z",
+   "channel": "android",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920189",
+   "startedAt": "2026-11-08T05:23:24.953Z",
+   "channel": "android",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 8,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920150",
+   "startedAt": "2026-11-08T00:02:45.556Z",
+   "channel": "web",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920101",
+   "startedAt": "2026-11-07T18:00:21.391Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 8,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920054",
+   "startedAt": "2026-11-07T15:48:24.247Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for DCA?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920116",
+   "startedAt": "2026-11-07T11:01:00.540Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920194",
+   "startedAt": "2026-11-07T05:34:54.492Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 3,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920037",
+   "startedAt": "2026-11-06T20:13:21.233Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHL?",
+   "turns": 11,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920145",
+   "startedAt": "2026-11-06T18:11:31.106Z",
+   "channel": "web",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920050",
+   "startedAt": "2026-11-06T16:32:53.139Z",
+   "channel": "android",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 7,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920066",
+   "startedAt": "2026-11-06T13:10:38.662Z",
+   "channel": "web",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920004",
+   "startedAt": "2026-11-04T17:09:09.926Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 11,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920111",
+   "startedAt": "2026-11-04T12:20:31.956Z",
+   "channel": "android",
+   "firstCustomerMessage": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "turns": 7,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920042",
+   "startedAt": "2026-11-04T10:49:56.222Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 3,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920204",
+   "startedAt": "2026-11-04T02:06:19.745Z",
+   "channel": "web",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920039",
+   "startedAt": "2026-11-03T18:41:23.959Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in ORD after a delay and the app would not rebook me.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920045",
+   "startedAt": "2026-11-03T09:13:23.271Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for ORD?",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920034",
+   "startedAt": "2026-11-02T23:02:39.796Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for LAX?",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920113",
+   "startedAt": "2026-11-02T03:13:32.193Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 3,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920098",
+   "startedAt": "2026-11-01T23:01:04.621Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920093",
+   "startedAt": "2026-11-01T21:17:40.957Z",
+   "channel": "web",
+   "firstCustomerMessage": "Fare sold out while I was paying for JFK-DCA and the site offered nothing else.",
+   "turns": 8,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920200",
+   "startedAt": "2026-11-01T17:56:21.924Z",
+   "channel": "android",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 3,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920071",
+   "startedAt": "2026-11-01T08:48:52.578Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920196",
+   "startedAt": "2026-10-31T20:08:23.636Z",
+   "channel": "android",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920007",
+   "startedAt": "2026-10-31T20:07:49.690Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my connection in MIA after a delay and the app would not rebook me.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920097",
+   "startedAt": "2026-10-31T07:10:08.538Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920064",
+   "startedAt": "2026-10-30T02:00:28.876Z",
+   "channel": "web",
+   "firstCustomerMessage": "Fare sold out while I was paying for MIA-CLT and the site offered nothing else.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920186",
+   "startedAt": "2026-10-29T22:49:37.731Z",
+   "channel": "android",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920029",
+   "startedAt": "2026-10-29T11:02:38.397Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920179",
+   "startedAt": "2026-10-28T22:13:38.552Z",
+   "channel": "web",
+   "firstCustomerMessage": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920157",
+   "startedAt": "2026-10-28T07:39:53.277Z",
+   "channel": "android",
+   "firstCustomerMessage": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920022",
+   "startedAt": "2026-10-28T01:04:12.497Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 998 cancelled at CLT, two hours on hold to rebook.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920033",
+   "startedAt": "2026-10-27T15:37:45.021Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920191",
+   "startedAt": "2026-10-27T10:08:41.509Z",
+   "channel": "web",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920076",
+   "startedAt": "2026-10-27T08:43:47.928Z",
+   "channel": "web",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920105",
+   "startedAt": "2026-10-27T04:49:12.212Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920147",
+   "startedAt": "2026-10-27T02:46:03.431Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Had no signal at ORD security and the boarding pass would not open offline.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920085",
+   "startedAt": "2026-10-26T16:25:45.675Z",
+   "channel": "web",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920207",
+   "startedAt": "2026-10-25T17:24:20.975Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 4,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920102",
+   "startedAt": "2026-10-25T17:04:39.673Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920167",
+   "startedAt": "2026-10-24T22:25:22.598Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Upgrade list position keeps jumping around in the app.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920168",
+   "startedAt": "2026-10-24T19:55:29.946Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920081",
+   "startedAt": "2026-10-24T07:27:45.405Z",
+   "channel": "android",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920040",
+   "startedAt": "2026-10-24T01:23:51.588Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in PHL after a delay and the app would not rebook me.",
+   "turns": 8,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920201",
+   "startedAt": "2026-10-23T12:54:57.236Z",
+   "channel": "android",
+   "firstCustomerMessage": "Still waiting on my refund for the cancelled PHL trip.",
+   "turns": 3,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920137",
+   "startedAt": "2026-10-22T12:46:46.450Z",
+   "channel": "android",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920114",
+   "startedAt": "2026-10-21T10:51:43.379Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920139",
+   "startedAt": "2026-10-19T20:47:58.404Z",
+   "channel": "android",
+   "firstCustomerMessage": "App logged me out right at boarding and my boarding pass was gone.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920180",
+   "startedAt": "2026-10-19T19:31:28.591Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "turns": 2,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920152",
+   "startedAt": "2026-10-18T20:49:03.979Z",
+   "channel": "android",
+   "firstCustomerMessage": "Boarding pass shows the old gate after the gate change.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920008",
+   "startedAt": "2026-10-18T18:03:53.392Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920021",
+   "startedAt": "2026-10-17T07:43:33.623Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my connection in DFW after a delay and the app would not rebook me.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920197",
+   "startedAt": "2026-10-16T22:02:07.124Z",
+   "channel": "web",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920142",
+   "startedAt": "2026-10-16T13:31:09.041Z",
+   "channel": "web",
+   "firstCustomerMessage": "Had no signal at CLT security and the boarding pass would not open offline.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920154",
+   "startedAt": "2026-10-15T22:31:23.089Z",
+   "channel": "android",
+   "firstCustomerMessage": "App logged me out right at boarding and my boarding pass was gone.",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920164",
+   "startedAt": "2026-10-15T22:14:48.000Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920068",
+   "startedAt": "2026-10-15T22:02:06.753Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920096",
+   "startedAt": "2026-10-15T11:24:32.156Z",
+   "channel": "android",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920118",
+   "startedAt": "2026-10-15T06:38:12.585Z",
+   "channel": "web",
+   "firstCustomerMessage": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920108",
+   "startedAt": "2026-10-15T06:09:10.647Z",
+   "channel": "android",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920131",
+   "startedAt": "2026-10-14T20:36:55.432Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is there room for a pet carrier on flight 2469? The app will not tell me.",
+   "turns": 5,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920009",
+   "startedAt": "2026-10-14T18:24:12.433Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 2211 cancelled at CLT, two hours on hold to rebook.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920188",
+   "startedAt": "2026-10-14T17:58:35.710Z",
+   "channel": "android",
+   "firstCustomerMessage": "Upgrade list position keeps jumping around in the app.",
+   "turns": 3,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920069",
+   "startedAt": "2026-10-13T14:47:57.052Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Fare sold out while I was paying for ORD-MIA and the site offered nothing else.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920169",
+   "startedAt": "2026-10-13T08:15:30.582Z",
+   "channel": "android",
+   "firstCustomerMessage": "Why can't I see my position on the upgrade list until the gate?",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920080",
+   "startedAt": "2026-10-13T01:50:51.051Z",
+   "channel": "web",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 8,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920119",
+   "startedAt": "2026-10-12T19:11:37.153Z",
+   "channel": "web",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920014",
+   "startedAt": "2026-10-10T23:04:41.037Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for CLT?",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920112",
+   "startedAt": "2026-10-10T19:56:02.584Z",
+   "channel": "web",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 9,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920026",
+   "startedAt": "2026-10-10T18:26:38.416Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920203",
+   "startedAt": "2026-10-10T11:23:42.041Z",
+   "channel": "android",
+   "firstCustomerMessage": "Still waiting on my refund for the cancelled DFW trip.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920070",
+   "startedAt": "2026-10-10T06:29:23.440Z",
+   "channel": "web",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920202",
+   "startedAt": "2026-10-10T02:04:05.640Z",
+   "channel": "web",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920187",
+   "startedAt": "2026-10-09T23:57:27.969Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920160",
+   "startedAt": "2026-10-09T09:54:45.054Z",
+   "channel": "ios",
+   "firstCustomerMessage": "App logged me out right at boarding and my boarding pass was gone.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920199",
+   "startedAt": "2026-10-08T23:13:35.737Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920053",
+   "startedAt": "2026-10-08T12:43:47.246Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for DCA?",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920002",
+   "startedAt": "2026-10-07T05:49:45.564Z",
+   "channel": "web",
+   "firstCustomerMessage": "Missed my connection in ORD after a delay and the app would not rebook me.",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920155",
+   "startedAt": "2026-10-06T18:58:14.436Z",
+   "channel": "web",
+   "firstCustomerMessage": "Boarding pass shows the old gate after the gate change.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920134",
+   "startedAt": "2026-10-06T09:30:57.507Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is there room for a pet carrier on flight 2204? The app will not tell me.",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920048",
+   "startedAt": "2026-10-06T07:27:36.406Z",
+   "channel": "android",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920176",
+   "startedAt": "2026-10-05T18:26:34.057Z",
+   "channel": "ios",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920005",
+   "startedAt": "2026-10-05T14:01:33.745Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my connection in PHX after a delay and the app would not rebook me.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920075",
+   "startedAt": "2026-10-05T07:20:05.537Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920086",
+   "startedAt": "2026-10-05T03:31:09.468Z",
+   "channel": "web",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920117",
+   "startedAt": "2026-10-03T20:45:51.585Z",
+   "channel": "web",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 9,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920104",
+   "startedAt": "2026-10-02T20:04:07.828Z",
+   "channel": "web",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920162",
+   "startedAt": "2026-10-02T06:18:13.627Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920208",
+   "startedAt": "2026-10-02T04:31:42.302Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920044",
+   "startedAt": "2026-10-02T04:16:34.113Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Missed my connection in LGA after a delay and the app would not rebook me.",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920206",
+   "startedAt": "2026-10-01T18:02:42.436Z",
+   "channel": "web",
+   "firstCustomerMessage": "Still waiting on my refund for the cancelled JFK trip.",
+   "turns": 8,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920122",
+   "startedAt": "2026-10-01T17:29:53.067Z",
+   "channel": "android",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920013",
+   "startedAt": "2026-10-01T15:17:51.923Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 667 cancelled at PHX, two hours on hold to rebook.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920065",
+   "startedAt": "2026-10-01T13:06:53.836Z",
+   "channel": "android",
+   "firstCustomerMessage": "Last seat disappeared at checkout. Is there a later flight?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920123",
+   "startedAt": "2026-10-01T07:25:13.680Z",
+   "channel": "web",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920092",
+   "startedAt": "2026-09-30T12:54:46.718Z",
+   "channel": "web",
+   "firstCustomerMessage": "Fare sold out while I was paying for DCA-DFW and the site offered nothing else.",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920120",
+   "startedAt": "2026-09-30T07:10:32.750Z",
+   "channel": "web",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920047",
+   "startedAt": "2026-09-29T14:04:52.454Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHX?",
+   "turns": 8,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920041",
+   "startedAt": "2026-09-29T02:08:26.627Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight 1415 cancelled at ORD, two hours on hold to rebook.",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920173",
+   "startedAt": "2026-09-27T07:23:37.574Z",
+   "channel": "android",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920132",
+   "startedAt": "2026-09-26T23:49:39.472Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920074",
+   "startedAt": "2026-09-26T11:47:14.946Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Fare sold out while I was paying for ORD-LAX and the site offered nothing else.",
+   "turns": 3,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920175",
+   "startedAt": "2026-09-25T04:12:52.212Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Upgrade list position keeps jumping around in the app.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920109",
+   "startedAt": "2026-09-24T03:55:55.468Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 7,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920106",
+   "startedAt": "2026-09-23T10:17:54.233Z",
+   "channel": "web",
+   "firstCustomerMessage": "Booked online then found out the in-cabin pet limit was already reached on my flight.",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920141",
+   "startedAt": "2026-09-23T06:24:28.955Z",
+   "channel": "android",
+   "firstCustomerMessage": "Had no signal at DFW security and the boarding pass would not open offline.",
+   "turns": 11,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920024",
+   "startedAt": "2026-09-22T14:53:34.693Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight 2678 cancelled at JFK, two hours on hold to rebook.",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920078",
+   "startedAt": "2026-09-22T01:09:58.434Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Fare sold out while I was paying for LGA-CLT and the site offered nothing else.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920049",
+   "startedAt": "2026-09-22T00:31:37.838Z",
+   "channel": "android",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920181",
+   "startedAt": "2026-09-20T21:28:48.468Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 7,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920055",
+   "startedAt": "2026-09-20T16:17:52.431Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my connection in DFW after a delay and the app would not rebook me.",
+   "turns": 5,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920211",
+   "startedAt": "2026-09-19T01:12:20.022Z",
+   "channel": "android",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 5,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920166",
+   "startedAt": "2026-09-18T21:10:10.541Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Mobile boarding pass would not load at the gate, had to go back to the counter.",
+   "turns": 11,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920012",
+   "startedAt": "2026-09-18T18:11:51.306Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920089",
+   "startedAt": "2026-09-18T02:57:25.035Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 5,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920094",
+   "startedAt": "2026-09-17T20:00:43.912Z",
+   "channel": "android",
+   "firstCustomerMessage": "Fare sold out while I was paying for DFW-JFK and the site offered nothing else.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920061",
+   "startedAt": "2026-09-17T18:03:41.333Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 4,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920083",
+   "startedAt": "2026-09-17T16:31:40.880Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920195",
+   "startedAt": "2026-09-17T12:21:35.709Z",
+   "channel": "web",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 3,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920000",
+   "startedAt": "2026-09-17T03:37:12.196Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my connection in CLT after a delay and the app would not rebook me.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920133",
+   "startedAt": "2026-09-16T23:58:09.253Z",
+   "channel": "web",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 9,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920192",
+   "startedAt": "2026-09-16T21:51:45.280Z",
+   "channel": "android",
+   "firstCustomerMessage": "Missed my upgrade because I did not know the standby upgrade list had moved.",
+   "turns": 8,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920209",
+   "startedAt": "2026-09-16T03:42:36.865Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Why did I get a voucher instead of cash?",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920003",
+   "startedAt": "2026-09-15T19:12:49.824Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHL?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920028",
+   "startedAt": "2026-09-15T10:33:14.576Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHX?",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920077",
+   "startedAt": "2026-09-15T07:53:35.409Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920198",
+   "startedAt": "2026-09-14T16:35:38.302Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight changed by 5 hours, I want a refund not a travel credit.",
+   "turns": 6,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920051",
+   "startedAt": "2026-09-13T23:19:09.150Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for MIA?",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920100",
+   "startedAt": "2026-09-13T12:51:50.648Z",
+   "channel": "web",
+   "firstCustomerMessage": "Trying to book my dog in the cabin, the website says to call. Why can't I add a pet online?",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920020",
+   "startedAt": "2026-09-12T17:31:57.479Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight 2598 cancelled at DFW, two hours on hold to rebook.",
+   "turns": 10,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920084",
+   "startedAt": "2026-09-12T04:51:45.223Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920148",
+   "startedAt": "2026-09-12T00:02:04.422Z",
+   "channel": "ios",
+   "firstCustomerMessage": "App logged me out right at boarding and my boarding pass was gone.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920146",
+   "startedAt": "2026-09-10T22:01:56.878Z",
+   "channel": "android",
+   "firstCustomerMessage": "Boarding pass shows the old gate after the gate change.",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920010",
+   "startedAt": "2026-09-09T17:58:07.814Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920159",
+   "startedAt": "2026-09-08T02:55:43.243Z",
+   "channel": "android",
+   "firstCustomerMessage": "Had no signal at ORD security and the boarding pass would not open offline.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920001",
+   "startedAt": "2026-09-07T21:17:26.214Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for LAX?",
+   "turns": 8,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920172",
+   "startedAt": "2026-09-07T14:49:25.592Z",
+   "channel": "ios",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920110",
+   "startedAt": "2026-09-07T13:32:41.538Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920130",
+   "startedAt": "2026-09-07T06:02:18.449Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 9,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920143",
+   "startedAt": "2026-09-07T03:58:17.483Z",
+   "channel": "android",
+   "firstCustomerMessage": "App logged me out right at boarding and my boarding pass was gone.",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920095",
+   "startedAt": "2026-09-06T13:06:59.311Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Called twice to add my cat to my reservation, 40 minute hold each time.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920059",
+   "startedAt": "2026-09-05T00:58:29.900Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 6,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920006",
+   "startedAt": "2026-09-04T23:43:45.780Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHL?",
+   "turns": 6,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920126",
+   "startedAt": "2026-09-04T18:12:00.583Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Paid the pet fee at the airport because I could not add my dog during booking.",
+   "turns": 4,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920031",
+   "startedAt": "2026-09-03T18:59:51.589Z",
+   "channel": "web",
+   "firstCustomerMessage": "Rebooked onto a flight two days later, I need to travel today.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920103",
+   "startedAt": "2026-09-01T04:39:02.473Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Pet carrier rules are confusing, what size fits under the seat on the regional jet?",
+   "turns": 7,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920079",
+   "startedAt": "2026-09-01T00:41:40.312Z",
+   "channel": "android",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 3,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920174",
+   "startedAt": "2026-08-31T21:01:11.851Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The upgrade list showed me number 2 and then someone else cleared, nobody explained why.",
+   "turns": 9,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920144",
+   "startedAt": "2026-08-31T20:41:58.948Z",
+   "channel": "android",
+   "firstCustomerMessage": "Had no signal at LGA security and the boarding pass would not open offline.",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920088",
+   "startedAt": "2026-08-30T23:51:25.950Z",
+   "channel": "web",
+   "firstCustomerMessage": "Fare sold out while I was paying for LGA-CLT and the site offered nothing else.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920062",
+   "startedAt": "2026-08-30T03:34:48.837Z",
+   "channel": "ios",
+   "firstCustomerMessage": "The flight I picked sold out, had to call to find another flight the same day.",
+   "turns": 7,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920036",
+   "startedAt": "2026-08-30T00:50:42.619Z",
+   "channel": "web",
+   "firstCustomerMessage": "Flight 1681 cancelled at PHL, two hours on hold to rebook.",
+   "turns": 11,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920030",
+   "startedAt": "2026-08-29T20:43:13.323Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Flight 476 cancelled at LAX, two hours on hold to rebook.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920178",
+   "startedAt": "2026-08-29T03:43:25.732Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Upgrade list said I cleared, then the seat was gone when I boarded.",
+   "turns": 4,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920035",
+   "startedAt": "2026-08-28T06:22:43.150Z",
+   "channel": "web",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for PHL?",
+   "turns": 2,
+   "outcome": "abandoned"
+  },
+  {
+   "conversationId": "CONV-920190",
+   "startedAt": "2026-08-28T04:46:17.741Z",
+   "channel": "ios",
+   "firstCustomerMessage": "Why can't I see my position on the upgrade list until the gate?",
+   "turns": 10,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920138",
+   "startedAt": "2026-08-28T00:00:51.859Z",
+   "channel": "android",
+   "firstCustomerMessage": "Boarding pass will not save to my wallet anymore.",
+   "turns": 10,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920171",
+   "startedAt": "2026-08-27T17:25:58.412Z",
+   "channel": "web",
+   "firstCustomerMessage": "I get no notification when my upgrade clears, found out at the gate.",
+   "turns": 11,
+   "outcome": "handed_to_agent"
+  },
+  {
+   "conversationId": "CONV-920025",
+   "startedAt": "2026-08-27T16:45:31.132Z",
+   "channel": "android",
+   "firstCustomerMessage": "Is my ticket covered by the weather waiver for DFW?",
+   "turns": 2,
+   "outcome": "resolved"
+  },
+  {
+   "conversationId": "CONV-920060",
+   "startedAt": "2026-08-27T04:13:22.638Z",
+   "channel": "android",
+   "firstCustomerMessage": "Sold out message with no alternatives, ended up booking another airline.",
+   "turns": 8,
+   "outcome": "handed_to_agent"
+  }
+ ],
+ "nextPageToken": null
+}

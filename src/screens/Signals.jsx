@@ -99,8 +99,10 @@ function SignalCard({ s, rank, opps, triage, user, dim }) {
       {open && records && (
         <div className="records">
           <div className="tiny faint" style={{ marginBottom: 6 }}>
-            Records behind this theme in the context layer: {records.counts.contacts} support contacts · {records.counts.feedback} feedback items · {records.counts.web} web items.{s.generatedBy ? " Raised from real data: the volume is the record count." : ` The headline volume (${fmt(s.volume)} ${s.unit}) comes from the source system's totals.`}
+            Records behind this theme in the context layer: {records.counts.contacts} support contacts · {records.counts.feedback} feedback items · {records.counts.web} web items.{s.series ? " Measured weekly in analytics or the warehouse: the volume is the last 12 weeks' total." : s.generatedBy ? " Raised from real data: the volume is the record count." : ` The headline volume (${fmt(s.volume)} ${s.unit}) comes from the source system's totals.`}
           </div>
+          {s.series && <div className="row small" style={{ gap: 10, padding: "6px 0" }}><i className="ti ti-chart-line" /><span className="grow">{s.metricLabel || s.theme} · weekly from {s.sources.map((x) => x.system).join(", ")}</span>
+            <span className="mono tiny">{s.series.slice(-6).map((w) => w.value.toLocaleString()).join(" · ")}</span></div>}
           {records.web.map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow"><b>{r.url ? <a href={r.url} target="_blank" rel="noreferrer">{r.title}</a> : r.title}</b><div className="tiny faint">{r.source} · {ago(r.created)}</div></div></div>)}
           {records.contacts.slice(0, 6).map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{[r.channel, r.customerTier, r.category, ago(r.created)].filter(Boolean).join(" · ")}</div></div></div>)}
           {records.feedback.slice(0, 3).map((r, i) => <div key={r.id + i} className="rec"><span className="rid">{r.id}</span><div className="grow">“{r.text}”<div className="tiny faint">{[r.source, r.rating ? `${r.rating}★` : "", ago(r.created)].filter(Boolean).join(" · ")}</div></div></div>)}

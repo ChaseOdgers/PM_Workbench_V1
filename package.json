@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "seed": "node scripts/generate-raw-records.mjs",
-    "samples": "node scripts/generate-samples.mjs"
+    "samples": "node scripts/generate-samples.mjs",
+    "mock-api": "node mock-api/server.mjs",
+    "mock-data": "node mock-api/generate.mjs"
   },
   "dependencies": {
     "@tabler/icons-webfont": "^3.30.0",

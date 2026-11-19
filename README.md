@@ -16,6 +16,26 @@ npm run build      # static site in dist/
 
 The build is a static site with no server or API keys, so it runs from GitHub Pages. `.github/workflows/deploy.yml` publishes it on every push to `main`. One-time setup: **Settings → Pages → Source: GitHub Actions**.
 
+## Mock enterprise API (data outside the front end)
+
+Customer records and metrics aren't bundled in the app. They live in `mock-api/` and are served over HTTP like real systems:
+
+| System | Endpoint | Shape |
+|---|---|---|
+| Salesforce Service Cloud | `/v1/salesforce/cases.json` | SOQL result: `records[]` with CaseNumber, Description, Origin, Reason, Account tier |
+| Booking assistant (chatbot) | `/v1/chatbot/conversations.json` | `conversations[]` with first customer message and outcome |
+| Medallia | `/v1/medallia/responses.json` | `data[]` with LTR score, comment, touchpoint |
+| App Store + Google Play | `/v1/appstore/reviews.json` | `reviews[]` with rating, content, version |
+| Cargo ops | `/v1/cargo/exceptions.json` | `items[]` per air waybill |
+| Ops event bus | `/v1/ops/disruptions.json` | `events[]` delays and cancellations |
+| Adobe Analytics, Snowflake | `/v1/adobe/metrics.json`, `/v1/snowflake/kpis.json` | 12 weekly values per metric |
+
+- **Hosted (default):** the committed snapshot on GitHub, `https://raw.githubusercontent.com/ChaseOdgers/PM_Workbench_V1/main/mock-api/static`. Nothing to run.
+- **Local server:** `npm run mock-api` serves the same data on `http://localhost:4010` with `?since=`, `?limit=`, `?offset=`, an optional key (`MOCK_API_KEY=…`, sent as `x-api-key`) and latency (`LATENCY_MS=…`). Switch to it in **Context & agents → Enterprise systems → Endpoint**.
+- **Regenerate:** `npm run mock-data` (seeded, so the same every time). Edit `SAY` and `PLAN` in `mock-api/generate.mjs` to plant new stories.
+
+On load the Workbench syncs every API-backed source (Salesforce, Medallia, …). Each connector (`src/lib/enterprise.js`) maps its system's shape into records, the signals agent themes them, signals are raised or corroborated, and weekly metrics update the signal they measure. Opportunities seeded with `themeKeys` link to their signals as the data arrives, and each opportunity shows **Where this comes from**: every system, its endpoint, the record count, sample records with their source IDs, and the metric series.
+
 ## Demo script (about 10 minutes)
 
 | # | Sign in as | Do this | Shows |
@@ -26,6 +46,7 @@ The build is a static site with no server or API keys, so it runs from GitHub Pa
 | 4 | PM | Upload `public/samples/alt-offer-v4-colleague.html` (the **Sample file** link) | A colleague's edit is scanned and blocked |
 | 5 | PM | Select the clean version, **Approve vN** | Approved prototype for handoff |
 | 6 | **Reviewer** (Priya) | Review queue → approve the DOT and PCI gates with a comment | Human approval on governance gates |
+| 0 | **PM** (Sam) | Opportunities → **Board**, open **OPP-2290 Book in-cabin pets online**. Expand Salesforce in **Where this comes from** and open the endpoint link | An opportunity grounded in 136 records from 4 systems plus 2 warehouse/analytics series, all fetched from the mock API |
 | 6a | **Admin** (Alex) | Governance → **Phase checklists**: see the org default (Balanced), Customer Care on Fast lane and Baggage on Strict. Pick Reservations → **Customize for this team** → **Strict** → Save. Then as Sam, open OPP-2274: the move to Prototype is locked until its required items and sign-offs are done | Stage gates per phase, configurable per org and per team |
 | 6b | PM | On any shaped opportunity, **Draft stories & tests**: edit a story or a Given/When/Then, filter the test scenarios by type, open **Dev readiness**, then **Export → Azure DevOps import (.csv)** | Promoted opportunity → user stories, acceptance criteria, test scenarios, NFRs, DoR/DoD, ready for engineering |
 | 7 | **Director** (Jordan) | Lands on **Portfolio**: every value stream, what needs attention. Click a stream to work in it. On OPP-2271, **Approve opportunity → Hand off → Push to ADO** | Cross-stream portfolio; handoff brief becomes an epic plus stories |
@@ -80,7 +101,8 @@ scripts/generate-samples.mjs       Regenerates the sample upload files in public
 - **Design call 2:** Signals are ranked by visible, editable rules, with a cap and an "Everything else" list.
 - **Design call 3:** Governance is three objects: policies, gates (trigger + approver + flag/block), and the log.
 - **Design call 4:** There is no spec screen. The delivery agent drafts a **delivery pack**: user stories (As a / I want / so that) with Given/When/Then acceptance criteria, test scenarios (functional, edge, negative, compliance, accessibility, performance), NFRs, Definition of Ready/Done and open questions, each traced to signals, customer records, the approved prototype and the gates. It pushes as epic → stories → test cases, or exports as Markdown, a Gherkin `.feature` file, or ADO / Jira import CSVs (`lib/delivery.js`).
-- **Phase checklists (stage gates):** before each move (Sense → Shape → Prototype → Handoff) an opportunity must meet that phase's checklist. Items are automatic checks (linked signals, evidence, problem statement length, goal fit, prototype approved, gates cleared, director approval, delivery pack quality) or sign-offs a named role ticks off. Required items block; nice-to-haves warn. The org sets a default from three presets (Fast lane, Balanced, Strict) and edits it; each value stream inherits it or runs its own. Directors can override with a logged reason when the rules allow, and every move keeps a snapshot of its checklist (`lib/phases.js`, Governance → Phase checklists).
+- **Opportunities in the pack:** the original seven plus five grounded only in the mock API: OPP-2290 in-cabin pets (Reservations), OPP-2291 upgrade-list transparency (Loyalty), OPP-2292 wheelchair assistance (Airport), OPP-2293 offline boarding pass (Airport), OPP-2294 cargo shipment status (Cargo).
+- **Phase checklists (stage gates):** before each move (Sense → Shape → Prototype → Handoff) an opportunity must meet that phase's checklist. Items are automatic checks (linked signals, evidence, problem statement length, goal fit, prototype approved, gates cleared, director approval, delivery pack quality) or sign-offs a named role ticks off. Required items block; nice-to-haves warn. The org sets a default from three presets (Fast lane, Balanced, Strict) and edits it; each value stream inherits it or runs its own. Directors can override with a logged reason when the rules allow, and every move keeps a snapshot of its checklist (`lib/phases.js`, Governance → Phase checklists). Also: data-backed checks (records behind the signals, number of source systems, data freshness, growth); items the org locks so teams can't drop them, or an "only tighten" policy; conditional items (only when a gate triggers, or only for human-created ideas); sign-offs with a note and requests to a named person, which show in their queue; a target time per phase with overdue flags; and a Board view of the pipeline.
 - **Design call 5:** The prototype studio runs the loop: generate → share → feedback → next version → scan → approve.
 - **Deferred to V2:** Telemetry, Roadmap/Aha, value and risk models, forecasts, global search, notifications.
 

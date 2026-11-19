@@ -1,0 +1,15 @@
+{
+ "name": "Mock enterprise systems for the Agentic PM Workbench",
+ "generated": "2026-11-18T22:00:00.000Z",
+ "note": "Synthetic data. Shapes follow each vendor's public API loosely.",
+ "endpoints": {
+  "salesforce/cases": 518,
+  "chatbot/conversations": 213,
+  "medallia/responses": 287,
+  "appstore/reviews": 138,
+  "cargo/exceptions": 88,
+  "ops/disruptions": 160,
+  "adobe/metrics": 5,
+  "snowflake/kpis": 5
+ }
+}
