@@ -25,7 +25,7 @@ export default function SignIn() {
           <p>Agents read your connected sources, rank what matters, and help you shape, prototype and hand off opportunities, with governance built in.</p>
           <div className="loop">{["Connect context", "Agents raise signals", "Shape an opportunity", "Prototype with the team", "Hand off to engineering"].map((s) => <span key={s}>{s}</span>)}</div>
         </div>
-        <div className="tiny" style={{ color: "var(--sidebar-mut)" }}>Demo workspace · {ws.client} mock data pack · nothing here is real client data</div>
+        <div className="tiny" style={{ color: "var(--sidebar-mut)" }}>{ws.fresh ? "Fresh workspace · no sources, signals or opportunities yet" : `Demo workspace · ${ws.client} mock data pack · nothing here is real client data`}</div>
       </div>
       <div className="form">
         {step === "sso" ? (

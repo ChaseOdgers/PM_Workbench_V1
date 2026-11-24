@@ -51,14 +51,14 @@ export function parseFile(name, text) {
 /* ---------- column mapping ---------- */
 
 const GUESS = {
-  text: ["description", "comment", "comments", "body", "text", "verbatim", "feedback", "review", "message", "details", "content", "summary", "notes"],
+  text: ["description", "comment", "comments", "body", "text", "verbatim", "feedback", "review", "message", "details", "content", "summary", "notes", "note"],
   title: ["subject", "title", "headline", "summary"],
-  date: ["created", "created at", "created_at", "createddate", "date", "submitted", "opened", "timestamp", "started at", "started", "time", "created date"],
-  id: ["id", "ticket id", "ticket", "case number", "casenumber", "case id", "key", "number", "review id"],
+  date: ["created", "created at", "created_at", "createddate", "date", "submitted", "opened", "timestamp", "started at", "started", "scheduled departure", "updated", "time", "created date"],
+  id: ["id", "ticket id", "ticket", "case number", "casenumber", "case id", "key", "number", "review id", "awb"],
   category: ["category", "type", "topic", "reason", "issue type", "intent", "tags", "case reason"],
   channel: ["channel", "origin", "source", "via", "case origin", "platform"],
   rating: ["rating", "score", "stars", "nps", "csat"],
-  tier: ["tier", "customer tier", "status", "segment", "loyalty tier", "priority"],
+  tier: ["tier", "customer tier", "segment", "loyalty tier"],
 };
 
 export function guessMapping(headers) {

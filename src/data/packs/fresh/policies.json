@@ -1,0 +1,6 @@
+[
+  {"id":"pol-pci","name":"PCI-DSS Cardholder Data Policy","icon":"ti-credit-card","source":"upload","file":"pci-dss-policy.pdf","text":"Cardholder data must never be stored, logged or cached on the client. Payment fields must be tokenized on submit. Any change to checkout requires security review.","ago":40000},
+  {"id":"pol-dot","name":"DOT Fare Advertising & Consumer Rule","icon":"ti-gavel","source":"upload","file":"dot-fare-rule.pdf","text":"Advertised and displayed fares must include all mandatory taxes and carrier-imposed fees up front. A customer must explicitly consent before any fare is purchased or changed. Refunds are owed automatically for significant changes and cancellations.","ago":40000},
+  {"id":"pol-acaa","name":"ACAA Accessibility Standard","icon":"ti-accessible","source":"upload","file":"acaa-accessibility.pdf","text":"Customer-facing web and app pages must meet WCAG 2.1 AA, including accessible names for every control and a logical focus order.","ago":40000},
+  {"id":"pol-sec","name":"Security & Access Policy","icon":"ti-lock","source":"rule","file":null,"text":"Every change handed off to engineering needs a security review of the systems it reads from and writes to.","ago":40000}
+]

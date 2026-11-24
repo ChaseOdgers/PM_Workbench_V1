@@ -1,0 +1,249 @@
+[
+ {
+  "key": "pets",
+  "label": "Customers can't add a pet to a booking online",
+  "streamId": "res",
+  "icon": "ti-paw",
+  "keywords": [
+   "pet carrier",
+   "pet fee",
+   "in-cabin pet",
+   "add a pet",
+   "my dog",
+   "my cat",
+   "pets",
+   "pet policy",
+   "kennel",
+   "pet online"
+  ]
+ },
+ {
+  "key": "upgradelist",
+  "label": "Upgrade list is a black box to members",
+  "streamId": "loyalty",
+  "icon": "ti-list-numbers",
+  "keywords": [
+   "upgrade list",
+   "standby upgrade",
+   "cleared",
+   "clear alert",
+   "upgrade clears",
+   "position on the upgrade"
+  ]
+ },
+ {
+  "key": "assist",
+  "label": "Wheelchair and mobility assistance missed at the gate",
+  "streamId": "airport",
+  "icon": "ti-wheelchair",
+  "keywords": [
+   "wheelchair",
+   "mobility assistance",
+   "special assistance",
+   "assistance agent",
+   "assistance at",
+   "mobility"
+  ]
+ },
+ {
+  "key": "boardingpass",
+  "label": "Mobile boarding pass fails at the gate",
+  "streamId": "airport",
+  "icon": "ti-ticket",
+  "keywords": [
+   "boarding pass",
+   "qr code",
+   "to my wallet",
+   "pass would not",
+   "pass will not"
+  ]
+ },
+ {
+  "key": "cargotrack",
+  "label": "Cargo customers can't see where a shipment is",
+  "streamId": "cargo",
+  "icon": "ti-package",
+  "keywords": [
+   "shipment",
+   "awb",
+   "air waybill",
+   "freight",
+   "pallets",
+   "consignee",
+   "cargo tracking",
+   "perishable"
+  ]
+ },
+ {
+  "key": "soldout",
+  "label": "Customers stuck when a fare sells out",
+  "streamId": "res",
+  "icon": "ti-shopping-cart-off",
+  "keywords": [
+   "sold out",
+   "sold-out",
+   "sells out",
+   "sellout",
+   "last seat",
+   "unavailable",
+   "no alternative",
+   "another flight",
+   "alternate flight",
+   "nearby dates",
+   "later flight"
+  ]
+ },
+ {
+  "key": "refund",
+  "label": "Refund and travel-credit questions",
+  "streamId": "res",
+  "icon": "ti-receipt-refund",
+  "keywords": [
+   "refund",
+   "travel credit",
+   "voucher",
+   "reimburse",
+   "compensation",
+   "cash back"
+  ]
+ },
+ {
+  "key": "payment",
+  "label": "Payment and checkout friction",
+  "streamId": "res",
+  "icon": "ti-credit-card-off",
+  "keywords": [
+   "payment",
+   "checkout",
+   "check out page",
+   "card declined",
+   "declined",
+   "re-enter",
+   "retype",
+   "saved card",
+   "timed out",
+   "credit card"
+  ]
+ },
+ {
+  "key": "ancillary",
+  "label": "Seat and bag add-ons missed at purchase",
+  "streamId": "res",
+  "icon": "ti-armchair",
+  "keywords": [
+   "seat selection",
+   "seat options",
+   "choose a seat",
+   "priority boarding",
+   "bag fee",
+   "add-on",
+   "extras"
+  ]
+ },
+ {
+  "key": "itinerary",
+  "label": "Itinerary and schedule-change confusion",
+  "streamId": "res",
+  "icon": "ti-calendar-event",
+  "keywords": [
+   "itinerary",
+   "schedule change",
+   "departure time",
+   "confirmation email",
+   "trip details",
+   "new time"
+  ]
+ },
+ {
+  "key": "fareclass",
+  "label": "Confusing fare types",
+  "streamId": "res",
+  "icon": "ti-discount-2",
+  "keywords": [
+   "basic economy",
+   "fare class",
+   "main select",
+   "fare type",
+   "fare names",
+   "main cabin extra"
+  ]
+ },
+ {
+  "key": "giftcard",
+  "label": "Gift-card redemption errors",
+  "streamId": "res",
+  "icon": "ti-gift-card",
+  "keywords": [
+   "gift card",
+   "giftcard"
+  ]
+ },
+ {
+  "key": "irops",
+  "label": "Rebooking pain during delays and cancellations",
+  "streamId": "care",
+  "icon": "ti-cloud-storm",
+  "keywords": [
+   "cancel",
+   "delay",
+   "missed connection",
+   "missed my connection",
+   "rebook",
+   "waiver",
+   "weather",
+   "disruption",
+   "stranded",
+   "on hold"
+  ]
+ },
+ {
+  "key": "baggage",
+  "label": "Mishandled and delayed bags",
+  "streamId": "bag",
+  "icon": "ti-luggage",
+  "keywords": [
+   "baggage",
+   "luggage",
+   "suitcase",
+   "my bag",
+   "checked bag",
+   "the belt",
+   "bag tracking",
+   "lost bag",
+   "damaged bag"
+  ]
+ },
+ {
+  "key": "loyalty",
+  "label": "AAdvantage miles and upgrades",
+  "streamId": "loyalty",
+  "icon": "ti-award",
+  "keywords": [
+   "aadvantage",
+   "miles",
+   "loyalty",
+   "elite status",
+   "upgrade with miles",
+   "companion certificate"
+  ]
+ },
+ {
+  "key": "weather",
+  "label": "Severe weather forecast at hub airports",
+  "streamId": "care",
+  "icon": "ti-cloud-storm",
+  "keywords": []
+ },
+ {
+  "key": "market",
+  "label": "Competitor and market moves",
+  "streamId": "res",
+  "icon": "ti-world-search",
+  "keywords": [
+   "competitor",
+   "rival",
+   "launches",
+   "launched"
+  ]
+ }
+]

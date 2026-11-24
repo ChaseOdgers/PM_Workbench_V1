@@ -1,7 +1,7 @@
 // The Workbench API. Every screen goes through these async functions.
 // Today they read and write the in-browser mock DB (db.js). In a client build each one becomes
 // an HTTP call to a real service, e.g. listSignals → GET /api/streams/:id/signals.
-import { getDb, mutate, nextId, resetDb } from "./db";
+import { getDb, mutate, nextId, resetDb, PACK } from "./db";
 import { rankSignals } from "../lib/ranking";
 import { triggeredGates, readiness, oppStatus } from "../lib/gates";
 import { scanHtml, worst } from "../lib/scan";
@@ -10,6 +10,7 @@ import { PACKS, loadPack } from "../data/packs";
 import { themeRows, weeklyTrend, trendAnchor, classify, parseFile } from "../lib/ingest";
 import { FEEDS, fetchText } from "../lib/feeds";
 import { SYSTEMS, HOSTED_BASE, fetchSystem, endpointUrl } from "../lib/enterprise";
+import { probe, catalog, pull } from "../lib/rest";
 import { growthOf } from "../lib/ranking";
 import { draftPack } from "../lib/delivery";
 import { TRANSITIONS, PRESETS, CHECKS, WHO, WHEN, GROUPS, canDo, rulesFor, evaluate, hydrateRules, presetRules, itemLabel } from "../lib/phases";
@@ -17,7 +18,7 @@ import { can } from "../lib/perms";
 
 const ok = (v) => Promise.resolve(structuredClone(v));
 const now = () => new Date().toISOString();
-const SESSION = "pmwb.v1.session";
+const SESSION = PACK === "aa" ? "pmwb.v1.session" : `pmwb.v1.${PACK}.session`;
 
 function audit(d, userId, action, target, detail = "") {
   d.audit.unshift({ id: nextId("audit", "A"), at: now(), userId, action, target, detail });
@@ -158,7 +159,8 @@ function raiseSignals(d, src, recs, unit) {
   return out;
 }
 
-function logIngestRuns(d, src, n, summary, agentId) {
+function logIngestRuns(d, src, n, summary, agentId0) {
+  const agentId = d.agents.find((a) => a.id === agentId0)?.group === "watcher" ? "agt-ingest" : agentId0;
   const raised = summary.created.length;
   d.agentRuns.unshift({ id: nextId("run", "run"), agentId, at: now(), recordsRead: n, signalsRaised: 0, result: "ok", note: `Ingested ${n.toLocaleString()} records from ${src.name}` });
   d.agentRuns.unshift({ id: nextId("run", "run"), agentId: "agt-signals", at: now(), recordsRead: n, signalsRaised: raised, result: "ok",
@@ -238,6 +240,12 @@ export function setMockApi(cfg, by) {
 // recounted across all of them after each sync, so reach and volume stay honest.
 function refreshThemeSignals(d) {
   const all = [...d.supportContacts, ...d.feedback, ...d.webItems];
+  if (d.workspace.fresh) {
+    const ing = d.agents.find((a) => a.id === "agt-ingest"), sig = d.agents.find((a) => a.id === "agt-signals");
+    if (ing) ing.stat = `${d.sources.length} source${d.sources.length === 1 ? "" : "s"} · ${all.length.toLocaleString()} records`;
+    if (sig) sig.stat = `${d.signals.length} themes ranked`;
+    [ing, sig].forEach((a) => { if (a) a.lastRun = now(); });
+  }
   for (const s of d.signals.filter((x) => x.generatedBy && !x.metric)) {
     const recs = all.filter((r) => s.rawKeys.includes(r.themeKey));
     if (!recs.length) continue;
@@ -335,7 +343,7 @@ function lineageOf(d, o, signals) {
   const sources = [...bySrc.entries()].map(([sid, list]) => {
     const s = d.sources.find((x) => x.id === sid);
     const latest = [...list].sort((a, b) => b.created.localeCompare(a.created));
-    return { id: sid, name: s?.name || sid, system: s?.system, icon: s?.icon, lastSync: s?.lastSync, status: s?.status, url: s?.config?.api ? endpointUrl(cfg.base, s.config.api) : s?.config?.url || null,
+    return { id: sid, name: s?.name || sid, system: s?.system, icon: s?.icon, lastSync: s?.lastSync, status: s?.status, url: s?.config?.api ? endpointUrl(cfg.base, s.config.api) : s?.config?.rest?.url || s?.config?.url || null,
       count: list.length, samples: latest.filter((r, i, a) => a.findIndex((x) => (x.text || x.title) === (r.text || r.title)) === i).slice(0, 3).map((r) => ({ id: r.id, text: r.text || r.title, created: r.created, meta: [r.channel || r.source, r.customerTier, r.rating != null && r.rating !== "" ? `rating ${r.rating}` : ""].filter(Boolean).join(" · ") })) };
   }).sort((a, b) => b.count - a.count);
   const metrics = signals.filter((s) => s.series).map((s) => {
@@ -353,6 +361,170 @@ function oppData(d, o) {
   const systems = new Set([...l.sources.map((s) => s.id), ...signals.flatMap((s) => s.series ? s.sourceIds : [])]);
   const syncs = [...systems].map((id) => d.sources.find((s) => s.id === id)?.lastSync).filter(Boolean).sort();
   return { records: l.total, systems: systems.size, lastSync: syncs.pop() || null, growth: Math.max(0, ...signals.map((s) => growthOf(s.trend || [0]))) };
+}
+
+/* ---------- generic REST API sources + watcher agents ---------- */
+export const probeApi = (url, key) => probe(url, key);
+export const apiCatalog = (base) => catalog(base || mockApi(getDb()).base);
+
+// Connect any JSON endpoint as a source. The first sync themes its records into signals; with
+// `watch`, a watcher agent then polls it and drafts opportunities when a theme spikes.
+export async function connectRest({ name, url, key = "", mapping, recordType, streamId, metrics, watch }, by) {
+  const id = mutate((d) => {
+    let host = url;
+    try { const u = new URL(url); host = `${u.host}${u.pathname}`; } catch { /* keep as typed */ }
+    const src = { id: nextId("src", "src"), name, icon: metrics ? "ti-chart-line" : "ti-api", kind: "api", system: `REST API · ${host}`, access: "read-only · REST",
+      schedule: watch ? `every ${watch.intervalSec}s (watched)` : "manual", agentId: "agt-ingest", tag: metrics ? "Digital telemetry" : "Voice of customer",
+      status: "connecting", lastSync: null, records: 0, real: true, streamId, config: { rest: { url, key }, fileName: name, mapping, recordType, metrics: !!metrics } };
+    d.sources.push(src);
+    audit(d, by, "connected source", src.name, url);
+    return src.id;
+  });
+  const res = await syncSource(id, by);
+  if (watch) await createWatcher({ name: `Watching ${name}`, sourceIds: [id], ...watch }, by);
+  return { ...res, sourceId: id };
+}
+
+async function syncRest(s, by) {
+  mutate((d) => { const x = d.sources.find((y) => y.id === s.id); if (x) x.status = "syncing"; });
+  let got;
+  try { got = await pull(s.config.rest); } catch (e) {
+    mutate((d) => { const x = d.sources.find((y) => y.id === s.id); if (x) { x.status = "error"; x.error = e.message; } });
+    throw new Error(`${s.name}: ${e.message}`);
+  }
+  return ok(mutate((d) => {
+    const src = d.sources.find((x) => x.id === s.id);
+    if (!src) return null;
+    let res;
+    if (got.metrics) {
+      const summary = ingestMetrics(d, src, got.rows);
+      Object.assign(src, { records: got.rows.length, status: "synced", lastSync: now(), error: null });
+      res = { sourceId: src.id, records: got.rows.length, ...summary };
+    } else res = ingestRows(d, src, got.rows);
+    refreshThemeSignals(d);
+    linkThemeOpps(d);
+    return res;
+  }));
+}
+
+export function listNotifications() { return ok((getDb().notifications || []).slice(0, 30)); }
+function notify(d, n) { d.notifications = [{ id: nextId("note", "N"), at: now(), ...n }, ...(d.notifications || [])].slice(0, 100); }
+
+export function createWatcher({ name, sourceIds, intervalSec = 30, rules = {} }, by) {
+  return ok(mutate((d) => {
+    const a = { id: nextId("run", "agt-w"), code: `AGT-W${d.agents.filter((x) => x.group === "watcher").length + 1}`, name, icon: "ti-eye", group: "watcher", state: "running", schedule: `every ${intervalSec}s`,
+      job: "Polls its sources on a schedule, compares each theme with the last check, and drafts an opportunity when a theme spikes.", guardrail: "Drafts only · a person qualifies every opportunity",
+      stat: "First check pending", streams: ["*"], sourceIds, intervalSec, rules: { minNew: 10, growthOn: false, growth: 25, minRecords: 50, ...rules }, baseline: null, lastRun: null, checks: 0, drafted: [], createdBy: by };
+    d.agents.push(a);
+    for (const sid of sourceIds) { const s = d.sources.find((x) => x.id === sid); if (s) { s.agentId = a.id; s.schedule = `every ${intervalSec}s (watched)`; } }
+    audit(d, by, "created watcher agent", a.name, `${sourceIds.length} source${sourceIds.length > 1 ? "s" : ""} every ${intervalSec}s`);
+    notify(d, { kind: "watch", agentId: a.id, text: `${a.name} is on. It checks every ${intervalSec}s and drafts an opportunity when a theme spikes.`, link: "/context?tab=agents" });
+    return a.id;
+  }));
+}
+export function updateWatcher(id, patch, by) {
+  return ok(mutate((d) => {
+    const a = d.agents.find((x) => x.id === id);
+    if (patch.rules) patch = { ...patch, rules: { ...a.rules, ...patch.rules } };
+    Object.assign(a, patch);
+    if (patch.intervalSec) a.schedule = `every ${patch.intervalSec}s`;
+    audit(d, by, "changed watcher agent", a.name, Object.keys(patch).join(", "));
+  }));
+}
+export function deleteWatcher(id, by) {
+  return ok(mutate((d) => {
+    const a = d.agents.find((x) => x.id === id);
+    d.agents = d.agents.filter((x) => x.id !== id);
+    d.sources.filter((s) => s.agentId === id).forEach((s) => { s.agentId = "agt-ingest"; s.schedule = "manual"; });
+    audit(d, by, "removed watcher agent", a?.name);
+  }));
+}
+
+const themeCounts = (d, sourceIds) => {
+  const c = {};
+  for (const r of [...d.supportContacts, ...d.feedback, ...d.webItems]) if (sourceIds.includes(r.sourceId) && r.themeKey) c[r.themeKey] = (c[r.themeKey] || 0) + 1;
+  return c;
+};
+// One check by a watcher: pull its sources, compare each theme with the last check, and draft
+// an opportunity for a theme that spiked (or keeps growing), unless one already covers it.
+async function runWatcher(id, manual) {
+  const a0 = getDb().agents.find((x) => x.id === id);
+  if (!a0) return;
+  const before = a0.baseline;
+  const errors = [];
+  for (const sid of a0.sourceIds) { try { await syncSource(sid, a0.id); } catch (e) { errors.push(e.message); } }
+  mutate((d) => {
+    const a = d.agents.find((x) => x.id === id);
+    if (!a) return;
+    const after = themeCounts(d, a.sourceIds);
+    const total = Object.values(after).reduce((x, y) => x + y, 0);
+    const srcNames = a.sourceIds.map((sid) => d.sources.find((s) => s.id === sid)?.name).filter(Boolean).join(", ");
+    const all = themesOf(d);
+    const labelOf = (k) => { const t = all.find((x) => x.key === k); return t?.discovered ? `“${t.keywords[0]}”` : t?.label || k; };
+    const events = [];
+    if (!before) {
+      events.push(`Baseline: ${total.toLocaleString()} records across ${Object.keys(after).length} themes from ${srcNames}. Watching for ${a.rules.minNew}+ new records on a theme between checks.`);
+    } else {
+      const spikes = Object.entries(after).map(([k, n]) => ({ k, n, delta: n - (before[k] || 0) })).filter((x) => x.delta >= a.rules.minNew).sort((x, y) => y.delta - x.delta);
+      const growing = a.rules.growthOn ? d.signals.filter((s) => s.generatedBy && !s.metric && s.rawKeys.some((k) => after[k] >= a.rules.minRecords) && growthOf(s.trend || [0]) * 100 >= a.rules.growth)
+        .map((s) => ({ k: s.rawKeys[0], n: after[s.rawKeys[0]], delta: 0, growth: growthOf(s.trend) })) : [];
+      for (const x of [...spikes, ...growing.filter((g) => !spikes.some((s) => s.k === g.k))]) {
+        const sigs = d.signals.filter((s) => s.rawKeys.includes(x.k) && !s.muted).sort((p, q) => q.volume - p.volume);
+        if (!sigs.length) continue;
+        const existing = d.opportunities.find((o) => !o.delivered && (o.themeKeys?.includes(x.k) || o.signalIds.some((sid) => sigs.some((s) => s.id === sid))));
+        if (existing) {
+          if (x.delta) {
+            events.push(`${x.delta} new records on ${labelOf(x.k)}; added to ${existing.id}.`);
+            notify(d, { kind: "evidence", agentId: a.id, oppId: existing.id, text: `${a.name}: ${x.delta} new records on ${labelOf(x.k)}. ${existing.id} has fresh evidence.`, link: `/opportunities/${existing.id}` });
+          }
+          continue;
+        }
+        const t = all.find((y) => y.key === x.k);
+        const recs = [...d.supportContacts, ...d.feedback].filter((r) => r.themeKey === x.k && a.sourceIds.includes(r.sourceId)).sort((p, q) => q.created.localeCompare(p.created));
+        const stream = d.valueStreams.find((s) => s.id === sigs[0].streamId) || d.valueStreams[0];
+        const title = t?.discovered ? `Investigate the spike in “${t.keywords[0]}” complaints` : t?.label || x.k;
+        const why = x.delta ? `${x.delta} new records arrived in one check` : `the theme grew ${Math.round(x.growth * 100)}% over 8 weeks`;
+        const o = { id: nextId("OPP", "OPP"), streamId: stream.id, title, phase: "Sense", origin: "agent", owner: stream.owner || null, at: now(), phaseAt: now(),
+          desc: `${a.name} drafted this because ${why} about ${labelOf(x.k)} from ${srcNames}. There are now ${x.n} records on this theme. One customer wrote: “${recs[0]?.text || "…"}” Qualify it: size the impact, check the roadmap for overlap, and confirm the pain with frontline agents.`,
+          signalIds: sigs.map((s) => s.id), themeKeys: [x.k], evidence: [], manualGates: [], gateReviews: {}, directorApproval: { status: "none" }, handoff: null, checks: {}, requests: {}, phaseLog: [], draftedBy: a.id };
+        d.opportunities.unshift(o);
+        sigs.forEach((s) => { if (!s.promotedTo) s.promotedTo = o.id; });
+        a.drafted = [...(a.drafted || []), o.id];
+        events.push(`Spike on ${labelOf(x.k)} (${x.delta ? `+${x.delta}` : `+${Math.round(x.growth * 100)}% trend`}): drafted ${o.id}.`);
+        audit(d, a.id, "drafted opportunity", o.id, title);
+        notify(d, { kind: "drafted", agentId: a.id, oppId: o.id, text: `${a.name} drafted ${o.id}: ${title}`, link: `/opportunities/${o.id}` });
+      }
+      if (!events.length) {
+        const delta = total - Object.values(before).reduce((p, q) => p + q, 0);
+        events.push(delta ? `${delta > 0 ? "+" : ""}${delta} records since the last check; no theme crossed ${a.rules.minNew} new.` : "No change since the last check.");
+      }
+    }
+    if (errors.length) events.push(`Couldn't reach a source: ${errors[0]}`);
+    a.baseline = after;
+    a.lastRun = now();
+    a.checks = (a.checks || 0) + 1;
+    a.stat = `${a.checks} check${a.checks > 1 ? "s" : ""} · ${total.toLocaleString()} records watched · ${(a.drafted || []).length} drafted`;
+    d.agentRuns.unshift({ id: nextId("run", "run"), agentId: a.id, at: now(), recordsRead: total, signalsRaised: events.filter((e) => /drafted/.test(e)).length, result: errors.length ? "error" : "ok", note: `${manual ? "Manual check. " : ""}${events.join(" ")}` });
+    d.agentRuns = d.agentRuns.slice(0, 400);
+  });
+}
+// The scheduler: while the app is open, run each watcher when it's due. (A client build runs
+// this server-side, so agents keep watching with the browser closed.)
+let ticking = false, loop = null;
+export async function tickWatchers() {
+  if (ticking) return;
+  ticking = true;
+  try {
+    const due = getDb().agents.filter((a) => a.group === "watcher" && a.state === "running" && (!a.lastRun || Date.now() - Date.parse(a.lastRun) >= a.intervalSec * 1000));
+    for (const a of due) await runWatcher(a.id);
+  } finally { ticking = false; }
+}
+export function startWatchers() { if (!loop) loop = setInterval(tickWatchers, 2000); }
+export async function checkNow(id) { await runWatcher(id, true); }
+export function getOnboarding() {
+  const d = getDb();
+  return ok({ sources: d.sources.length, signals: d.signals.length, watchers: d.agents.filter((a) => a.group === "watcher").length, opps: d.opportunities.length,
+    drafted: d.opportunities.filter((o) => o.draftedBy).length, fresh: !!d.workspace.fresh });
 }
 
 async function resyncUrl(s, by) {
@@ -376,6 +548,7 @@ export async function syncSource(id, by) {
   const s = getDb().sources.find((x) => x.id === id);
   if (s?.config?.url) return resyncUrl(s, by);
   if (s?.config?.api) return syncApi(s, by);
+  if (s?.config?.rest) return syncRest(s, by);
   const feed = FEEDS[s?.config?.feed];
   if (!feed) throw new Error("This source has nothing to sync");
   mutate((d) => { d.sources.find((x) => x.id === id).status = "syncing"; });

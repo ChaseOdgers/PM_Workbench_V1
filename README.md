@@ -16,6 +16,33 @@ npm run build      # static site in dist/
 
 The build is a static site with no server or API keys, so it runs from GitHub Pages. `.github/workflows/deploy.yml` publishes it on every push to `main`. One-time setup: **Settings → Pages → Source: GitHub Actions**.
 
+## Fresh workspace demo (empty instance → API → signals → agent → opportunity)
+
+A second instance of the same app that starts empty: the org is set up (users, value streams, governance, the theme library, the core agents) but there are no sources, signals or opportunities. It runs on its own port with its own saved data, so the full demo on 5173 is untouched, and it uses the same mock enterprise API.
+
+```bash
+npm run mock-api      # terminal 1: the mock enterprise API on :4010
+npm run dev:fresh     # terminal 2: the empty workspace on http://localhost:5174
+npm run dev           # (optional) terminal 3: the full demo on http://localhost:5173
+```
+
+**Script (about 5 minutes, as the Director, Jordan):**
+
+| # | Do | What it shows |
+|---|---|---|
+| 1 | Sign in as **Director (Jordan)**. Portfolio, Signals and Opportunities are empty; a **Getting started** card shows four steps | What a new workspace looks like |
+| 2 | **Context & agents → Add source → REST API (any endpoint)**. Under "Or pick from the mock enterprise API" click **Show endpoints**, then **salesforce/cases** | Any existing API: the Workbench finds 518 records, shows a preview and guesses the field mapping. No connector code |
+| 3 | Keep **Have an agent watch this source** on (every 15 seconds, 10 new records), then **Connect and watch** | The API becomes a source; its records become signals (10 themes) |
+| 4 | **Signals** | Ranked signals from the API's data |
+| 5 | **Context & agents → Agents**: the **Watcher agents** card. Its first check records a baseline; the countdown shows the next check | An agent monitoring the source |
+| 6 | In a terminal: `npm run surge -- wifi 30` | 30 new complaints arrive in "Salesforce", about a theme the app has never seen |
+| 7 | Within one check: a green **Opportunity drafted** pop-up. Click it | The agent spotted the spike, discovered the new theme and drafted OPP-3001 in Sense, grounded in the 30 records |
+| 8 | Optional: `npm run surge -- pets 15` (drafts another), then `npm run surge -- wifi 12` | A known theme spikes; more evidence on an existing theme is added, not duplicated |
+
+Reset between runs: `npm run surge -- reset` (mock API back to the files on disk) and **Reset demo data** on the sign-in screen (empties the workspace again).
+
+How it works: `src/lib/rest.js` finds the list of records in any JSON response, flattens nested fields and guesses the mapping; rows go through the same theming and signal pipeline as file imports. Watcher agents (`runWatcher` in `src/api/index.js`) poll their sources on a schedule while the app is open, compare per-theme counts with the last check, and draft an opportunity when a theme gets N+ new records (or, optionally, keeps growing), unless an open opportunity already covers it. In a client build the scheduler runs server-side. The mock API's demo controls (`/v1/_demo/surge`, `/v1/_demo/reset`, `MOCK_DRIP=1`) are in `mock-api/server.mjs`.
+
 ## Mock enterprise API (data outside the front end)
 
 Customer records and metrics aren't bundled in the app. They live in `mock-api/` and are served over HTTP like real systems:

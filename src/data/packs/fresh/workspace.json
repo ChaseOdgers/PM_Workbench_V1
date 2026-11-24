@@ -1,0 +1,35 @@
+{
+  "packId": "fresh",
+  "client": "American Airlines",
+  "clientShort": "AA",
+  "appName": "Agentic PM Workbench",
+  "codename": "Fresh workspace",
+  "ssoProvider": "IBM Verify",
+  "brand": {
+    "sidebar": "#0A2240",
+    "sidebar2": "#12305A",
+    "sidebarLine": "#1E3E63",
+    "accent": "#0078D2",
+    "accentD": "#005A9C",
+    "accentSoft": "#DCECFB",
+    "navy": "#00467F",
+    "navySoft": "#E1EDF7"
+  },
+  "settings": {
+    "signals": {
+      "cap": 25,
+      "weights": {
+        "volume": 30,
+        "trend": 25,
+        "reach": 20,
+        "fit": 25
+      },
+      "thresholds": {
+        "volume": 500,
+        "trend": 0.25,
+        "reach": 2
+      }
+    }
+  },
+  "fresh": true
+}

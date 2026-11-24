@@ -4,6 +4,7 @@ import { Empty } from "../components/ui";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
 import * as api from "../api";
+import { GettingStarted } from "./Watchers";
 import { ago } from "../lib/format";
 
 const PHASE_COLORS = { Sense: "var(--line-2)", Shape: "var(--amber)", Prototype: "var(--accent)", Handoff: "var(--green)" };
@@ -28,6 +29,7 @@ export default function Portfolio() {
 
   return (
     <Shell title={<><i className="ti ti-layout-dashboard" style={{ color: "var(--navy)" }} /> Portfolio <span className="mut">· all value streams</span></>}>
+      <GettingStarted />
       <div className="pagehead"><div><h1>Portfolio</h1>
         <p>Every value stream you own, in one view: what the signals are saying, where opportunities are in the loop, and what's waiting on you. Click a stream to work in it.</p></div></div>
 

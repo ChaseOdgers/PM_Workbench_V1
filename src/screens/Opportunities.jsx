@@ -5,6 +5,7 @@ import { Modal, Field, Empty, PHASES } from "../components/ui";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
 import * as api from "../api";
+import { GettingStarted } from "./Watchers";
 import { can } from "../lib/perms";
 import { ago } from "../lib/format";
 
@@ -23,6 +24,7 @@ export default function Opportunities() {
 
   return (
     <Shell title={<><i className="ti ti-bulb" style={{ color: "var(--navy)" }} /> Opportunities {scope.length === 1 && <span className="mut">· {stream.name}</span>}</>}>
+      <GettingStarted />
       <div className="pagehead"><div><h1>Opportunities</h1>
         <p>Problems worth solving, each grounded in linked signals and evidence. Open one to shape it, prototype it with your team, clear its gates and hand it off.</p></div>
         {can(user, "opp.create") && <div className="acts"><button className="btn primary sm" onClick={() => setCreating(true)}><i className="ti ti-plus" /> Create opportunity</button></div>}

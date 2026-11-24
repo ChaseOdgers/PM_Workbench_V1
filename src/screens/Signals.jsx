@@ -5,6 +5,7 @@ import { Empty, Spark } from "../components/ui";
 import { useSession } from "../auth";
 import { useQuery } from "../api/hooks";
 import * as api from "../api";
+import { GettingStarted } from "./Watchers";
 import { can } from "../lib/perms";
 import { ago, fmt } from "../lib/format";
 
@@ -19,6 +20,7 @@ export default function Signals() {
 
   return (
     <Shell title={<><i className="ti ti-radar-2" style={{ color: "var(--navy)" }} /> Signals <span className="mut">· {stream.name}</span></>}>
+      <GettingStarted />
       <div className="pagehead"><div><h1>Signals</h1>
         <p>What the connected sources are saying, clustered into themes and ranked by the signals agent. Each card says why it ranked where it did. Promote a theme to start an opportunity, or mute it.</p></div></div>
       <div className="grid2">

@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { RestConnect, WatcherCard, NewWatcher, GettingStarted } from "./Watchers";
 import Shell from "../components/Shell";
 import { Modal, Field } from "../components/ui";
 import { parseFile, guessMapping } from "../lib/ingest";
@@ -12,17 +13,20 @@ import { can } from "../lib/perms";
 import { ago, fmt } from "../lib/format";
 
 const KINDS = [["file", "ti-file-upload", "Imported files · real data"], ["api", "ti-plug-connected", "APIs & live systems"], ["docs", "ti-folders", "Document repositories"], ["web", "ti-world-search", "Web crawl"], ["manual", "ti-pencil", "Manual entry"]];
-const GROUPS = [["ingestion", "Ingestion agents", "keep the context layer fresh"], ["analysis", "Analyst agents", "find patterns and check policy"], ["operational", "Operational agents", "act for customers, inside guardrails"]];
+const GROUPS = [["watcher", "Watcher agents", "poll a source and draft opportunities when a theme spikes"], ["ingestion", "Ingestion agents", "keep the context layer fresh"], ["analysis", "Analyst agents", "find patterns and check policy"], ["operational", "Operational agents", "act for customers, inside guardrails"]];
 const SCHEDULES = ["live", "hourly", "daily", "weekly"];
 
 export default function ContextAgents() {
   const { ws, user, stream } = useSession();
   const nameOf = (id) => ws.users.find((u) => u.id === id)?.name || id;
-  const [tab, setTab] = useState("sources");
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState(params.get("tab") || "sources");
+  const [watching, setWatching] = useState(false);
+  useEffect(() => { if (params.get("tab")) setTab(params.get("tab")); if (params.get("add")) setAdding(params.get("add")); }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
   const sources = useQuery(() => api.listSources(), []);
   const agents = useQuery(() => api.listAgents(), []);
   const notes = useQuery(() => api.listNotes(stream.id), [stream.id]);
-  const [adding, setAdding] = useState(false);
+  const [adding, setAdding] = useState(params.get("add") ? params.get("add") : false);
   const [noting, setNoting] = useState(false);
   const admin = can(user, "sources.manage");
   if (!sources || !agents) return <Shell title="Context & agents" />;
@@ -38,6 +42,7 @@ export default function ContextAgents() {
           {admin && <button className="btn primary sm" onClick={() => setAdding(true)}><i className="ti ti-plus" /> Add source</button>}
         </div>
       </div>
+      <GettingStarted />
       <div className="cols3" style={{ gridTemplateColumns: "repeat(4,1fr)", marginBottom: 18 }}>
         {[[sources.length, "connected sources"], [fmt(records), "records in the context layer"], [`${live} / ${agents.length}`, "agents running"], [ago(sources.map((s) => s.lastSync).filter(Boolean).sort().pop()), "last sync"]].map(([n, l]) => (
           <div key={l} className="card" style={{ padding: "13px 16px" }}><div style={{ fontFamily: "var(--cond)", fontSize: 25, fontWeight: 700, color: "var(--navy)" }}>{n}</div><div className="tiny faint">{l}</div></div>))}
@@ -66,10 +71,12 @@ export default function ContextAgents() {
             <div className="grow"><div className="lt">Orchestrator <span className="tag" style={{ marginLeft: 6 }}>mocked in V1</span></div>
               <div className="small" style={{ color: "#C4D3E4", marginTop: 2 }}>Supervises every agent below: routes work, enforces each guardrail and stops an agent that misbehaves. A client build could run this on watsonx Orchestrate.</div></div>
           </div>
-          {GROUPS.map(([g, label, hint]) => (
+          {GROUPS.map(([g, label, hint]) => (g === "watcher" || agents.some((a) => a.group === g)) && (
             <div key={g}>
-              <div className="srcgroup">{label} <span style={{ textTransform: "none", letterSpacing: 0, fontWeight: 500 }}>· {hint}</span></div>
-              <div className="stack" style={{ gap: 10 }}>{agents.filter((a) => a.group === g).map((a) => <AgentCard key={a.id} a={a} user={user} />)}</div>
+              <div className="srcgroup">{label} <span style={{ textTransform: "none", letterSpacing: 0, fontWeight: 500 }}>· {hint}</span>
+                {g === "watcher" && can(user, "agents.watch") && <button className="btn out sm" style={{ marginLeft: "auto" }} onClick={() => setWatching(true)}><i className="ti ti-plus" /> New watcher</button>}</div>
+              <div className="stack" style={{ gap: 10 }}>{agents.filter((a) => a.group === g).map((a) => g === "watcher" ? <WatcherCard key={a.id} a={a} user={user} sources={sources} /> : <AgentCard key={a.id} a={a} user={user} />)}
+                {g === "watcher" && !agents.some((a) => a.group === "watcher") && <div className="card small faint">No watchers yet. Connect an API with “Have an agent watch this source”, or add a watcher here.</div>}</div>
             </div>))}
         </>)}
 
@@ -80,7 +87,8 @@ export default function ContextAgents() {
             <div><div className="lt" style={{ color: "var(--accent-d)" }}>Add context the systems don't have yet</div><div className="ls">e.g. a decision from today's leadership review</div></div></div>
         </div>)}
 
-      {adding && <AddSourceModal agents={agents} user={user} stream={stream} streams={ws.streams} onClose={() => setAdding(false)} />}
+      {adding && <AddSourceModal agents={agents} user={user} stream={stream} streams={ws.streams} initial={typeof adding === "string" ? adding : ""} onClose={() => setAdding(false)} />}
+      {watching && <NewWatcher user={user} sources={sources} onClose={() => { setWatching(false); setTab("agents"); }} />}
       {noting && <NoteModal stream={stream} user={user} onClose={() => { setNoting(false); setTab("notes"); }} />}
     </Shell>
   );
@@ -199,9 +207,9 @@ function AgentCard({ a, user }) {
   );
 }
 
-function AddSourceModal({ agents, user, stream, streams, onClose }) {
+function AddSourceModal({ agents, user, stream, streams, initial, onClose }) {
   const connectors = useQuery(() => api.listConnectors(), []);
-  const [f, setF] = useState({ connectorId: "", name: "", schedule: "daily", agentId: "agt-ingest", tag: "" });
+  const [f, setF] = useState({ connectorId: initial || "", name: "", schedule: "daily", agentId: "agt-ingest", tag: "" });
   const [result, setResult] = useState(null);
   const c = connectors?.find((x) => x.id === f.connectorId);
   const choose = (x) => setF({ ...f, connectorId: x.id, name: x.real ? "" : f.name || x.name, tag: x.tag, schedule: x.kind === "manual" ? "manual" : f.schedule });
@@ -215,6 +223,7 @@ function AddSourceModal({ agents, user, stream, streams, onClose }) {
       <Field label="Real data · works now">{connectors && chips(connectors.filter((x) => x.real))}</Field>
       <Field label="Simulated connectors · client build">{connectors && chips(connectors.filter((x) => !x.real))}</Field>
     </>);
+  if (c?.id === "rest") return <RestConnect user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   if (c?.id === "file" || c?.id === "url") return <FileImport key={c.id} fromUrl={c.id === "url"} user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   if (c?.feed) return <FeedConnect c={c} user={user} stream={stream} streams={streams} onDone={setResult} onClose={onClose} picker={body} />;
   return (
@@ -363,6 +372,7 @@ function ImportResult({ result, streams, onClose }) {
         {[[result.records, "records in"], [result.created.length, "new signals"], [result.corroborated.length, "signals corroborated"], [result.unthemed ?? 0, "unclassified"]].map(([n, l]) => (
           <div key={l} className="card grow" style={{ padding: "10px 12px" }}><div style={{ fontFamily: "var(--cond)", fontSize: 22, fontWeight: 700, color: "var(--navy)" }}>{Number(n).toLocaleString()}</div><div className="tiny faint">{l}</div></div>))}
       </div>
+      {result.watching && <div className="note"><i className="ti ti-eye" /><div>A watcher agent is now checking this source every {result.watching.interval}s and will draft an opportunity when a theme gets {result.watching.minNew}+ new records. See it under <b>Context &amp; agents → Agents</b>.</div></div>}
       {result.discovered > 0 && <div className="tiny faint"><i className="ti ti-sparkles" /> {result.discovered} emerging theme{result.discovered > 1 ? "s" : ""} found in records no known theme matched.</div>}
       <div className="table">{result.created.map((x) => row(x, "new"))}{result.corroborated.map((x) => row(x, "corroborates"))}{result.updated.map((x) => row(x, "updated"))}</div>
       {!result.records && <div className="small faint">Nothing came back for those settings right now (for weather: no risky forecast at those hubs this week). Try broader settings, or use the refresh button on the source later.</div>}

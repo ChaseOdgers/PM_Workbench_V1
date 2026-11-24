@@ -3,7 +3,10 @@
 // replace the functions in src/api/index.js with fetch() calls; the screens don't change.
 import { loadPack } from "../data/packs";
 
-const KEY = "pmwb.v3.db"; // v3: task-based phase checklists + seeded opportunities in every phase
+// Which data pack this instance runs: "aa" (the full demo) or "fresh" (an empty workspace).
+// Set by VITE_PACK at build time (npm run dev:fresh). Each pack keeps its own saved database.
+export const PACK = import.meta.env.VITE_PACK || "aa";
+const KEY = PACK === "aa" ? "pmwb.v3.db" : `pmwb.v3.${PACK}.db`; // v3: task-based phase checklists
 const listeners = new Set();
 let db = null;
 
@@ -19,17 +22,18 @@ function hydrate(node, now) {
   }
 }
 
-function fresh(packId = "aa") {
+function fresh(packId = PACK) {
   const d = structuredClone(loadPack(packId));
   hydrate(d, Date.now());
   d.audit = [];
-  d.meta = { packId, rev: 0, seq: { OPP: 2280, SIG: 500, ev: 100, log: 100, src: 100, pol: 10, gate: 10, user: 10, work: 500, fb: 100, run: 9100, note: 10, audit: 1 } };
+  d.meta = { packId, rev: 0, seq: { OPP: packId === "aa" ? 2280 : 3000, SIG: 500, ev: 100, log: 100, src: 100, pol: 10, gate: 10, user: 10, work: 500, fb: 100, run: 9100, note: 10, audit: 1 } };
   return d;
 }
 
 export function getDb() {
   if (!db) {
     try { db = JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { db = fresh(); }
+    if (db.meta?.packId !== PACK) db = fresh();
   }
   return db;
 }

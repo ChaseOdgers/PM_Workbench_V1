@@ -9,7 +9,10 @@
     "preview": "vite preview",
     "samples": "node scripts/generate-samples.mjs",
     "mock-api": "node mock-api/server.mjs",
-    "mock-data": "node mock-api/generate.mjs"
+    "mock-data": "node mock-api/generate.mjs",
+    "dev:fresh": "vite --mode fresh --port 5174",
+    "build:fresh": "vite build --mode fresh --outDir dist-fresh",
+    "surge": "node mock-api/surge.mjs"
   },
   "dependencies": {
     "@tabler/icons-webfont": "^3.30.0",

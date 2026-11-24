@@ -5,6 +5,7 @@ import { useQuery } from "../api/hooks";
 import * as api from "../api";
 import { PERSONAS } from "../lib/perms";
 import { ago } from "../lib/format";
+import { Toasts } from "../screens/Watchers";
 
 const NAV = {
   director: [["portfolio", "ti-layout-dashboard", "Portfolio"], ["signals", "ti-radar-2", "Signals"], ["opportunities", "ti-bulb", "Opportunities"], ["context", "ti-database", "Context & agents"], ["governance", "ti-shield-check", "Governance"], ["activity", "ti-history", "Activity"]],
@@ -18,7 +19,7 @@ export default function Shell({ title, children }) {
   const { ws, user, stream } = useSession();
   const nav = useNavigate();
   const [open, setOpen] = useState(false);
-  useEffect(() => { api.autoSync(); }, []); // pull from the mock enterprise API once per page load
+  useEffect(() => { api.autoSync(); api.startWatchers(); }, []); // pull from the mock API once per load; run watcher agents while the app is open
   const counts = useQuery(async () => {
     const [sig, opps, q, src] = await Promise.all([
       api.listSignals(stream.id), api.listOpportunities(user.streams), api.listReviewQueue(user), api.listSources(),
@@ -65,10 +66,12 @@ export default function Shell({ title, children }) {
         <div className="top">
           <div className="tl">{title}</div>
           <div className="tools">
+            {ws.fresh && <span className="rolechip" style={{ background: "var(--green-soft)", color: "var(--green-ink)" }}><i className="ti ti-sparkles" /> Fresh workspace</span>}
             <span className="rolechip"><i className={`ti ${PERSONAS[user.persona].icon}`} /> Signed in as {PERSONAS[user.persona].label}</span>
           </div>
         </div>
         <div className="scroll"><div className="wrap">{children}</div></div>
+        <Toasts />
       </section>
     </div>
   );
