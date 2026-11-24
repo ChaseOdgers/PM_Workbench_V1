@@ -33,9 +33,9 @@ export default function SignIn() {
             <h2 style={{ fontSize: 24 }}>Sign in to {ws.client}</h2>
             <p className="soft" style={{ margin: "8px 0 24px", lineHeight: 1.5 }}>Your organization signs in with single sign-on.</p>
             <button className="btn primary" style={{ padding: "13px 18px" }} onClick={sso} disabled={busy}>
-              {busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-shield-lock" />} Sign in with SSO ({ws.ssoProvider})
+              {busy ? <i className="ti ti-loader-2 spin" /> : <i className="ti ti-shield-lock" />} Sign in with company SSO
             </button>
-            <div className="note" style={{ marginTop: 20 }}><i className="ti ti-info-circle" /><div>SSO is mocked in V1. A client build plugs in their identity provider (Okta, Entra ID or IBM Verify) and maps its groups to the four roles.</div></div>
+            <div className="note" style={{ marginTop: 20 }}><i className="ti ti-info-circle" /><div>Sign-in is simulated for the demo. In a client build, the workbench uses the single sign-on the client already has and maps their existing groups to these roles. Nothing new to buy or roll out.</div></div>
           </>
         ) : (
           <>

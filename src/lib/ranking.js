@@ -35,6 +35,7 @@ export function scoreSignal(s, goals, settings) {
   const score = Math.round(
     (100 * (w.volume * factors.volume.score + w.trend * factors.trend.score + w.reach * factors.reach.score + w.fit * factors.fit.score)) / wsum
   );
+  const points = Object.fromEntries(Object.keys(factors).map((k) => [k, Math.round((100 * w[k] * factors[k].score) / wsum)]));
   const strong = Object.values(factors).filter((f) => f.strong).length;
   const severity = strong >= 3 ? "High" : strong >= 2 ? "Medium" : "Low";
   const trendLabel = growth >= 0.1 ? "growing" : growth <= -0.1 ? "shrinking" : "flat";
@@ -45,7 +46,7 @@ export function scoreSignal(s, goals, settings) {
     `${reach} source${reach === 1 ? "" : "s"} agree${reach === 1 ? "s" : ""}`,
     fit ? `fits “${fit.goal.text}”` : "no goal match",
   ].join(" · ");
-  return { ...s, score, severity, strong, growth, trendLabel, reach, fit, factors, why };
+  return { ...s, score, points, severity, strong, growth, trendLabel, reach, fit, factors, why };
 }
 
 export function rankSignals(signals, goals, settings) {

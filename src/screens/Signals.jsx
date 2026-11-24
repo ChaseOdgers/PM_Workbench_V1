@@ -72,10 +72,8 @@ function SignalCard({ s, rank, opps, triage, user, dim }) {
           </div>
           <div className="why"><b>Why #{rank || "–"}:</b> {s.why}</div>
           <div className="factors">
-            <span className={`factor ${f.volume.strong ? "on" : ""}`}><i className="ti ti-stack-2" /> Volume</span>
-            <span className={`factor ${f.trend.strong ? "on" : ""}`}><i className="ti ti-trending-up" /> Trend</span>
-            <span className={`factor ${f.reach.strong ? "on" : ""}`}><i className="ti ti-affiliate" /> Reach</span>
-            <span className={`factor ${f.fit.strong ? "on" : ""}`}><i className="ti ti-target" /> Fit</span>
+            {[["volume", "ti-stack-2", "Volume"], ["trend", "ti-trending-up", "Trend"], ["reach", "ti-affiliate", "Sources"], ["fit", "ti-target", "Goal fit"]].map(([k, ic, lb]) => (
+              <span key={k} className={`factor ${f[k].strong ? "on" : ""}`} title={`${s.points?.[k] ?? 0} of ${s.score} points from ${lb.toLowerCase()}`}><i className={`ti ${ic}`} /> {lb} <b className="pts">+{s.points?.[k] ?? 0}</b></span>))}
             {s.sources.map((src) => <span key={src.id} className="chip" style={{ padding: "1px 8px", fontSize: 11 }}><i className={`ti ${src.icon}`} style={{ fontSize: 13 }} /> {src.system}</span>)}
           </div>
         </div>
@@ -114,25 +112,40 @@ function SignalCard({ s, rank, opps, triage, user, dim }) {
   );
 }
 
+export const RANK_PRESETS = [
+  { id: "balanced", label: "Balanced", icon: "ti-scale", hint: "A bit of everything. Good default.", weights: { volume: 30, trend: 25, reach: 20, fit: 25 } },
+  { id: "volume", label: "Biggest problems", icon: "ti-stack-2", hint: "Most customers affected rises to the top.", weights: { volume: 55, trend: 15, reach: 15, fit: 15 } },
+  { id: "trend", label: "Fastest growing", icon: "ti-trending-up", hint: "Catch issues early, while they're still climbing.", weights: { volume: 15, trend: 55, reach: 15, fit: 15 } },
+  { id: "fit", label: "Strategy first", icon: "ti-target", hint: "Themes tied to this year's stream goals lead.", weights: { volume: 20, trend: 15, reach: 15, fit: 50 } },
+];
+const same = (a, b) => ["volume", "trend", "reach", "fit"].every((k) => a[k] === b[k]);
+
 function RankingRules({ data, editable, user }) {
   const s = data.settings;
   const set = (patch) => api.updateSignalSettings(patch, user.id);
-  const W = [["volume", "Volume", "how many records back it"], ["trend", "Trend", "growing over 8 weeks"], ["reach", "Reach", "how many sources agree"], ["fit", "Strategic fit", "matches a stream goal"]];
+  const current = RANK_PRESETS.find((p) => same(p.weights, s.weights));
   return (
-    <div className="card"><h3><i className="ti ti-adjustments" /> Ranking rules <span className="right faint">visible to everyone</span></h3>
-      {W.map(([k, label, hint]) => (
-        <div key={k} className="rule">
-          <div style={{ width: 108 }}><div style={{ fontWeight: 600 }}>{label}</div><div className="tiny faint">{hint}</div></div>
-          <input type="range" min="0" max="50" value={s.weights[k]} disabled={!editable} aria-label={`${label} weight`} onChange={(e) => set({ weights: { [k]: Number(e.target.value) } })} />
-          <span className="val">{s.weights[k]}</span>
-        </div>))}
-      <div className="rule">
-        <div style={{ width: 108 }}><div style={{ fontWeight: 600 }}>Cap</div><div className="tiny faint">themes shown</div></div>
-        <input type="range" min="3" max="25" value={s.cap} disabled={!editable} aria-label="Cap" onChange={(e) => set({ cap: Number(e.target.value) })} />
-        <span className="val">{s.cap}</span>
+    <div className="card"><h3><i className="ti ti-adjustments" /> How signals are ranked <span className="right faint">visible to everyone</span></h3>
+      <div className="tiny" style={{ lineHeight: 1.5, color: "var(--ink-soft)" }}>
+        The signals agent scores every theme out of 100 from four things it can count in the data: <b>how many records</b> mention it, <b>whether it's growing</b> over 8 weeks, <b>how many sources</b> agree, and <b>whether it matches a stream goal</b>. Each card shows where its points came from.
+      </div>
+      <div className="tiny faint" style={{ margin: "12px 0 6px", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>Rank by</div>
+      <div className="presets">
+        {RANK_PRESETS.map((p) => (
+          <button key={p.id} className={`preset ${current?.id === p.id ? "on" : ""}`} disabled={!editable} onClick={() => set({ weights: p.weights })}>
+            <i className={`ti ${p.icon}`} /><div><b>{p.label}</b><div className="tiny faint">{p.hint}</div></div>
+          </button>))}
+      </div>
+      {!current && <div className="tiny faint" style={{ marginTop: 6 }}>Custom mix in use ({["volume", "trend", "reach", "fit"].map((k) => s.weights[k]).join(" / ")}).</div>}
+      <div className="row" style={{ marginTop: 12, gap: 8 }}>
+        <span className="tiny" style={{ fontWeight: 600, whiteSpace: "nowrap" }}>Show top</span>
+        <select value={s.cap} disabled={!editable} aria-label="Show top" onChange={(e) => set({ cap: Number(e.target.value) })}>
+          {[...new Set([5, 10, 15, 25, s.cap])].sort((a, b) => a - b).map((n) => <option key={n} value={n}>{n} themes</option>)}
+        </select>
+        <span className="tiny faint">the rest stay below, nothing is hidden</span>
       </div>
       <div className="tiny faint" style={{ lineHeight: 1.5, marginTop: 10 }}>
-        A factor is <b>strong</b> at ≥{fmt(s.thresholds.volume)} records, ≥{Math.round(s.thresholds.trend * 100)}% growth, or ≥{s.thresholds.reach} sources. <b>High</b> needs 3 strong factors, <b>Medium</b> needs 2. Weights set the score (0–100) used for order.
+        <b>High</b> = 3 of 4 are strong (≥{fmt(s.thresholds.volume)} records, ≥{Math.round(s.thresholds.trend * 100)}% growth, ≥{s.thresholds.reach} sources, goal match). <b>Medium</b> = 2.
       </div>
       {editable && <button className="btn out sm" style={{ marginTop: 12 }} onClick={() => api.runAgent("agt-signals", user.id)}><i className="ti ti-player-play" /> Re-run signals agent</button>}
     </div>

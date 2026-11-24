@@ -4,7 +4,7 @@
   "clientShort": "AA",
   "appName": "Agentic PM Workbench",
   "codename": "Fresh workspace",
-  "ssoProvider": "IBM Verify",
+  "ssoProvider": "Company SSO",
   "brand": {
     "sidebar": "#0A2240",
     "sidebar2": "#12305A",

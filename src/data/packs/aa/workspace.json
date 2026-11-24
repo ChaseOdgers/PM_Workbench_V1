@@ -4,7 +4,7 @@
   "clientShort": "AA",
   "appName": "Agentic PM Workbench",
   "codename": "Workbench V1",
-  "ssoProvider": "IBM Verify",
+  "ssoProvider": "Company SSO",
   "brand": {
     "sidebar": "#0A2240", "sidebar2": "#12305A", "sidebarLine": "#1E3E63",
     "accent": "#0078D2", "accentD": "#005A9C", "accentSoft": "#DCECFB",

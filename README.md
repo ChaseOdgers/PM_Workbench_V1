@@ -112,7 +112,7 @@ scripts/generate-samples.mjs       Regenerates the sample upload files in public
 
 | Real (works end to end) | Mocked (shown as a workflow) |
 |---|---|
-| Role-based access, value-stream scoping | SSO (persona picker stands in for IBM Verify / Okta / Entra) |
+| Role-based access, value-stream scoping | The client's existing SSO (persona picker stands in for it) |
 | **File import:** any CSV/JSON export, column mapping, keyword theming, emerging-theme discovery, 8-week trends, new or corroborated signals | Client-system connectors: Salesforce, Snowflake, ADO and the rest (simulated handshake and sync) |
 | **Live feeds (no keys):** Federal Register (DOT rules), Hacker News search (news), Open-Meteo (7-day severe weather at hubs), Travel Stack Exchange (traveler questions), Mastodon hashtags (social posts). Called from the browser, re-sync on demand | Feeds don't sync on a timer yet; use the refresh button on the source |
 | **Linked sheets:** a Google Sheet or any CSV/JSON URL, re-synced on refresh with the saved column mapping | |
